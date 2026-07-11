@@ -119,7 +119,7 @@
     size: 0.0105,
     sizeAttenuation: true,
     transparent: true,
-    opacity: 0.8,
+    opacity: 0.32,
     depthWrite: false,
   });
   const points = new THREE.Points(geo, mat);
