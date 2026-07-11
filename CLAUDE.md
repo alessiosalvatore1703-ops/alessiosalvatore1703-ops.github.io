@@ -22,7 +22,11 @@ Deployed as a **GitHub Pages user site** (`alessiosalvatore1703.github.io`).
   a real complaint.
 - A single small `assets/css/custom.css` for anything Tailwind can't express cleanly
   (keep it minimal).
-- Vanilla JS only, in `assets/js/main.js`. No jQuery, no frameworks.
+- Vanilla JS in `assets/js/main.js`. No jQuery, no frameworks — with ONE deliberate,
+  user-approved exception: **three.js** (classic UMD build via jsdelivr CDN, pinned
+  `three@0.149.0`, global `THREE`) powering the hero point cloud in `assets/js/hero.js`.
+  The UMD build is required because ES modules don't load over `file://` and the user
+  previews by opening `index.html` directly. Do not add other libraries.
 
 ## Site structure (mirrors the CV template — this order is intentional)
 
@@ -122,17 +126,18 @@ re-invent it, extend it:
   grays: `#3E3E3E` dim / `#7A7A7A` mid / `#A8A8A8` / `#B5B5B5` / `#F2F2F2` bright.
 - **Type**: Archivo (variable; `.display-expanded` = font-stretch 125% for display) +
   IBM Plex Mono for all meta text (dates, tags, nav, eyebrows). Both from Google Fonts.
-- **Signature element**: hero canvas (`assets/js/hero.js`) — the Creation of Adam,
-  robotics edition: a segmented robot hand (Adam's drooping receiving pose, left) and a
-  human hand (God's reaching pose, right) nearly touch; a midpoint-displacement micro-arc
-  spark shimmers in the gap. Hands breathe (gap pulses, spark brightens as they near),
-  draw themselves on load, and ease closer when a fine pointer approaches the gap. The
-  human hand was hand-traced from the public-domain Wikimedia crop of the fresco
-  (license-clean, no attribution needed); the robot hand is original, in the site's
-  segments+joint-circles vocabulary. Art lives as Path2D strings in a 1000×400 design
-  space. History: user rejected a voxel hero, a 3-link manipulator, and a humanoid+dots
-  scene before choosing this concept (bold ~55% ink centerpiece, human-gives-life
-  orientation, via AskUserQuestion). Static frame under `prefers-reduced-motion`.
+- **Signature element**: hero WebGL point cloud (`assets/js/hero.js`, three.js) — ~15k
+  monochrome points form a humanoid robot reaching toward a tiny orb of ~300 drifting
+  points ("physical AI handling the small and delicate"). Assembles feet-up on load
+  (~2.4 s), sways slowly (BASE_YAW 0.65 presents the reach in profile), per-point
+  breathing noise, cursor parallax, and points scatter off the pointer ray. Desktop:
+  figure right-of-center between text and portrait, orb toward the portrait. Phones
+  (aspect < 0.85): figure scaled 0.45 into the empty bottom band (`pb-64` on the hero).
+  Fog fades depth into the paper. Reduced motion: static assembled frame; no WebGL:
+  empty canvas. History: user rejected FOUR 2D canvas heroes (voxel grid, 3-link arm,
+  humanoid+dots line art, Creation-of-Adam line hands — all felt "simple and stupid");
+  the paradigm shift to 3D point clouds was chosen via AskUserQuestion. Do not go back
+  to 2D line-art heroes.
 - **Easter eggs (user requirement)**: every project cover is a custom **inline SVG** in
   `index.html` with a hover behavior tied to that project's subject (voxels refine, rotors
   spin, LiDAR sweeps, stereo pupils track the cursor via JS, probe travels the pipe, valve
@@ -146,6 +151,12 @@ re-invent it, extend it:
   real photos/GIFs are exempt from the monochrome rule.
 - Clean, minimal, academic-professional — think research-lab personal page, not a
   marketing landing page. Content first, restrained decoration.
+- **Site motion layer** (`main.js` + custom.css, all behind
+  `prefers-reduced-motion: no-preference`): scroll reveals via IntersectionObserver
+  (`data-reveal` attribute added by JS so no-JS users see everything; sibling stagger
+  ≤ 350 ms), magnetic hover on hero/nav buttons (fine pointers only), and `.load-fade`
+  staggered hero load-in (classes in `index.html`). New sections/cards inherit reveals
+  automatically (`section article` selector).
 - Typography-led hierarchy; generous whitespace; subtle hover states only. No scroll-jacking,
   no heavy animation libraries.
 - Fully responsive; must read well on a phone since recruiters open links from email.

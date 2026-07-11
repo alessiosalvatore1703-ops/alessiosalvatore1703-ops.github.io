@@ -54,26 +54,26 @@
   <!-- ============ HERO ============ -->
   <section class="relative overflow-hidden border-b border-line">
     <canvas id="hero-canvas" class="absolute inset-0 w-full h-full" aria-hidden="true"></canvas>
-    <div class="relative max-w-6xl mx-auto px-5 sm:px-8 pt-32 pb-56 sm:pt-40 sm:pb-72 grid md:grid-cols-[1fr_auto] gap-12 items-center">
+    <div class="relative max-w-6xl mx-auto px-5 sm:px-8 pt-32 pb-64 sm:pt-40 sm:pb-40 grid md:grid-cols-[1fr_auto] gap-12 items-center">
       <div>
-        <p class="font-mono text-xs sm:text-sm tracking-[0.25em] uppercase text-muted mb-5">Robotics M.Sc. — ETH Zürich</p>
-        <h1 class="hero-title display-expanded font-black leading-[0.95] sm:text-7xl lg:text-8xl uppercase">
+        <p class="load-fade font-mono text-xs sm:text-sm tracking-[0.25em] uppercase text-muted mb-5">Robotics M.Sc. — ETH Zürich</p>
+        <h1 class="load-fade hero-title display-expanded font-black leading-[0.95] sm:text-7xl lg:text-8xl uppercase" style="animation-delay:.1s">
           Alessio<br>Salvatore
         </h1>
-        <p class="mt-7 max-w-xl text-base sm:text-lg leading-relaxed">
+        <p class="load-fade mt-7 max-w-xl text-base sm:text-lg leading-relaxed" style="animation-delay:.22s">
           I work on learning-based perception and control for robots — adaptive 3D mapping
           with reinforcement learning, distilling model-based controllers for aerial vehicles,
           and vision-language-action policies on real hardware. Currently studying
           multi-agent RL.
         </p>
-        <div class="mt-8 flex flex-wrap items-center gap-3 font-mono text-sm">
+        <div class="load-fade mt-8 flex flex-wrap items-center gap-3 font-mono text-sm" style="animation-delay:.34s">
           <a href="https://github.com/alessiosalvatore1703-ops" class="border border-ink/30 rounded px-3 py-1.5 hover:border-ink hover:bg-ink hover:text-paper transition-colors">GitHub</a>
           <!-- TODO: LinkedIn URL -->
           <a href="#" class="border border-ink/30 rounded px-3 py-1.5 hover:border-ink hover:bg-ink hover:text-paper transition-colors">LinkedIn</a>
           <a href="mailto:alessiosalvatore1703@gmail.com" class="border border-ink/30 rounded px-3 py-1.5 hover:border-ink hover:bg-ink hover:text-paper transition-colors">Email</a>
         </div>
       </div>
-      <div class="justify-self-center md:justify-self-end">
+      <div class="load-fade justify-self-center md:justify-self-end" style="animation-delay:.45s">
         <!-- component: viewfinder-frame -->
         <figure class="viewfinder relative w-52 sm:w-64 lg:w-72">
           <img src="assets/img/portrait.jpg" alt="Portrait of Alessio Salvatore" class="w-full grayscale">
@@ -531,6 +531,7 @@
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.min.js"></script>
   <script src="assets/js/hero.js"></script>
   <script src="assets/js/main.js"></script>
 </body>
