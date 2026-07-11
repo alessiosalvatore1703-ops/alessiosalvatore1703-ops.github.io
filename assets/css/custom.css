@@ -12,7 +12,7 @@
   font-size: 0.8rem;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: #5D6B77;
+  color: #6E6E6E;
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -21,8 +21,19 @@
   content: "";
   width: 2rem;
   height: 2px;
-  background: #EA5A0B;
+  background: #121212;
   flex: none;
+}
+
+/* Tag pill */
+.tag-pill {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  border: 1px solid #E4E4E1;
+  border-radius: 9999px;
+  padding: 0.3rem 0.7rem;
+  color: #6E6E6E;
 }
 
 /* Viewfinder frame: fiducial-style corner brackets around media */
@@ -31,36 +42,93 @@
   padding: 10px;
 }
 .viewfinder::before,
-.viewfinder::after,
-.viewfinder > img,
-.viewfinder > video {
-  display: block;
-}
-.viewfinder::before,
 .viewfinder::after {
   content: "";
   position: absolute;
   width: 22px;
   height: 22px;
-  border: 2px solid #EA5A0B;
+  border: 2px solid #121212;
 }
-.viewfinder::before {
-  top: 0;
-  left: 0;
-  border-right: none;
-  border-bottom: none;
-}
-.viewfinder::after {
-  bottom: 0;
-  right: 0;
-  border-left: none;
-  border-top: none;
-}
+.viewfinder::before { top: 0; left: 0; border-right: none; border-bottom: none; }
+.viewfinder::after  { bottom: 0; right: 0; border-left: none; border-top: none; }
 
 /* Visible keyboard focus everywhere */
 a:focus-visible,
 button:focus-visible {
-  outline: 2px solid #EA5A0B;
+  outline: 2px solid #121212;
   outline-offset: 3px;
   border-radius: 2px;
 }
+
+/* ============ Project easter eggs ============
+   Each cover SVG carries one hover behavior tied to its project.
+   All motion lives inside the no-preference media query, so
+   reduced-motion users get the complete static artwork. */
+
+@media (prefers-reduced-motion: no-preference) {
+
+  /* MapAdapt: fine voxels appear near the goal on hover */
+  .egg-fine { opacity: 0; transition: opacity 0.6s ease; }
+  .group:hover .egg-fine { opacity: 1; }
+  .group:hover .egg-coarse { opacity: 0.35; }
+  .egg-coarse { transition: opacity 0.6s ease; }
+  .group:hover .egg-path { animation: dash-march 1.2s linear infinite; }
+
+  /* OMAV: rotors spin, body bobs in hover-flight */
+  .egg-rotor { transform-box: fill-box; transform-origin: center; }
+  .group:hover .egg-rotor { animation: rotor-spin 0.6s linear infinite; }
+  .group:hover .egg-bob { animation: hover-bob 2.4s ease-in-out infinite; }
+
+  /* VLA: the language prompt types itself */
+  .egg-type { overflow: hidden; white-space: nowrap; max-width: 100%; }
+  .group:hover .egg-type { animation: typing 1.8s steps(34, end) both; }
+
+  /* Unitree A2: LiDAR sweep + scan-point blips */
+  .group:hover .egg-beam { animation: lidar-sweep 2.4s linear infinite; }
+  .egg-scanpt { opacity: 0; }
+  .group:hover .egg-scanpt { animation: scan-blip 2.4s linear infinite; }
+
+  /* Agibot: pupils are moved by JS; ease the motion here */
+  .egg-pupil { transition: transform 0.15s ease-out; }
+
+  /* Pipe inspection: probe travels out and back */
+  .group:hover .egg-probe { animation: out-and-back 4s ease-in-out infinite; }
+
+  /* Mitral valve: beats like a cardiac cycle */
+  .egg-valve { transform-box: fill-box; transform-origin: center; }
+  .group:hover .egg-valve { animation: valve-beat 0.9s ease-in-out infinite; }
+
+  /* Path drawing (multi-agent plans, SCvx iterations) */
+  .egg-draw { stroke-dasharray: 100; stroke-dashoffset: 100; }
+  .group:hover .egg-draw { animation: draw-path 1s ease forwards; }
+
+  /* Docking port blink */
+  .group:hover .egg-blink { animation: blink 1.2s ease-in-out infinite; }
+}
+
+@keyframes dash-march { to { stroke-dashoffset: -24; } }
+@keyframes rotor-spin { to { transform: rotate(360deg); } }
+@keyframes hover-bob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+@keyframes typing { from { max-width: 0; } to { max-width: 100%; } }
+@keyframes lidar-sweep { to { transform: rotate(360deg); } }
+@keyframes scan-blip {
+  0%, 100% { opacity: 0; }
+  10%      { opacity: 1; }
+  55%      { opacity: 0.3; }
+}
+@keyframes out-and-back {
+  0%   { transform: translateX(0); }
+  45%  { transform: translateX(560px); }
+  55%  { transform: translateX(560px); }
+  100% { transform: translateX(0); }
+}
+@keyframes valve-beat {
+  0%, 100% { transform: scale(1); }
+  35%      { transform: scale(1.06); }
+  55%      { transform: scale(0.97); }
+}
+@keyframes draw-path { to { stroke-dashoffset: 0; } }
+@keyframes blink { 50% { opacity: 0.2; } }

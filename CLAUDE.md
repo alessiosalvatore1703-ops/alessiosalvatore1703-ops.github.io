@@ -57,10 +57,21 @@ directly to the repo/report.
 
 ## Content — source of truth
 
-The CV is the source of truth for content. A copy lives at `assets/cv.pdf`
-(original: `~/Downloads/cvalessio (2).pdf`, May 2025 version). When the user updates
-the CV, update the site content to match — never invent achievements or reword claims
-into stronger ones than the CV states.
+Two sources, in priority order:
+
+1. **`content/projects-2026.md`** — website-ready copy for the six 2026 projects, compiled
+   from the local project folders. **Read its ⚠️ flags before editing project copy**: some
+   repos are private or lab-internal (MapAdapt, OMAV fork — no public links), some numbers
+   must keep their "validation" qualifier, and some quantitative claims are forbidden
+   (VLA success rates, OMAV final numbers). Its bottom checklist tracks what's still
+   needed from the user.
+2. **The CV** (`assets/cv.pdf`, from `~/Downloads/cvalessio (2).pdf`, May 2025) — for
+   About/Experience/Education and the 2025 projects.
+
+Never invent achievements or reword claims into stronger ones than the sources state.
+GitHub username confirmed: `alessiosalvatore1703-ops`. Real media already in the site:
+`assets/projects/vla-so101/demo.gif`, `assets/projects/aerial-knowledge-distillation/pipeline.png`
+(for a future detail page), `assets/projects/pipe-inspection-odometry/slides.pdf` + `results.jpeg`.
 
 Current CV snapshot (summary):
 
@@ -90,22 +101,31 @@ from the user before publishing; use `#` placeholders in the meantime and flag t
 
 ## Design & tone
 
-The design system is decided — do not re-invent it, extend it:
+The design system is decided (user-chosen: **strict monochrome, professional**) — do not
+re-invent it, extend it:
 
 - **Palette** (Tailwind tokens in the inline Play-CDN config in each page's `<head>`):
-  `paper #FBFBF9` (bg), `ink #0E1B2C` (text), `accent #EA5A0B` (signal orange),
-  `muted #5D6B77` (meta text), `line #DDDFD9` (borders). Project cover art uses ink as
-  background with `#9FB3C8`/`#5C7089`/`#3A4A5C` line work + accent highlights.
+  `paper #FCFCFB` (bg), `ink #121212` (text), `muted #6E6E6E` (meta), `line #E4E4E1`
+  (hairlines), `panel #131313` (cover-art background). **No color accents anywhere** —
+  emphasis via weight, underline, and inversion (black fill, white text). Cover linework
+  grays: `#3E3E3E` dim / `#7A7A7A` mid / `#A8A8A8` / `#B5B5B5` / `#F2F2F2` bright.
 - **Type**: Archivo (variable; `.display-expanded` = font-stretch 125% for display) +
   IBM Plex Mono for all meta text (dates, tags, nav, eyebrows). Both from Google Fonts.
-- **Signature element**: hero background canvas (`assets/js/main.js`) — a voxel grid that
-  refines resolution near the cursor, echoing the task-aware 3D mapping research. Keep it
-  subtle; it respects `prefers-reduced-motion` and falls back to a static grid.
+- **Signature element**: hero canvas (`assets/js/main.js`) — a hairline 3-link robot arm
+  that solves IK (FABRIK) toward the cursor, idling on a patrol path otherwise. General
+  robotics on purpose: the user rejected a voxel-specific hero. Static pose under
+  `prefers-reduced-motion`.
+- **Easter eggs (user requirement)**: every project cover is a custom **inline SVG** in
+  `index.html` with a hover behavior tied to that project's subject (voxels refine, rotors
+  spin, LiDAR sweeps, stereo pupils track the cursor via JS, probe travels the pipe, valve
+  beats, paths/trajectories draw in). Animations live in `custom.css` behind
+  `prefers-reduced-motion: no-preference`, triggered by Tailwind `group`-hover. Any new
+  project must ship with its own easter egg in the same style.
 - **Recurring motif**: `.viewfinder` corner brackets (custom.css) frame the portrait and
-  project media — fiducial-marker vernacular. Use it for any new media.
+  featured media — fiducial-marker vernacular. Portrait is rendered grayscale.
 - **Media slots**: every project card/feature has a `<figure>` marked `MEDIA SLOT` in a
-  comment. Swap the placeholder SVG (`assets/projects/<slug>/cover.svg`) for a real image,
-  or replace `<img>` with the commented `<video>` template next to it.
+  comment. Real media replaces the inline SVG (see the commented `<video>` template);
+  real photos/GIFs are exempt from the monochrome rule.
 - Clean, minimal, academic-professional — think research-lab personal page, not a
   marketing landing page. Content first, restrained decoration.
 - Typography-led hierarchy; generous whitespace; subtle hover states only. No scroll-jacking,
