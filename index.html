@@ -314,26 +314,15 @@
 
         <!-- component: project-card · mitral-valve-segmentation -->
         <article class="group border border-line rounded-lg overflow-hidden bg-white hover:border-ink/40 transition-colors">
-          <!-- MEDIA SLOT -->
-          <figure>
-            <!-- easter egg: the valve beats on hover -->
-            <svg viewBox="0 0 800 500" class="w-full aspect-[8/5] block" role="img" aria-label="Ultrasound sector with segmented mitral valve leaflets" font-family="'IBM Plex Mono', monospace">
-              <rect width="800" height="500" fill="#131313"/>
-              <path d="M 400 70 L 640 430 A 440 440 0 0 1 160 430 Z" fill="#1B1B1B" stroke="#3E3E3E" stroke-width="1.5"/>
-              <path d="M 330 175 A 130 130 0 0 1 470 175" stroke="#2E2E2E" fill="none"/>
-              <path d="M 260 280 A 260 260 0 0 1 540 280" stroke="#2E2E2E" fill="none"/>
-              <path d="M 195 385 A 390 390 0 0 1 605 385" stroke="#2E2E2E" fill="none"/>
-              <g class="egg-valve" stroke="#F2F2F2" stroke-width="2.5" fill="none" stroke-linecap="round">
-                <path d="M 320 300 C 345 270 375 262 398 285"/>
-                <path d="M 402 285 C 428 260 462 268 482 302"/>
-              </g>
-              <g fill="#B5B5B5">
-                <circle cx="320" cy="300" r="4"/><circle cx="398" cy="285" r="4"/><circle cx="482" cy="302" r="4"/>
-              </g>
-              <text x="60" y="46" fill="#8A8A8A" font-size="15" letter-spacing="2">DINO FEATURES → PSEUDO-LABELS</text>
-              <text x="60" y="466" fill="#5A5A5A" font-size="13">ECHOCARDIOGRAPHY</text>
-              <text x="690" y="466" fill="#5A5A5A" font-size="13">U-NET</text>
-            </svg>
+          <!-- MEDIA SLOT — real segmentation output on echo video -->
+          <figure class="relative">
+            <video class="w-full aspect-[8/5] object-cover block" autoplay loop muted playsinline
+                   aria-label="Predicted mitral valve segmentation mask tracking the leaflets in an echocardiography clip">
+              <source src="assets/projects/mitral-valve-segmentation/demo.mp4" type="video/mp4">
+              <a href="assets/projects/mitral-valve-segmentation/demo.mp4">Watch the segmentation demo</a>
+            </video>
+            <!-- easter egg: the pipeline types itself on hover -->
+            <span class="egg-type absolute bottom-2 left-2 bg-ink/90 text-paper font-mono text-[11px] px-2 py-1 rounded-sm">&gt; DINO features → pseudo-labels → U-Net_</span>
           </figure>
           <div class="p-5">
             <p class="font-mono text-[11px] tracking-widest uppercase text-muted">12/2025</p>

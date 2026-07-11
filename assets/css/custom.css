@@ -128,10 +128,6 @@ button:focus-visible {
   .egg-artifact { opacity: 0; }
   .group:hover .egg-artifact { animation: scan-blip 2.6s linear infinite; }
 
-  /* Mitral valve: beats like a cardiac cycle */
-  .egg-valve { transform-box: fill-box; transform-origin: center; }
-  .group:hover .egg-valve { animation: valve-beat 0.9s ease-in-out infinite; }
-
   /* Path drawing (multi-agent plans, SCvx iterations) */
   .egg-draw { stroke-dasharray: 100; stroke-dashoffset: 100; }
   .group:hover .egg-draw { animation: draw-path 1s ease forwards; }
@@ -156,11 +152,6 @@ button:focus-visible {
 @keyframes scanline-sweep {
   from { left: 0; }
   to   { left: 100%; }
-}
-@keyframes valve-beat {
-  0%, 100% { transform: scale(1); }
-  35%      { transform: scale(1.06); }
-  55%      { transform: scale(0.97); }
 }
 @keyframes draw-path { to { stroke-dashoffset: 0; } }
 @keyframes blink { 50% { opacity: 0.2; } }
