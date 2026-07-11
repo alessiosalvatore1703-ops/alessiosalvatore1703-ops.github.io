@@ -138,9 +138,12 @@
   const BASE_YAW = 0.5;
   group.rotation.y = BASE_YAW;
 
-  // ---- Camera: map the stage (world y 0..STAGE_H) into a reserved band at
-  //      the hero's bottom, so the cloud NEVER overlaps text or portrait ----
-  const STAGE_H = 1.75;
+  // ---- Camera: place the stage so the cloud NEVER overlaps text/portrait.
+  // Wide desktop: in the empty gap column between the text (max-w-xl) and the
+  // portrait (w-72), vertically on the axis of the name. Narrow: a reserved
+  // band at the hero's bottom. Layout constants mirror index.html's hero grid.
+  const STAGE_H = 1.75;      // world height of the tallest shape + margin
+  const STAGE_W = 1.22;      // world width of the widest shape (A2 length)
   let width, height;
   function resize() {
     const rect = canvas.getBoundingClientRect();
@@ -148,15 +151,34 @@
     renderer.setSize(width, height, false);
     camera.aspect = width / height;
 
-    const bandH = Math.min(height * 0.38, 280);      // px reserved at the bottom (< hero pb)
-    const worldVisH = STAGE_H * (height / bandH);    // world height the canvas spans
+    let S, cxPx, cyPx; // px per world unit, stage-center pixel position
+    if (width >= 1280) {   // Tailwind xl: hero drops its band padding there too
+      // gap column: container is max-w-6xl (1152) centered with px-8;
+      // text column is max-w-xl (576), portrait is w-72 (288) right-aligned
+      const containerW = Math.min(width - 64, 1152);
+      const margin = (width - containerW) / 2;
+      const gapStart = margin + 32 + 576 + 8;
+      const gapEnd = margin + containerW - 32 - 288 - 8;
+      // free rectangle: below the nav (56px), above the second name line
+      // ("SALVATORE" reaches into the gap column at ~y 300)
+      const topPx = 66, bottomPx = 300;
+      S = Math.min((gapEnd - gapStart - 16) / STAGE_W, (bottomPx - topPx) / STAGE_H) * 0.95;
+      cxPx = (gapStart + gapEnd) / 2;
+      cyPx = (topPx + bottomPx) / 2;                 // beside the first name line
+    } else {
+      const bandH = Math.min(height * 0.38, 280);    // px reserved at the bottom
+      S = bandH / STAGE_H;
+      cxPx = width / 2;
+      cyPx = height - bandH / 2;
+    }
+
+    const worldVisH = height / S;
     const dist = worldVisH / (2 * FOV_TAN);
-    // place the stage's vertical center at the band's center: screen y grows
-    // downward, world y grows up, so the look-at sits ABOVE the stage center
-    const bandCenterPx = height - bandH / 2;
-    const lookY = STAGE_H / 2 + (bandCenterPx - height / 2) * (worldVisH / height);
-    camera.position.set(0.09 * dist, lookY + 0.12 * dist, dist);
-    camera.lookAt(0, lookY, 0);
+    // look-at point that maps the stage center (0, STAGE_H/2, 0) to (cxPx, cyPx)
+    const lookX = -(cxPx - width / 2) / S;
+    const lookY = STAGE_H / 2 - (height / 2 - cyPx) / S;
+    camera.position.set(lookX, lookY + 0.12 * dist, dist);
+    camera.lookAt(lookX, lookY, 0);
     camera.updateProjectionMatrix();
     scene.fog.near = dist * 0.75;
     scene.fog.far = dist * 2.2;

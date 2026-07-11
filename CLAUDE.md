@@ -137,9 +137,13 @@ re-invent it, extend it:
   (BASE_YAW 0.5), per-point breathing noise, cursor parallax, and **cursor dissolve** —
   points near the pointer ray melt outward along fixed per-point directions and heal
   when it leaves (user chose dissolve over the earlier scatter-repel).
-  **Layout rule (two prior user complaints — do not regress):** the stage renders in a
-  reserved bottom band (`bandH = min(38% height, 280px)`, hero has `pb-72 sm:pb-80`),
-  so the cloud can NEVER overlap text or the portrait at any viewport. Reduced motion:
+  **Layout rule (two prior user complaints — do not regress):** the stage must NEVER
+  overlap text or the portrait. On xl+ (≥1280px) it renders in the free rectangle of
+  the gap column between the text and the portrait — beside "ALESSIO", between the nav
+  (y≈66) and the top of "SALVATORE" (y≈300); those pixel constants in `resize()` mirror
+  the hero grid, so re-verify all three shapes after any hero layout change. Below
+  1280px it falls back to a reserved bottom band (`bandH = min(38% height, 280px)`,
+  hero keeps `pb-72 sm:pb-80 xl:pb-32`). Reduced motion:
   static G1 frame; no WebGL: empty canvas. History: user rejected FOUR 2D canvas heroes
   (voxels, 3-link arm, humanoid+dots, Adam hands — "simple and stupid"), then liked the
   3D point-cloud paradigm; parametric capsule shapes were replaced by these real-mesh
