@@ -132,8 +132,6 @@ button:focus-visible {
   .egg-draw { stroke-dasharray: 100; stroke-dashoffset: 100; }
   .group:hover .egg-draw { animation: draw-path 1s ease forwards; }
 
-  /* Docking port blink */
-  .group:hover .egg-blink { animation: blink 1.2s ease-in-out infinite; }
 }
 
 @keyframes dash-march { to { stroke-dashoffset: -24; } }
@@ -154,4 +152,3 @@ button:focus-visible {
   to   { left: 100%; }
 }
 @keyframes draw-path { to { stroke-dashoffset: 0; } }
-@keyframes blink { 50% { opacity: 0.2; } }

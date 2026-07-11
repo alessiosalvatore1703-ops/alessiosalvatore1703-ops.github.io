@@ -379,35 +379,15 @@
 
         <!-- component: project-card · satellite-docking -->
         <article class="group border border-line rounded-lg overflow-hidden bg-white hover:border-ink/40 transition-colors">
-          <!-- MEDIA SLOT -->
-          <figure>
-            <!-- easter egg: hover runs the SCvx iterations — trajectories converge to the docking port -->
-            <svg viewBox="0 0 800 500" class="w-full aspect-[8/5] block" role="img" aria-label="Successively convexified trajectories guiding a chaser satellite to a docking port" font-family="'IBM Plex Mono', monospace">
-              <rect width="800" height="500" fill="#131313"/>
-              <g stroke="#3E3E3E" fill="none">
-                <circle cx="300" cy="150" r="34"/><circle cx="430" cy="330" r="46"/>
-                <circle cx="250" cy="360" r="26"/><circle cx="530" cy="140" r="22"/>
-              </g>
-              <g stroke="#A8A8A8" stroke-width="1.5" fill="none">
-                <rect x="616" y="216" width="64" height="64"/>
-                <line x1="616" y1="248" x2="586" y2="248"/>
-                <line x1="680" y1="232" x2="740" y2="232"/>
-                <line x1="680" y1="264" x2="740" y2="264"/>
-                <rect x="740" y="222" width="10" height="52"/>
-              </g>
-              <circle class="egg-blink" cx="586" cy="248" r="6" fill="#F2F2F2"/>
-              <g fill="none" stroke-width="2">
-                <path class="egg-draw" pathLength="100" d="M 90 420 C 240 430 400 400 560 280" stroke="#3E3E3E" stroke-dasharray="4 6"/>
-                <path class="egg-draw" style="animation-delay:.35s" pathLength="100" d="M 90 420 C 220 390 380 340 570 262" stroke="#7A7A7A" stroke-dasharray="6 6"/>
-                <path class="egg-draw" style="animation-delay:.7s" pathLength="100" d="M 90 420 C 210 350 400 290 580 250" stroke="#F2F2F2"/>
-              </g>
-              <g transform="translate(90 420)">
-                <rect x="-10" y="-10" width="20" height="20" stroke="#F2F2F2" stroke-width="1.5" fill="none" transform="rotate(20)"/>
-              </g>
-              <text x="60" y="46" fill="#8A8A8A" font-size="15" letter-spacing="2">SEQUENTIAL CONVEXIFICATION</text>
-              <text x="60" y="466" fill="#5A5A5A" font-size="13">TRAJECTORY OPTIMIZATION</text>
-              <text x="700" y="466" fill="#5A5A5A" font-size="13">SCVX</text>
-            </svg>
+          <!-- MEDIA SLOT — real planner rollout from the course simulator -->
+          <figure class="relative">
+            <video class="w-full aspect-[8/5] object-cover block" autoplay loop muted playsinline
+                   aria-label="Spacecraft steering between circular obstacles toward its docking target in simulation">
+              <source src="assets/projects/satellite-docking/demo.mp4" type="video/mp4">
+              <a href="assets/projects/satellite-docking/demo.mp4">Watch the docking demo</a>
+            </video>
+            <!-- easter egg: the solver chip types itself on hover -->
+            <span class="egg-type absolute bottom-2 left-2 bg-ink/90 text-paper font-mono text-[11px] px-2 py-1 rounded-sm">&gt; SCvx: non-convex → convex subproblems_</span>
           </figure>
           <div class="p-5">
             <p class="font-mono text-[11px] tracking-widest uppercase text-muted">11–12/2025 · PDM4AR</p>
