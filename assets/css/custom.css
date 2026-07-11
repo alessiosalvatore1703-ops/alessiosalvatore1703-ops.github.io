@@ -6,6 +6,12 @@
   letter-spacing: -0.01em;
 }
 
+/* Hero headline: below the sm breakpoint, scale with the viewport so
+   "SALVATORE" never overflows narrow phones (sm:text-7xl takes over above). */
+@media (max-width: 639px) {
+  .hero-title { font-size: clamp(2rem, 9.5vw, 3rem); }
+}
+
 /* Section heading: mono eyebrow with a leading tick */
 .section-label {
   font-family: "IBM Plex Mono", ui-monospace, monospace;

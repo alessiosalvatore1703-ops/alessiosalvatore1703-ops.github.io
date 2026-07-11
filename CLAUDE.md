@@ -122,11 +122,17 @@ re-invent it, extend it:
   grays: `#3E3E3E` dim / `#7A7A7A` mid / `#A8A8A8` / `#B5B5B5` / `#F2F2F2` bright.
 - **Type**: Archivo (variable; `.display-expanded` = font-stretch 125% for display) +
   IBM Plex Mono for all meta text (dates, tags, nav, eyebrows). Both from Google Fonts.
-- **Signature element**: hero canvas (`assets/js/hero.js`) — a hairline kinematic-skeleton
-  humanoid kneeling and reaching toward a tiny point-cloud of dots ("physical AI handling
-  the small and delicate"); one dot commutes to the fingertip, the cursor perturbs the
-  cluster. History: user rejected a voxel-specific hero first, then a 3-link manipulator —
-  this humanoid+dots concept was their request. Static pose under `prefers-reduced-motion`.
+- **Signature element**: hero canvas (`assets/js/hero.js`) — the Creation of Adam,
+  robotics edition: a segmented robot hand (Adam's drooping receiving pose, left) and a
+  human hand (God's reaching pose, right) nearly touch; a midpoint-displacement micro-arc
+  spark shimmers in the gap. Hands breathe (gap pulses, spark brightens as they near),
+  draw themselves on load, and ease closer when a fine pointer approaches the gap. The
+  human hand was hand-traced from the public-domain Wikimedia crop of the fresco
+  (license-clean, no attribution needed); the robot hand is original, in the site's
+  segments+joint-circles vocabulary. Art lives as Path2D strings in a 1000×400 design
+  space. History: user rejected a voxel hero, a 3-link manipulator, and a humanoid+dots
+  scene before choosing this concept (bold ~55% ink centerpiece, human-gives-life
+  orientation, via AskUserQuestion). Static frame under `prefers-reduced-motion`.
 - **Easter eggs (user requirement)**: every project cover is a custom **inline SVG** in
   `index.html` with a hover behavior tied to that project's subject (voxels refine, rotors
   spin, LiDAR sweeps, stereo pupils track the cursor via JS, probe travels the pipe, valve
