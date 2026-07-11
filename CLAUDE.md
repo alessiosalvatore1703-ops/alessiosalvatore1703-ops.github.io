@@ -139,12 +139,12 @@ re-invent it, extend it:
   when it leaves (user chose dissolve over the earlier scatter-repel).
   **Layout rule (two prior user complaints — do not regress):** the DISPERSED dots
   intentionally roam the full hero (user request — atmospheric), but the FORMED shapes
-  must NEVER overlap text or the portrait. On xl+ (≥1280px) it renders in the free rectangle of
-  the gap column between the text and the portrait — beside "ALESSIO", between the nav
-  (y≈66) and the top of "SALVATORE" (y≈300); those pixel constants in `resize()` mirror
-  the hero grid, so re-verify all three shapes after any hero layout change. Below
-  1280px it falls back to a reserved bottom band (`bandH = min(38% height, 280px)`,
-  hero keeps `pb-72 sm:pb-80 xl:pb-32`). Reduced motion:
+  must NEVER overlap text or the portrait. On xl+ (≥1280px) they stand centered UNDER
+  the name block (user request): cx = name center (margin+32+372), strip from y≈585
+  (below paragraph and buttons) to the hero's bottom edge (`xl:pb-64` reserves it);
+  those pixel constants in `resize()` mirror the hero grid, so re-verify all three
+  shapes after any hero layout change. Below 1280px it falls back to a reserved bottom
+  band (`bandH = min(38% height, 280px)`, hero keeps `pb-72 sm:pb-80`). Reduced motion:
   static G1 frame; no WebGL: empty canvas. History: user rejected FOUR 2D canvas heroes
   (voxels, 3-link arm, humanoid+dots, Adam hands — "simple and stupid"), then liked the
   3D point-cloud paradigm; parametric capsule shapes were replaced by these real-mesh

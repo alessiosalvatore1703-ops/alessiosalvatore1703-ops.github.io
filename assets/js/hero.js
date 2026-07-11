@@ -153,19 +153,16 @@
     camera.aspect = width / height;
 
     let S, cxPx, cyPx; // px per world unit, stage-center pixel position
-    if (width >= 1280) {   // Tailwind xl: hero drops its band padding there too
-      // gap column: container is max-w-6xl (1152) centered with px-8;
-      // text column is max-w-xl (576), portrait is w-72 (288) right-aligned
+    if (width >= 1280) {   // Tailwind xl: hero reserves bottom room (xl:pb-64)
+      // shapes stand UNDER the name (user request): horizontally centered on
+      // the h1 block (container margin + px-8 + ~744px name width), in the
+      // strip below the paragraph/buttons (y ≈ 585) down to the hero's edge
       const containerW = Math.min(width - 64, 1152);
       const margin = (width - containerW) / 2;
-      const gapStart = margin + 32 + 576 + 8;
-      const gapEnd = margin + containerW - 32 - 288 - 8;
-      // free rectangle: below the nav (56px), above the second name line
-      // ("SALVATORE" reaches into the gap column at ~y 300)
-      const topPx = 66, bottomPx = 300;
-      S = Math.min((gapEnd - gapStart - 16) / STAGE_W, (bottomPx - topPx) / STAGE_H) * 0.95;
-      cxPx = (gapStart + gapEnd) / 2;
-      cyPx = (topPx + bottomPx) / 2;                 // beside the first name line
+      const topPx = 585, bottomPx = height - 16;
+      S = Math.min((bottomPx - topPx) / STAGE_H, 200) * 0.95;
+      cxPx = margin + 32 + 372;                      // center of the name block
+      cyPx = (topPx + bottomPx) / 2;
     } else {
       const bandH = Math.min(height * 0.38, 280);    // px reserved at the bottom
       S = bandH / STAGE_H;
