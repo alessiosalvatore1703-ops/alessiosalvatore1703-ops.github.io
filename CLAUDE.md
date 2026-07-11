@@ -127,17 +127,20 @@ re-invent it, extend it:
 - **Type**: Archivo (variable; `.display-expanded` = font-stretch 125% for display) +
   IBM Plex Mono for all meta text (dates, tags, nav, eyebrows). Both from Google Fonts.
 - **Signature element**: hero WebGL point cloud (`assets/js/hero.js`, three.js) — ~15k
-  monochrome points form a humanoid robot reaching toward a tiny orb of ~300 drifting
-  points ("physical AI handling the small and delicate"). Assembles feet-up on load
-  (~2.4 s), sways slowly (BASE_YAW 0.65 presents the reach in profile), per-point
-  breathing noise, cursor parallax, and points scatter off the pointer ray. Desktop:
-  figure right-of-center between text and portrait, orb toward the portrait. Phones
-  (aspect < 0.85): figure scaled 0.45 into the empty bottom band (`pb-64` on the hero).
-  Fog fades depth into the paper. Reduced motion: static assembled frame; no WebGL:
-  empty canvas. History: user rejected FOUR 2D canvas heroes (voxel grid, 3-link arm,
-  humanoid+dots line art, Creation-of-Adam line hands — all felt "simple and stupid");
-  the paradigm shift to 3D point clouds was chosen via AskUserQuestion. Do not go back
-  to 2D line-art heroes.
+  monochrome points cycling through robot forms: sparse cloud → humanoid → sparse →
+  quadrotor drone → sparse → robot dog → repeat (user-requested morph cycle; the drone
+  and dog echo the OMAV and Unitree A2 projects). State machine: form 2.0 s (built
+  bottom-up via per-point delays) → hold 5.5 s → disperse 1.4 s. Constant behaviors:
+  slow sway (BASE_YAW 0.5), per-point breathing noise, cursor parallax, points scatter
+  off the pointer ray. Desktop framing: shapes live in the gap between text and portrait
+  and **must never sit behind the portrait photo or the paragraph** (user complaint —
+  verify all three shapes when reframing; drone/dog are deliberately lower than the
+  humanoid). Phones (aspect < 0.85): stage scaled 0.45 into the hero's bottom band
+  (`pb-64`). Fog fades depth into the paper. Reduced motion: static humanoid frame; no
+  WebGL: empty canvas. History: user rejected FOUR 2D canvas heroes (voxel grid, 3-link
+  arm, humanoid+dots line art, Creation-of-Adam line hands — all felt "simple and
+  stupid"); the 3D point-cloud paradigm was chosen via AskUserQuestion and the user
+  likes it. Do not go back to 2D line-art heroes.
 - **Easter eggs (user requirement)**: every project cover is a custom **inline SVG** in
   `index.html` with a hover behavior tied to that project's subject (voxels refine, rotors
   spin, LiDAR sweeps, stereo pupils track the cursor via JS, probe travels the pipe, valve
