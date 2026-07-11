@@ -126,21 +126,24 @@ re-invent it, extend it:
   grays: `#3E3E3E` dim / `#7A7A7A` mid / `#A8A8A8` / `#B5B5B5` / `#F2F2F2` bright.
 - **Type**: Archivo (variable; `.display-expanded` = font-stretch 125% for display) +
   IBM Plex Mono for all meta text (dates, tags, nav, eyebrows). Both from Google Fonts.
-- **Signature element**: hero WebGL point cloud (`assets/js/hero.js`, three.js) — ~15k
-  monochrome points cycling through robot forms: sparse cloud → humanoid → sparse →
-  quadrotor drone → sparse → robot dog → repeat (user-requested morph cycle; the drone
-  and dog echo the OMAV and Unitree A2 projects). State machine: form 2.0 s (built
-  bottom-up via per-point delays) → hold 5.5 s → disperse 1.4 s. Constant behaviors:
-  slow sway (BASE_YAW 0.5), per-point breathing noise, cursor parallax, points scatter
-  off the pointer ray. Desktop framing: shapes live in the gap between text and portrait
-  and **must never sit behind the portrait photo or the paragraph** (user complaint —
-  verify all three shapes when reframing; drone/dog are deliberately lower than the
-  humanoid). Phones (aspect < 0.85): stage scaled 0.45 into the hero's bottom band
-  (`pb-64`). Fog fades depth into the paper. Reduced motion: static humanoid frame; no
-  WebGL: empty canvas. History: user rejected FOUR 2D canvas heroes (voxel grid, 3-link
-  arm, humanoid+dots line art, Creation-of-Adam line hands — all felt "simple and
-  stupid"); the 3D point-cloud paradigm was chosen via AskUserQuestion and the user
-  likes it. Do not go back to 2D line-art heroes.
+- **Signature element**: hero WebGL point cloud (`assets/js/hero.js`, three.js) — 12k
+  monochrome points cycling through **real robot hardware**: sparse cloud → Unitree G1
+  humanoid → sparse → ETH ASL RotorS Firefly hexacopter → sparse → Unitree A2 quadruped
+  → repeat (the Firefly and A2 echo the user's ASL and summer-school projects). Point
+  data lives in `assets/js/hero-shapes.js` (base64 int16 mm), sampled offline from the
+  manufacturers' own meshes by `tools/sample_hero_shapes.py` (Unitree meshes BSD-3,
+  RotorS Apache-2.0 — credited in the footer; keep that line). State machine: form
+  2.0 s (built bottom-up) → hold 6 s → disperse 1.4 s. Constant behaviors: slow sway
+  (BASE_YAW 0.5), per-point breathing noise, cursor parallax, and **cursor dissolve** —
+  points near the pointer ray melt outward along fixed per-point directions and heal
+  when it leaves (user chose dissolve over the earlier scatter-repel).
+  **Layout rule (two prior user complaints — do not regress):** the stage renders in a
+  reserved bottom band (`bandH = min(38% height, 280px)`, hero has `pb-72 sm:pb-80`),
+  so the cloud can NEVER overlap text or the portrait at any viewport. Reduced motion:
+  static G1 frame; no WebGL: empty canvas. History: user rejected FOUR 2D canvas heroes
+  (voxels, 3-link arm, humanoid+dots, Adam hands — "simple and stupid"), then liked the
+  3D point-cloud paradigm; parametric capsule shapes were replaced by these real-mesh
+  samples at their request. Do not go back to 2D line-art heroes or made-up geometry.
 - **Easter eggs (user requirement)**: every project cover is a custom **inline SVG** in
   `index.html` with a hover behavior tied to that project's subject (voxels refine, rotors
   spin, LiDAR sweeps, stereo pupils track the cursor via JS, probe travels the pipe, valve
