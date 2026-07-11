@@ -137,8 +137,9 @@ re-invent it, extend it:
   (BASE_YAW 0.5), per-point breathing noise, cursor parallax, and **cursor dissolve** —
   points near the pointer ray melt outward along fixed per-point directions and heal
   when it leaves (user chose dissolve over the earlier scatter-repel).
-  **Layout rule (two prior user complaints — do not regress):** the stage must NEVER
-  overlap text or the portrait. On xl+ (≥1280px) it renders in the free rectangle of
+  **Layout rule (two prior user complaints — do not regress):** the DISPERSED dots
+  intentionally roam the full hero (user request — atmospheric), but the FORMED shapes
+  must NEVER overlap text or the portrait. On xl+ (≥1280px) it renders in the free rectangle of
   the gap column between the text and the portrait — beside "ALESSIO", between the nav
   (y≈66) and the top of "SALVATORE" (y≈300); those pixel constants in `resize()` mirror
   the hero grid, so re-verify all three shapes after any hero layout change. Below

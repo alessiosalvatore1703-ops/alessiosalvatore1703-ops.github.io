@@ -54,14 +54,15 @@
     return seed / 4294967296;
   }
 
-  // fresh scattered shell around the stage (stage is roughly y 0..1.6)
+  // scattered targets fill the WHOLE visible hero (user request: dispersed
+  // dots roam everywhere; only the formed shapes must respect the text).
+  // Bounds are updated by resize() from the camera mapping.
+  const sparse = { cx: 0, cy: 0.9, hw: 2.2, hh: 1.4 };
   function makeSparse(out) {
     for (let i = 0; i < N; i++) {
-      const th = rnd() * 2 * Math.PI, ph = Math.acos(2 * rnd() - 1);
-      const rr = 1.3 + rnd() * 0.9;
-      out[i * 3] = rr * Math.sin(ph) * Math.cos(th) * 1.4;
-      out[i * 3 + 1] = 0.8 + rr * Math.cos(ph) * 0.6;
-      out[i * 3 + 2] = rr * Math.sin(ph) * Math.sin(th);
+      out[i * 3] = sparse.cx + (rnd() * 2 - 1) * sparse.hw;
+      out[i * 3 + 1] = sparse.cy + (rnd() * 2 - 1) * sparse.hh;
+      out[i * 3 + 2] = (rnd() * 2 - 1) * 0.6;
     }
     return out;
   }
@@ -182,6 +183,11 @@
     camera.updateProjectionMatrix();
     scene.fog.near = dist * 0.75;
     scene.fog.far = dist * 2.2;
+    // dispersed dots roam the full visible hero
+    sparse.cx = lookX;
+    sparse.cy = lookY;
+    sparse.hw = (width / (2 * S)) * 0.96;
+    sparse.hh = (height / (2 * S)) * 0.92;
     if (reducedMotion) renderer.render(scene, camera);
   }
 
@@ -273,6 +279,13 @@
 
   window.addEventListener('resize', resize);
   resize();
+
+  // the initial scatter was built before resize() knew the hero bounds
+  if (!reducedMotion) {
+    makeSparse(fromBuf);
+    core.set(fromBuf);
+    pos.set(fromBuf);
+  }
 
   if (!reducedMotion) {
     if (finePointer) {
