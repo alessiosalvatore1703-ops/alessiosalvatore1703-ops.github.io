@@ -90,10 +90,24 @@ from the user before publishing; use `#` placeholders in the meantime and flag t
 
 ## Design & tone
 
+The design system is decided — do not re-invent it, extend it:
+
+- **Palette** (Tailwind tokens in the inline Play-CDN config in each page's `<head>`):
+  `paper #FBFBF9` (bg), `ink #0E1B2C` (text), `accent #EA5A0B` (signal orange),
+  `muted #5D6B77` (meta text), `line #DDDFD9` (borders). Project cover art uses ink as
+  background with `#9FB3C8`/`#5C7089`/`#3A4A5C` line work + accent highlights.
+- **Type**: Archivo (variable; `.display-expanded` = font-stretch 125% for display) +
+  IBM Plex Mono for all meta text (dates, tags, nav, eyebrows). Both from Google Fonts.
+- **Signature element**: hero background canvas (`assets/js/main.js`) — a voxel grid that
+  refines resolution near the cursor, echoing the task-aware 3D mapping research. Keep it
+  subtle; it respects `prefers-reduced-motion` and falls back to a static grid.
+- **Recurring motif**: `.viewfinder` corner brackets (custom.css) frame the portrait and
+  project media — fiducial-marker vernacular. Use it for any new media.
+- **Media slots**: every project card/feature has a `<figure>` marked `MEDIA SLOT` in a
+  comment. Swap the placeholder SVG (`assets/projects/<slug>/cover.svg`) for a real image,
+  or replace `<img>` with the commented `<video>` template next to it.
 - Clean, minimal, academic-professional — think research-lab personal page, not a
   marketing landing page. Content first, restrained decoration.
-- Light background, one accent color (defined once as a Tailwind config token in the
-  Play-CDN inline config so it's changed in one place).
 - Typography-led hierarchy; generous whitespace; subtle hover states only. No scroll-jacking,
   no heavy animation libraries.
 - Fully responsive; must read well on a phone since recruiters open links from email.

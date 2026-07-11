@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="'IBM Plex Mono', monospace">
+  <rect width="800" height="500" fill="#0E1B2C"/>
+  <!-- OMAV body: hexagonal frame, tilted rotors -->
+  <g stroke="#9FB3C8" stroke-width="1.5" fill="none">
+    <polygon points="400,190 490,240 490,300 400,350 310,300 310,240"/>
+    <!-- tilted rotor arms -->
+    <line x1="400" y1="190" x2="400" y2="120"/>
+    <line x1="490" y1="240" x2="555" y2="200"/>
+    <line x1="490" y1="300" x2="560" y2="340"/>
+    <line x1="400" y1="350" x2="400" y2="420"/>
+    <line x1="310" y1="300" x2="240" y2="340"/>
+    <line x1="310" y1="240" x2="245" y2="200"/>
+  </g>
+  <!-- rotors as tilted ellipses -->
+  <g stroke="#5C7089" stroke-width="1.5" fill="none">
+    <ellipse cx="400" cy="112" rx="46" ry="14"/>
+    <ellipse cx="562" cy="194" rx="42" ry="16" transform="rotate(28 562 194)"/>
+    <ellipse cx="568" cy="346" rx="42" ry="16" transform="rotate(-24 568 346)"/>
+    <ellipse cx="400" cy="428" rx="46" ry="14"/>
+    <ellipse cx="232" cy="346" rx="42" ry="16" transform="rotate(24 232 346)"/>
+    <ellipse cx="238" cy="194" rx="42" ry="16" transform="rotate(-28 238 194)"/>
+  </g>
+  <!-- teacher -> student arrow -->
+  <g>
+    <path d="M 120 96 H 320" stroke="#EA5A0B" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+    <defs>
+      <marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+        <path d="M0,0 L8,3 L0,6" fill="none" stroke="#EA5A0B" stroke-width="1.5"/>
+      </marker>
+    </defs>
+  </g>
+  <text x="120" y="70" fill="#EA5A0B" font-size="15" letter-spacing="2">MPC TEACHER → NN STUDENT</text>
+  <text x="60" y="466" fill="#5C7089" font-size="13">IMITATION LEARNING · OMAV</text>
+  <text x="648" y="466" fill="#5C7089" font-size="13">SIM→REAL</text>
+</svg>

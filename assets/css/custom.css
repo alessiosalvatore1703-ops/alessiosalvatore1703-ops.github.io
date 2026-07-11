@@ -1,0 +1,66 @@
+/* Things Tailwind can't express cleanly — keep this file minimal. */
+
+/* Archivo variable width axis: expanded display type */
+.display-expanded {
+  font-stretch: 125%;
+  letter-spacing: -0.01em;
+}
+
+/* Section heading: mono eyebrow with a leading tick */
+.section-label {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #5D6B77;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.section-label::before {
+  content: "";
+  width: 2rem;
+  height: 2px;
+  background: #EA5A0B;
+  flex: none;
+}
+
+/* Viewfinder frame: fiducial-style corner brackets around media */
+.viewfinder {
+  position: relative;
+  padding: 10px;
+}
+.viewfinder::before,
+.viewfinder::after,
+.viewfinder > img,
+.viewfinder > video {
+  display: block;
+}
+.viewfinder::before,
+.viewfinder::after {
+  content: "";
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border: 2px solid #EA5A0B;
+}
+.viewfinder::before {
+  top: 0;
+  left: 0;
+  border-right: none;
+  border-bottom: none;
+}
+.viewfinder::after {
+  bottom: 0;
+  right: 0;
+  border-left: none;
+  border-top: none;
+}
+
+/* Visible keyboard focus everywhere */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid #EA5A0B;
+  outline-offset: 3px;
+  border-radius: 2px;
+}

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alessio Salvatore — Robotics @ ETH Zürich</title>
+  <meta name="description" content="Alessio Salvatore, M.Sc. Robotics student at ETH Zürich. Learning-based perception and control: task-aware 3D mapping, imitation learning for aerial robots, planning under uncertainty.">
+  <meta property="og:title" content="Alessio Salvatore — Robotics @ ETH Zürich">
+  <meta property="og:description" content="Learning-based perception and control: task-aware 3D mapping, imitation learning for aerial robots, planning under uncertainty.">
+  <meta property="og:image" content="assets/img/portrait.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            paper:  '#FBFBF9',
+            ink:    '#0E1B2C',
+            accent: '#EA5A0B',
+            muted:  '#5D6B77',
+            line:   '#DDDFD9',
+          },
+          fontFamily: {
+            sans: ['Archivo', 'system-ui', 'sans-serif'],
+            mono: ['"IBM Plex Mono"', 'ui-monospace', 'monospace'],
+          },
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="assets/css/custom.css">
+</head>
+
+<body class="bg-paper text-ink font-sans antialiased">
+
+  <!-- ============ NAV ============ -->
+  <header class="fixed top-0 inset-x-0 z-50 bg-paper/85 backdrop-blur border-b border-line">
+    <nav class="max-w-6xl mx-auto px-5 sm:px-8 h-14 flex items-center justify-between">
+      <a href="#" class="font-mono text-sm tracking-widest uppercase hover:text-accent">AS<span class="text-accent">.</span></a>
+      <div class="flex items-center gap-5 sm:gap-8 font-mono text-xs sm:text-sm">
+        <a href="#projects" class="hover:text-accent">Projects</a>
+        <a href="#experience" class="hover:text-accent">Experience</a>
+        <a href="#education" class="hover:text-accent">Education</a>
+        <a href="assets/cv.pdf" class="text-accent border border-accent/40 rounded px-2.5 py-1 hover:bg-accent hover:text-paper transition-colors">CV ↓</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section class="relative overflow-hidden">
+    <canvas id="voxel-canvas" class="absolute inset-0 w-full h-full" aria-hidden="true"></canvas>
+    <div class="relative max-w-6xl mx-auto px-5 sm:px-8 pt-32 pb-20 sm:pt-40 sm:pb-28 grid md:grid-cols-[1fr_auto] gap-12 items-center">
+      <div>
+        <p class="font-mono text-xs sm:text-sm tracking-[0.25em] uppercase text-muted mb-5">Robotics M.Sc. — ETH Zürich</p>
+        <h1 class="display-expanded font-black leading-[0.95] text-5xl sm:text-7xl lg:text-8xl uppercase">
+          Alessio<br>Salvatore
+        </h1>
+        <p class="mt-7 max-w-xl text-base sm:text-lg leading-relaxed">
+          I work on learning-based perception and control for robots — from
+          <span class="text-accent font-medium">task-aware 3D mapping with reinforcement learning</span>
+          to imitation learning for omnidirectional aerial vehicles. Interested in RL,
+          3D vision, and planning under uncertainty.
+        </p>
+        <div class="mt-8 flex flex-wrap items-center gap-3 font-mono text-sm">
+          <!-- TODO: confirm GitHub + LinkedIn URLs -->
+          <a href="https://github.com/alessiosalvatore1703-ops" class="border border-ink/25 rounded px-3 py-1.5 hover:border-accent hover:text-accent transition-colors">GitHub</a>
+          <a href="#" class="border border-ink/25 rounded px-3 py-1.5 hover:border-accent hover:text-accent transition-colors">LinkedIn</a>
+          <a href="mailto:alessiosalvatore1703@gmail.com" class="border border-ink/25 rounded px-3 py-1.5 hover:border-accent hover:text-accent transition-colors">Email</a>
+        </div>
+      </div>
+      <div class="justify-self-center md:justify-self-end">
+        <!-- component: viewfinder-frame -->
+        <figure class="viewfinder relative w-52 sm:w-64 lg:w-72">
+          <img src="assets/img/portrait.jpg" alt="Portrait of Alessio Salvatore" class="w-full grayscale-[15%]">
+          <figcaption class="mt-3 font-mono text-[11px] tracking-widest text-muted text-right">ZÜRICH, CH · 47.38°N 8.55°E</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CURRENT PROJECTS ============ -->
+  <section id="projects" class="border-t border-line">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8 py-16 sm:py-24">
+      <h2 class="section-label">Projects — Current</h2>
+
+      <!-- component: project-feature -->
+      <article class="mt-12 grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+        <!-- MEDIA SLOT — replace the <img> with your own image, or swap in the
+             commented <video> block below to use a demo clip instead. -->
+        <figure class="viewfinder">
+          <img src="assets/projects/task-aware-3d-mapping/cover.svg" alt="Diagram of a voxel grid whose resolution refines around a navigation goal" class="w-full aspect-[8/5] object-cover">
+          <!--
+          <video class="w-full aspect-[8/5] object-cover" controls muted playsinline
+                 poster="assets/projects/task-aware-3d-mapping/poster.jpg">
+            <source src="assets/projects/task-aware-3d-mapping/demo.mp4" type="video/mp4">
+            <a href="assets/projects/task-aware-3d-mapping/demo.mp4">Watch the demo video</a>
+          </video>
+          -->
+        </figure>
+        <div>
+          <p class="font-mono text-xs tracking-widest uppercase text-muted">Feb 2026 — Present · CVG, Marc Pollefeys Lab</p>
+          <h3 class="mt-3 text-2xl sm:text-3xl font-bold">Task-Aware 3D Map Generation with RL</h3>
+          <p class="mt-4 text-muted leading-relaxed">
+            Training an RL agent to dynamically select voxel resolution in 3D maps based on task
+            relevance, enabling efficient scene representations for downstream navigation.
+            Integrating a 3D reconstruction pipeline into the PEANUT codebase for point-goal and
+            object-goal navigation.
+          </p>
+          <div class="mt-5 flex flex-wrap gap-2">
+            <!-- component: tag-pill -->
+            <span class="tag-pill">Reinforcement Learning</span>
+            <span class="tag-pill">3D Vision</span>
+            <span class="tag-pill">Navigation</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- component: project-feature (mirrored) -->
+      <article class="mt-16 grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+        <div class="md:order-2">
+          <!-- MEDIA SLOT -->
+          <figure class="viewfinder">
+            <img src="assets/projects/aerial-knowledge-distillation/cover.svg" alt="Schematic of an omnidirectional micro aerial vehicle with tilted rotors, with an arrow from MPC teacher to neural-network student" class="w-full aspect-[8/5] object-cover">
+          </figure>
+        </div>
+        <div class="md:order-1">
+          <p class="font-mono text-xs tracking-widest uppercase text-muted">Feb 2026 — Present · ASL, Roland Siegwart Lab</p>
+          <h3 class="mt-3 text-2xl sm:text-3xl font-bold">Knowledge Distillation for Aerial Robot Control</h3>
+          <p class="mt-4 text-muted leading-relaxed">
+            Developing an imitation learning pipeline for OMAV control — Behavioral Cloning and
+            DAgger — to approximate a model-based controller with neural networks, then deploying
+            the learned policy on hardware with real-flight data augmentation to bridge the
+            sim-to-real gap. Selected among 150 applicants for a 30-student cohort.
+          </p>
+          <div class="mt-5 flex flex-wrap gap-2">
+            <span class="tag-pill">Imitation Learning</span>
+            <span class="tag-pill">Aerial Robotics</span>
+            <span class="tag-pill">Sim-to-Real</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ PAST PROJECTS ============ -->
+  <section class="border-t border-line">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8 py-16 sm:py-24">
+      <h2 class="section-label">Projects — Past</h2>
+
+      <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <!-- component: project-card -->
+        <article class="group border border-line rounded-lg overflow-hidden bg-white/40 hover:border-accent/50 transition-colors">
+          <!-- MEDIA SLOT — image or <video> as in the feature blocks above -->
+          <figure>
+            <img src="assets/projects/mitral-valve-segmentation/cover.svg" alt="Ultrasound sector with segmented mitral valve leaflets" class="w-full aspect-[8/5] object-cover">
+          </figure>
+          <div class="p-5">
+            <p class="font-mono text-[11px] tracking-widest uppercase text-muted">12/2025</p>
+            <h3 class="mt-2 text-lg font-bold leading-snug">DINOv3 for Mitral Valve Segmentation</h3>
+            <p class="mt-2 text-sm text-muted leading-relaxed">
+              DINO-based feature propagation generates pseudo-labels from sparse annotations in
+              heterogeneous medical video; a U-Net is trained on the filtered labels.
+            </p>
+            <div class="mt-4 font-mono text-xs flex gap-4">
+              <!-- TODO: real repo URL -->
+              <a href="#" class="text-accent hover:underline">Repo →</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- component: project-card -->
+        <article class="group border border-line rounded-lg overflow-hidden bg-white/40 hover:border-accent/50 transition-colors">
+          <figure>
+            <img src="assets/projects/multi-agent-planner/cover.svg" alt="Multiple robot paths converging on goal markers with a collision-avoidance radius" class="w-full aspect-[8/5] object-cover">
+          </figure>
+          <div class="p-5">
+            <p class="font-mono text-[11px] tracking-widest uppercase text-muted">12/2025 · PDM4AR</p>
+            <h3 class="mt-2 text-lg font-bold leading-snug">Multi-Agent Multi-Goal Collection Planner</h3>
+            <p class="mt-2 text-sm text-muted leading-relaxed">
+              Multi-robot planning framework combining Large Neighborhood Search for task allocation
+              with real-time path planning and decentralized collision avoidance under partial
+              observability.
+            </p>
+          </div>
+        </article>
+
+        <!-- component: project-card -->
+        <article class="group border border-line rounded-lg overflow-hidden bg-white/40 hover:border-accent/50 transition-colors">
+          <figure>
+            <img src="assets/projects/satellite-docking/cover.svg" alt="Successive convexified trajectories guiding a chaser satellite to a docking port through debris" class="w-full aspect-[8/5] object-cover">
+          </figure>
+          <div class="p-5">
+            <p class="font-mono text-[11px] tracking-widest uppercase text-muted">11–12/2025 · PDM4AR</p>
+            <h3 class="mt-2 text-lg font-bold leading-snug">Autonomous Satellite Docking Planner</h3>
+            <p class="mt-2 text-sm text-muted leading-relaxed">
+              Trajectory optimization pipeline for autonomous docking, solving non-convex guidance
+              problems via Sequential Convexification in cluttered environments.
+            </p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EXPERIENCE ============ -->
+  <section id="experience" class="border-t border-line">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8 py-16 sm:py-24">
+      <h2 class="section-label">Experience</h2>
+      <div class="mt-10 divide-y divide-line">
+
+        <!-- component: timeline-entry -->
+        <article class="py-7 grid sm:grid-cols-[200px_1fr] gap-2 sm:gap-8">
+          <p class="font-mono text-xs tracking-widest uppercase text-muted pt-1">Feb — Jun 2025</p>
+          <div>
+            <h3 class="text-lg font-bold">Research Intern — Industrial Robotics</h3>
+            <p class="text-sm text-muted mt-0.5">JOIINT Lab, Italian Institute of Technology · Bergamo</p>
+            <p class="mt-3 text-muted text-sm leading-relaxed">
+              CAD design of a linear actuator from off-the-shelf components, real-time control on
+              Arduino, and a MATLAB simulation validating system dynamics.
+              <!-- TODO: real repo URL -->
+              <a href="#" class="font-mono text-xs text-accent hover:underline ml-1">Repo →</a>
+            </p>
+          </div>
+        </article>
+
+        <!-- component: timeline-entry -->
+        <article class="py-7 grid sm:grid-cols-[200px_1fr] gap-2 sm:gap-8">
+          <p class="font-mono text-xs tracking-widest uppercase text-muted pt-1">Nov 2025 — Present</p>
+          <div>
+            <h3 class="text-lg font-bold">Partnerships Team Lead</h3>
+            <p class="text-sm text-muted mt-0.5">ETH Robotics Club · Zürich</p>
+            <p class="mt-3 text-muted text-sm leading-relaxed">
+              Securing sponsorships for club initiatives and events.
+            </p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EDUCATION ============ -->
+  <section id="education" class="border-t border-line">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8 py-16 sm:py-24">
+      <h2 class="section-label">Education</h2>
+      <div class="mt-10 divide-y divide-line">
+
+        <!-- component: timeline-entry -->
+        <article class="py-7 grid sm:grid-cols-[200px_1fr] gap-2 sm:gap-8">
+          <p class="font-mono text-xs tracking-widest uppercase text-muted pt-1">Sep 2025 — Present</p>
+          <div>
+            <h3 class="text-lg font-bold">ETH Zürich — M.Sc. Robotics</h3>
+            <p class="mt-2 text-muted text-sm leading-relaxed">
+              Probabilistic AI, Advanced ML, Image Analysis and Computer Vision, Planning and
+              Decision Making for Autonomous Robots, 3D Vision, Perception and Learning for
+              Robotics, Deep Generative Models, Robot Learning.
+            </p>
+          </div>
+        </article>
+
+        <article class="py-7 grid sm:grid-cols-[200px_1fr] gap-2 sm:gap-8">
+          <p class="font-mono text-xs tracking-widest uppercase text-muted pt-1">Sep 2022 — Jul 2025</p>
+          <div>
+            <h3 class="text-lg font-bold">Politecnico di Milano — B.Sc. Automation Engineering</h3>
+            <p class="mt-2 text-muted text-sm leading-relaxed">
+              Final grade 110/110 <em>cum laude</em> (≈ 4.0/4.0 GPA).
+            </p>
+          </div>
+        </article>
+
+        <article class="py-7 grid sm:grid-cols-[200px_1fr] gap-2 sm:gap-8">
+          <p class="font-mono text-xs tracking-widest uppercase text-muted pt-1">Aug — Dec 2024</p>
+          <div>
+            <h3 class="text-lg font-bold">Illinois Institute of Technology — Exchange</h3>
+            <p class="mt-2 text-muted text-sm leading-relaxed">
+              Global E3 Program, Chicago, IL.
+            </p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="border-t border-line">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8 py-12 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+      <div>
+        <p class="display-expanded font-black uppercase text-xl">Alessio Salvatore</p>
+        <p class="font-mono text-xs text-muted mt-2">© <span id="year"></span> · Zürich, Switzerland</p>
+      </div>
+      <div class="flex gap-6 font-mono text-sm">
+        <a href="mailto:alessiosalvatore1703@gmail.com" class="hover:text-accent">Email</a>
+        <a href="https://github.com/alessiosalvatore1703-ops" class="hover:text-accent">GitHub</a>
+        <a href="#" class="hover:text-accent">LinkedIn</a>
+        <a href="assets/cv.pdf" class="text-accent hover:underline">CV ↓</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

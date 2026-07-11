@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="'IBM Plex Mono', monospace">
+  <rect width="800" height="500" fill="#0E1B2C"/>
+  <!-- goals -->
+  <g stroke="#9FB3C8" stroke-width="1.5" fill="none">
+    <rect x="588" y="112" width="18" height="18" transform="rotate(45 597 121)"/>
+    <rect x="640" y="300" width="18" height="18" transform="rotate(45 649 309)"/>
+    <rect x="370" y="90" width="18" height="18" transform="rotate(45 379 99)"/>
+    <rect x="470" y="400" width="18" height="18" transform="rotate(45 479 409)"/>
+    <rect x="250" y="180" width="18" height="18" transform="rotate(45 259 189)"/>
+  </g>
+  <!-- agent paths -->
+  <g fill="none" stroke-width="2">
+    <path d="M 120 400 C 200 340 220 240 256 192" stroke="#EA5A0B"/>
+    <path d="M 120 400 C 260 420 380 430 476 412" stroke="#EA5A0B" opacity="0.65"/>
+    <path d="M 170 120 C 260 110 330 100 376 96" stroke="#9FB3C8"/>
+    <path d="M 170 120 C 340 160 500 130 594 122" stroke="#9FB3C8" opacity="0.6"/>
+    <path d="M 594 124 C 640 180 650 240 646 306" stroke="#9FB3C8" opacity="0.4" stroke-dasharray="6 6"/>
+  </g>
+  <!-- agents -->
+  <g>
+    <circle cx="120" cy="400" r="9" fill="#EA5A0B"/>
+    <circle cx="170" cy="120" r="9" fill="#9FB3C8"/>
+  </g>
+  <!-- collision-avoidance radius -->
+  <circle cx="376" cy="96" r="42" stroke="#3A4A5C" stroke-width="1" stroke-dasharray="4 6" fill="none"/>
+  <text x="60" y="46" fill="#9FB3C8" font-size="15" letter-spacing="2">LNS TASK ALLOCATION</text>
+  <text x="60" y="466" fill="#5C7089" font-size="13">MULTI-ROBOT · PARTIAL OBSERVABILITY</text>
+</svg>
