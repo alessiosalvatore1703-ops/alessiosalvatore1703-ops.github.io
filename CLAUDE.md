@@ -70,8 +70,19 @@ Two sources, in priority order:
 
 Never invent achievements or reword claims into stronger ones than the sources state.
 GitHub username confirmed: `alessiosalvatore1703-ops`. Real media already in the site:
-`assets/projects/vla-so101/demo.gif`, `assets/projects/aerial-knowledge-distillation/pipeline.png`
-(for a future detail page), `assets/projects/pipe-inspection-odometry/slides.pdf` + `results.jpeg`.
+
+- `vla-so101/demo.gif` — card cover
+- `aerial-knowledge-distillation/demo.mp4` — card cover (transcoded from the user's 8K
+  original with ffmpeg, 1280px CRF26; the 194 MB original was deleted after transcoding —
+  user's own copy is on their phone/source device, not this machine). `pipeline.png` for a
+  future detail page.
+- `agibot-x2-person-following/demo.mp4`, `pipe-inspection-odometry/demo.mp4` +
+  `slides.pdf` + `results.jpeg`, `unitree-a2-exploration/cover.jpeg` — card covers.
+
+Cards with real media follow the **VLA style**: `<video autoplay loop muted playsinline>`
+(or img/GIF) as cover + a monochrome overlay easter egg (typed chip, YOLO box, position
+track, scanline). The hero scene is `assets/js/hero.js` (humanoid + dot cluster);
+`main.js` holds the small site-wide bits.
 
 Current CV snapshot (summary):
 
@@ -111,10 +122,11 @@ re-invent it, extend it:
   grays: `#3E3E3E` dim / `#7A7A7A` mid / `#A8A8A8` / `#B5B5B5` / `#F2F2F2` bright.
 - **Type**: Archivo (variable; `.display-expanded` = font-stretch 125% for display) +
   IBM Plex Mono for all meta text (dates, tags, nav, eyebrows). Both from Google Fonts.
-- **Signature element**: hero canvas (`assets/js/main.js`) — a hairline 3-link robot arm
-  that solves IK (FABRIK) toward the cursor, idling on a patrol path otherwise. General
-  robotics on purpose: the user rejected a voxel-specific hero. Static pose under
-  `prefers-reduced-motion`.
+- **Signature element**: hero canvas (`assets/js/hero.js`) — a hairline kinematic-skeleton
+  humanoid kneeling and reaching toward a tiny point-cloud of dots ("physical AI handling
+  the small and delicate"); one dot commutes to the fingertip, the cursor perturbs the
+  cluster. History: user rejected a voxel-specific hero first, then a 3-link manipulator —
+  this humanoid+dots concept was their request. Static pose under `prefers-reduced-motion`.
 - **Easter eggs (user requirement)**: every project cover is a custom **inline SVG** in
   `index.html` with a hover behavior tied to that project's subject (voxels refine, rotors
   spin, LiDAR sweeps, stereo pupils track the cursor via JS, probe travels the pipe, valve

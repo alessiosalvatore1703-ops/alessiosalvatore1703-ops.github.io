@@ -74,25 +74,23 @@ button:focus-visible {
   .egg-coarse { transition: opacity 0.6s ease; }
   .group:hover .egg-path { animation: dash-march 1.2s linear infinite; }
 
-  /* OMAV: rotors spin, body bobs in hover-flight */
-  .egg-rotor { transform-box: fill-box; transform-origin: center; }
-  .group:hover .egg-rotor { animation: rotor-spin 0.6s linear infinite; }
-  .group:hover .egg-bob { animation: hover-bob 2.4s ease-in-out infinite; }
-
-  /* VLA: the language prompt types itself */
+  /* Typed mono chip (VLA prompt, OMAV distillation chain) */
   .egg-type { overflow: hidden; white-space: nowrap; max-width: 100%; }
   .group:hover .egg-type { animation: typing 1.8s steps(34, end) both; }
 
-  /* Unitree A2: LiDAR sweep + scan-point blips */
-  .group:hover .egg-beam { animation: lidar-sweep 2.4s linear infinite; }
-  .egg-scanpt { opacity: 0; }
-  .group:hover .egg-scanpt { animation: scan-blip 2.4s linear infinite; }
+  /* Agibot: a YOLO detection box locks onto the video */
+  .egg-yolo { opacity: 0; transform: scale(1.15); transition: opacity 0.25s ease, transform 0.25s ease; }
+  .group:hover .egg-yolo { opacity: 1; transform: scale(1); }
 
-  /* Agibot: pupils are moved by JS; ease the motion here */
-  .egg-pupil { transition: transform 0.15s ease-out; }
+  /* Pipe inspection: estimated position marker travels 0→L→0 over the video */
+  .egg-probe-dot { opacity: 0; }
+  .group:hover .egg-probe-dot { opacity: 1; animation: track-out-and-back 4s ease-in-out infinite; }
 
-  /* Pipe inspection: probe travels out and back */
-  .group:hover .egg-probe { animation: out-and-back 4s ease-in-out infinite; }
+  /* Unitree A2: LiDAR scanline sweeps the photo, artifact detections blip in */
+  .egg-scanline { opacity: 0; left: 0; }
+  .group:hover .egg-scanline { opacity: 1; animation: scanline-sweep 2.6s linear infinite; }
+  .egg-artifact { opacity: 0; }
+  .group:hover .egg-artifact { animation: scan-blip 2.6s linear infinite; }
 
   /* Mitral valve: beats like a cardiac cycle */
   .egg-valve { transform-box: fill-box; transform-origin: center; }
@@ -107,23 +105,21 @@ button:focus-visible {
 }
 
 @keyframes dash-march { to { stroke-dashoffset: -24; } }
-@keyframes rotor-spin { to { transform: rotate(360deg); } }
-@keyframes hover-bob {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-8px); }
-}
 @keyframes typing { from { max-width: 0; } to { max-width: 100%; } }
-@keyframes lidar-sweep { to { transform: rotate(360deg); } }
 @keyframes scan-blip {
   0%, 100% { opacity: 0; }
-  10%      { opacity: 1; }
-  55%      { opacity: 0.3; }
+  15%      { opacity: 1; }
+  70%      { opacity: 0.4; }
 }
-@keyframes out-and-back {
-  0%   { transform: translateX(0); }
-  45%  { transform: translateX(560px); }
-  55%  { transform: translateX(560px); }
-  100% { transform: translateX(0); }
+@keyframes track-out-and-back {
+  0%   { left: 1rem; }
+  45%  { left: calc(100% - 1rem - 8px); }
+  55%  { left: calc(100% - 1rem - 8px); }
+  100% { left: 1rem; }
+}
+@keyframes scanline-sweep {
+  from { left: 0; }
+  to   { left: 100%; }
 }
 @keyframes valve-beat {
   0%, 100% { transform: scale(1); }
