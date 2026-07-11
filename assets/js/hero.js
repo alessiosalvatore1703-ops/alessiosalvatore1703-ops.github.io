@@ -2,16 +2,15 @@
 // sparse cloud -> Unitree G1 humanoid -> sparse -> ETH ASL Firefly hexacopter
 // -> sparse -> Unitree A2 quadruped -> ... Point data is sampled offline from
 // the manufacturers' own meshes (see assets/js/hero-shapes.js for sources).
-// The stage lives in a reserved band at the hero's bottom so it never overlaps
-// text or the portrait. Hovering the cloud dissolves it locally; it re-forms
-// when the cursor leaves. Reduced motion: one static humanoid frame.
+// The stage is centered and scaled large to sit as a background behind the
+// name and portrait. No pointer interaction — just slow sway + breathing.
+// Reduced motion: one static humanoid frame.
 // Uses the global THREE from the classic three.js build loaded in index.html.
 (function () {
   const canvas = document.getElementById('hero-canvas');
   if (!canvas || typeof THREE === 'undefined' || !window.HERO_SHAPES) return;
 
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const finePointer = window.matchMedia('(pointer: fine)').matches;
 
   let renderer;
   try {
@@ -74,16 +73,9 @@
   const pos = new Float32Array(N * 3);     // final render buffer
   const phasePt = new Float32Array(N);     // per-point noise phase
   const delayPt = new Float32Array(N);     // per-point transition delay
-  const dissolve = new Float32Array(N);    // per-point cursor-dissolve level
-  const scatter = new Float32Array(N * 3); // per-point dissolve direction
 
   for (let i = 0; i < N; i++) {
     phasePt[i] = rnd() * Math.PI * 2;
-    const th = rnd() * 2 * Math.PI, ph = Math.acos(2 * rnd() - 1);
-    const m = 0.35 + rnd() * 0.45;
-    scatter[i * 3] = Math.sin(ph) * Math.cos(th) * m;
-    scatter[i * 3 + 1] = Math.cos(ph) * m;
-    scatter[i * 3 + 2] = Math.sin(ph) * Math.sin(th) * m;
   }
 
   const FORM_DUR = 2.0, HOLD_DUR = 6.0, DISPERSE_DUR = 1.4;
@@ -139,10 +131,9 @@
   const BASE_YAW = 0.5;
   group.rotation.y = BASE_YAW;
 
-  // ---- Camera: place the stage so the cloud NEVER overlaps text/portrait.
-  // Wide desktop: in the empty gap column between the text (max-w-xl) and the
-  // portrait (w-72), vertically on the axis of the name. Narrow: a reserved
-  // band at the hero's bottom. Layout constants mirror index.html's hero grid.
+  // ---- Camera: the stage is a large background centered in the hero, sitting
+  // behind the name and portrait. Scale to fill most of the hero height while
+  // keeping the widest shape (A2 length) clear of the horizontal edges.
   const STAGE_H = 1.75;      // world height of the tallest shape + margin
   const STAGE_W = 1.22;      // world width of the widest shape (A2 length)
   let width, height;
@@ -152,23 +143,9 @@
     renderer.setSize(width, height, false);
     camera.aspect = width / height;
 
-    let S, cxPx, cyPx; // px per world unit, stage-center pixel position
-    if (width >= 1280) {   // Tailwind xl: hero reserves bottom room (xl:pb-64)
-      // shapes stand UNDER the name (user request): horizontally centered on
-      // the h1 block (container margin + px-8 + ~744px name width), in the
-      // strip below the paragraph/buttons (y ≈ 585) down to the hero's edge
-      const containerW = Math.min(width - 64, 1152);
-      const margin = (width - containerW) / 2;
-      const topPx = 585, bottomPx = height - 16;
-      S = Math.min((bottomPx - topPx) / STAGE_H, 200) * 0.95;
-      cxPx = margin + 32 + 372;                      // center of the name block
-      cyPx = (topPx + bottomPx) / 2;
-    } else {
-      const bandH = Math.min(height * 0.38, 280);    // px reserved at the bottom
-      S = bandH / STAGE_H;
-      cxPx = width / 2;
-      cyPx = height - bandH / 2;
-    }
+    const cxPx = width / 2;
+    const cyPx = height / 2;
+    const S = Math.min(height * 0.92 / STAGE_H, width * 0.88 / STAGE_W);
 
     const worldVisH = height / S;
     const dist = worldVisH / (2 * FOV_TAN);
@@ -188,13 +165,6 @@
     if (reducedMotion) renderer.render(scene, camera);
   }
 
-  // ---- Interaction ----
-  const mouse = { x: 0, y: 0, tx: 0, ty: 0 };
-  let pointerIn = false;
-  const raycaster = new THREE.Raycaster();
-  const inv = new THREE.Matrix4();
-  const ro = new THREE.Vector3(), rd = new THREE.Vector3();
-
   let t = 0, last = null;
 
   function tick(now) {
@@ -208,24 +178,11 @@
     else if (phase === 'hold' && phaseT > HOLD_DUR) beginPhase('disperse');
     else if (phase === 'disperse' && phaseT > DISPERSE_DUR + 0.5) beginPhase('form');
 
-    // sway + cursor parallax
-    mouse.x += (mouse.tx - mouse.x) * 0.05;
-    mouse.y += (mouse.ty - mouse.y) * 0.05;
-    group.rotation.y = BASE_YAW + Math.sin(t * 0.12) * 0.25 + mouse.x * 0.15;
-
-    // pointer ray in the group's local space
-    let hover = false;
-    if (pointerIn) {
-      raycaster.setFromCamera({ x: mouse.x, y: mouse.y }, camera);
-      inv.copy(group.matrixWorld).invert();
-      ro.copy(raycaster.ray.origin).applyMatrix4(inv);
-      rd.copy(raycaster.ray.direction).transformDirection(inv);
-      hover = true;
-    }
+    // slow sway
+    group.rotation.y = BASE_YAW + Math.sin(t * 0.12) * 0.25;
 
     const dur = phase === 'disperse' ? DISPERSE_DUR : FORM_DUR;
     const morphing = phase !== 'hold';
-    const ATTACK = 4.5 * dt, DECAY = 1.1 * dt;
 
     for (let i = 0; i < N; i++) {
       const i3 = i * 3;
@@ -239,25 +196,6 @@
         core[i3] = x; core[i3 + 1] = y; core[i3 + 2] = z;
       } else {
         x = core[i3]; y = core[i3 + 1]; z = core[i3 + 2];
-      }
-
-      // cursor dissolve: points near the pointer ray melt outward along a
-      // fixed per-point direction and heal when the cursor moves away
-      let d = dissolve[i];
-      if (hover) {
-        const wx = x - ro.x, wy = y - ro.y, wz = z - ro.z;
-        const dot = wx * rd.x + wy * rd.y + wz * rd.z;
-        const px = wx - dot * rd.x, py = wy - dot * rd.y, pz = wz - dot * rd.z;
-        const d2 = px * px + py * py + pz * pz;
-        if (d2 < 0.16) d = Math.min(1, d + ATTACK * (1 - d2 / 0.16));
-      }
-      d = Math.max(0, d - DECAY);
-      dissolve[i] = d;
-      if (d > 0.001) {
-        const e = d * d * (3 - 2 * d); // smoothstep
-        x += scatter[i3] * e;
-        y += scatter[i3 + 1] * e;
-        z += scatter[i3 + 2] * e;
       }
 
       // per-point breathing noise
@@ -285,19 +223,6 @@
   }
 
   if (!reducedMotion) {
-    if (finePointer) {
-      const hero = canvas.parentElement;
-      hero.addEventListener('mousemove', function (e) {
-        const rect = canvas.getBoundingClientRect();
-        mouse.tx = ((e.clientX - rect.left) / rect.width) * 2 - 1;
-        mouse.ty = -(((e.clientY - rect.top) / rect.height) * 2 - 1);
-        pointerIn = true;
-      });
-      hero.addEventListener('mouseleave', function () {
-        pointerIn = false;
-        mouse.tx = 0; mouse.ty = 0;
-      });
-    }
     requestAnimationFrame(tick);
   }
 })();
