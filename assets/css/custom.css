@@ -128,10 +128,6 @@ button:focus-visible {
   .egg-artifact { opacity: 0; }
   .group:hover .egg-artifact { animation: scan-blip 2.6s linear infinite; }
 
-  /* Path drawing (multi-agent plans, SCvx iterations) */
-  .egg-draw { stroke-dasharray: 100; stroke-dashoffset: 100; }
-  .group:hover .egg-draw { animation: draw-path 1s ease forwards; }
-
 }
 
 @keyframes dash-march { to { stroke-dashoffset: -24; } }
@@ -151,4 +147,3 @@ button:focus-visible {
   from { left: 0; }
   to   { left: 100%; }
 }
-@keyframes draw-path { to { stroke-dashoffset: 0; } }

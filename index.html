@@ -340,31 +340,15 @@
 
         <!-- component: project-card · multi-agent-planner -->
         <article class="group border border-line rounded-lg overflow-hidden bg-white hover:border-ink/40 transition-colors">
-          <!-- MEDIA SLOT -->
-          <figure>
-            <!-- easter egg: hover re-plans — the agent paths draw themselves -->
-            <svg viewBox="0 0 800 500" class="w-full aspect-[8/5] block" role="img" aria-label="Multiple robot paths converging on goal markers" font-family="'IBM Plex Mono', monospace">
-              <rect width="800" height="500" fill="#131313"/>
-              <g stroke="#7A7A7A" stroke-width="1.5" fill="none">
-                <rect x="588" y="112" width="18" height="18" transform="rotate(45 597 121)"/>
-                <rect x="640" y="300" width="18" height="18" transform="rotate(45 649 309)"/>
-                <rect x="370" y="90" width="18" height="18" transform="rotate(45 379 99)"/>
-                <rect x="470" y="400" width="18" height="18" transform="rotate(45 479 409)"/>
-                <rect x="250" y="180" width="18" height="18" transform="rotate(45 259 189)"/>
-              </g>
-              <g fill="none" stroke-width="2">
-                <path class="egg-draw" pathLength="100" d="M 120 400 C 200 340 220 240 256 192" stroke="#F2F2F2"/>
-                <path class="egg-draw" style="animation-delay:.2s" pathLength="100" d="M 120 400 C 260 420 380 430 476 412" stroke="#F2F2F2" opacity="0.6"/>
-                <path class="egg-draw" style="animation-delay:.4s" pathLength="100" d="M 170 120 C 260 110 330 100 376 96" stroke="#A8A8A8"/>
-                <path class="egg-draw" style="animation-delay:.6s" pathLength="100" d="M 170 120 C 340 160 500 130 594 122" stroke="#A8A8A8" opacity="0.6"/>
-                <path class="egg-draw" style="animation-delay:.8s" pathLength="100" d="M 594 124 C 640 180 650 240 646 306" stroke="#A8A8A8" opacity="0.4" stroke-dasharray="6 6"/>
-              </g>
-              <circle cx="120" cy="400" r="9" fill="#F2F2F2"/>
-              <circle cx="170" cy="120" r="9" fill="#A8A8A8"/>
-              <circle cx="376" cy="96" r="42" stroke="#3E3E3E" stroke-dasharray="4 6" fill="none"/>
-              <text x="60" y="46" fill="#8A8A8A" font-size="15" letter-spacing="2">LNS TASK ALLOCATION</text>
-              <text x="60" y="466" fill="#5A5A5A" font-size="13">MULTI-ROBOT · PARTIAL OBSERVABILITY</text>
-            </svg>
+          <!-- MEDIA SLOT — real planner rollout from the course simulator -->
+          <figure class="relative">
+            <video class="w-full aspect-[8/5] object-cover block" autoplay loop muted playsinline
+                   aria-label="Multiple robots collecting goals among obstacles in simulation">
+              <source src="assets/projects/multi-agent-planner/demo.mp4" type="video/mp4">
+              <a href="assets/projects/multi-agent-planner/demo.mp4">Watch the planner demo</a>
+            </video>
+            <!-- easter egg: the allocator chip types itself on hover -->
+            <span class="egg-type absolute bottom-2 left-2 bg-ink/90 text-paper font-mono text-[11px] px-2 py-1 rounded-sm">&gt; LNS: destroy → repair → reassign_</span>
           </figure>
           <div class="p-5">
             <p class="font-mono text-[11px] tracking-widest uppercase text-muted">12/2025 · PDM4AR</p>
