@@ -33,15 +33,15 @@ Coursework: Probabilistic Artificial Intelligence, Advanced Machine Learning, Im
 \textit{Autonomous Systems Lab -- Roland Siegwart Lab}
 \begin{itemize}
     \vspace{-5pt}
-    \item Distilled model-based controllers for an overactuated tilt-rotor MAV (OMAV) into a single recurrent LSTM policy, trained closed-loop through differentiable dynamics with DAgger on $\sim$42 h of simulated flight
-    \item In simulation the policy outperforms the nominal model-based controller in velocity tracking ($p < 10^{-10}$, 2,000 paired rollouts) and nearly halves divergence under $\pm$30\% model mismatch; deployed zero-shot on the real OMAV
+    \item Distilled model-based controllers for an overactuated tilt-rotor MAV (OMAV) into a single recurrent LSTM policy, trained closed-loop through differentiable vehicle dynamics on $\sim$42 h of simulated flight
+    \item In simulation the policy outperforms the nominal controller in velocity tracking ($p < 10^{-10}$, 2,000 paired rollouts) and cuts divergence under $\pm$30\% model mismatch from 41.5\% to 24\%; deployed zero-shot on the real OMAV
 \end{itemize}
 \textbf{Goal-Driven Adaptive-Resolution 3D Mapping with RL} \faFilePdf\ \href{https://alessiosalvatore1703-ops.github.io/assets/projects/task-aware-3d-mapping/3dv_final_report.pdf}{Report}
 \hfill Feb--Jun 2026\\
 \textit{Computer Vision and Geometry Group -- Marc Pollefeys Lab}
 \begin{itemize}
     \vspace{-5pt}
-    \item Trained a PPO policy that adapts per-region voxel resolution (split/keep/merge) online during navigation under a hard memory budget, reformulating an intractable per-block action space into a compact two-threshold policy
+    \item Uniform-resolution 3D maps waste memory on task-irrelevant regions; trained a PPO policy that adapts per-region voxel resolution (split/keep/merge) online under an explicit memory budget via two learned score thresholds
     \item Re-implemented PEANUT's dense voxel map as a sparse hierarchical multi-resolution grid (Habitat, HM3D); the policy retains 79\% of point-goal success with 87\% less memory than a uniformly fine map (20 unseen episodes)
 \end{itemize}
 
@@ -50,19 +50,19 @@ Coursework: Probabilistic Artificial Intelligence, Advanced Machine Learning, Im
 \textit{ETH Robotics Summer School (ETHZ-RobotX)}
 \begin{itemize}
     \vspace{-5pt}
-    \item Deployed an autonomous search-and-explore mission with our team on a real Unitree A2 quadruped across three field sites; developed the artifact-mapping node fusing YOLO detections into a deduplicated object log
+    \item Deployed an autonomous search-and-explore mission with our team on a real Unitree A2 quadruped at three field sites; developed the artifact-mapping node fusing YOLO detections into a deduplicated map-frame artifact log
 \end{itemize}
 \textbf{Vision-Language-Action Policies on a Real SO-101 Arm} \faGithub\ \href{https://github.com/alessiosalvatore1703-ops/VLA-robotlearning}{Repo} \hfill 05/2026\\
 \textit{Project of the Class Robot Learning}
 \begin{itemize}
     \vspace{-5pt}
-    \item Fine-tuned SmolVLA policies for language-conditioned pick-and-place across three tasks with on-robot inference at 10 FPS; built the LeRobot data pipeline and automated H100 cloud training
+    \item Fine-tuned SmolVLA policies for language-conditioned pick-and-place on a real SO-101 arm at 10 FPS, generalizing to identities unseen in training; built the LeRobot data pipeline and automated H100 cloud training
 \end{itemize}
 \textbf{Person Following on the Agibot X2 Humanoid} \faGithub\ \href{https://github.com/alessiosalvatore1703-ops/robohack2026}{Repo} \hfill 05/2026\\
 \textit{RoboHack Hackathon}
 \begin{itemize}
     \vspace{-5pt}
-    \item Built real-time person following running fully onboard in a hackathon weekend: YOLOv8 with stereo disparity depth, Ruckig head tracking, and a state-machine locomotion supervisor holding a set distance
+    \item Built real-time person detection and following running fully onboard in a hackathon weekend: YOLOv8 with stereo disparity depth, Ruckig head tracking, and a state-machine locomotion supervisor holding a set distance
 \end{itemize}
 
 %-----------------------------------------------------------
