@@ -1,10 +1,12 @@
-// Hero: a monochrome 3D point cloud cycling through real robot hardware —
-// sparse cloud -> Unitree G1 humanoid -> sparse -> ETH ASL Firefly hexacopter
-// -> sparse -> Unitree A2 quadruped -> ... Point data is sampled offline from
-// the manufacturers' own meshes (see assets/js/hero-shapes.js for sources).
-// The stage is centered and scaled large to sit as a background behind the
-// name and portrait. No pointer interaction — just slow sway + breathing.
-// Reduced motion: one static humanoid frame.
+// Hero: a monochrome 3D point cloud cycling through the robots Alessio has
+// actually worked with — Agibot X2 humanoid -> SO-101 arm -> Unitree A2
+// quadruped -> ASL Firefly hexacopter (stand-in for the OMAV) -> repeat.
+// A small mono caption (#hero-shape-label) names each robot while it holds.
+// Point data is sampled offline from the manufacturers' own meshes (see
+// assets/js/hero-shapes.js for sources). The stage is centered and scaled
+// large to sit as a background behind the name and portrait. No pointer
+// interaction — just slow sway + breathing.
+// Reduced motion: one static X2 frame with its caption.
 // Uses the global THREE from the classic three.js build loaded in index.html.
 (function () {
   const canvas = document.getElementById('hero-canvas');
@@ -40,11 +42,17 @@
   }
 
   const SHAPES = [
-    decode(window.HERO_SHAPES.humanoid),
-    decode(window.HERO_SHAPES.drone),
-    decode(window.HERO_SHAPES.dog),
+    { pts: decode(window.HERO_SHAPES.x2), label: 'Agibot X2 · person following — RoboHack 2026' },
+    { pts: decode(window.HERO_SHAPES.arm), label: 'SO-101 · VLA pick-and-place — Robot Learning' },
+    { pts: decode(window.HERO_SHAPES.dog), label: 'Unitree A2 · autonomous exploration — RSS 2026' },
+    { pts: decode(window.HERO_SHAPES.drone), label: 'RotorS Firefly · aerial robot control — ASL' },
   ];
-  const N = SHAPES[0].length / 3;
+  const N = SHAPES[0].pts.length / 3;
+
+  const label = document.getElementById('hero-shape-label');
+  function setLabel(i) {
+    if (label) label.textContent = SHAPES[i].label;
+  }
 
   // deterministic PRNG so the cloud is identical every visit
   let seed = 1234567;
@@ -84,9 +92,11 @@
   let shapeIdx = 0;
 
   makeSparse(fromBuf);
-  toBuf.set(SHAPES[0]);
+  toBuf.set(SHAPES[0].pts);
   core.set(fromBuf);
-  pos.set(reducedMotion ? SHAPES[0] : fromBuf);
+  pos.set(reducedMotion ? SHAPES[0].pts : fromBuf);
+  setLabel(0);
+  if (reducedMotion && label) label.classList.add('is-visible');
 
   function setDelays(mode) {
     for (let i = 0; i < N; i++) {
@@ -100,14 +110,18 @@
   function beginPhase(next) {
     phase = next;
     phaseT = 0;
-    if (next === 'disperse') {
+    if (next === 'hold') {
+      if (label) label.classList.add('is-visible');
+    } else if (next === 'disperse') {
+      if (label) label.classList.remove('is-visible');
       fromBuf.set(core);
       makeSparse(toBuf);
       setDelays('disperse');
     } else if (next === 'form') {
       fromBuf.set(core);
       shapeIdx = (shapeIdx + 1) % SHAPES.length;
-      toBuf.set(SHAPES[shapeIdx]);
+      toBuf.set(SHAPES[shapeIdx].pts);
+      setLabel(shapeIdx);
       setDelays('form');
     }
   }
@@ -167,6 +181,19 @@
 
   let t = 0, last = null;
 
+  // pause the loop while the hero is off-screen (saves CPU/battery on scroll)
+  let running = false, rafId = 0;
+  function start() {
+    if (running) return;
+    running = true;
+    last = null; // first dt after resume is 0, not the pause duration
+    rafId = requestAnimationFrame(tick);
+  }
+  function stop() {
+    running = false;
+    cancelAnimationFrame(rafId);
+  }
+
   function tick(now) {
     if (last == null) last = now;
     const dt = Math.min((now - last) / 1000, 0.05);
@@ -209,7 +236,7 @@
     geo.attributes.position.needsUpdate = true;
 
     renderer.render(scene, camera);
-    requestAnimationFrame(tick);
+    if (running) rafId = requestAnimationFrame(tick);
   }
 
   window.addEventListener('resize', resize);
@@ -223,6 +250,15 @@
   }
 
   if (!reducedMotion) {
-    requestAnimationFrame(tick);
+    if ('IntersectionObserver' in window) {
+      // only animate while the hero is actually visible; the phase state
+      // machine freezes in place since phaseT only advances in tick
+      const io = new IntersectionObserver(function (entries) {
+        entries[entries.length - 1].isIntersecting ? start() : stop();
+      }, { threshold: 0 });
+      io.observe(canvas);
+    } else {
+      start();
+    }
   }
 })();

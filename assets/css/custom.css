@@ -66,6 +66,15 @@ button:focus-visible {
   border-radius: 2px;
 }
 
+/* Hero shape caption: shown by hero.js while a robot holds its form */
+#hero-shape-label {
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+#hero-shape-label.is-visible {
+  opacity: 1;
+}
+
 /* ============ Site motion layer ============ */
 
 @media (prefers-reduced-motion: no-preference) {
