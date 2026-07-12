@@ -84,9 +84,8 @@ GitHub username confirmed: `alessiosalvatore1703-ops`. Real media already in the
   `slides.pdf` + `results.jpeg`, `unitree-a2-exploration/cover.jpeg` — card covers.
 
 Cards with real media follow the **VLA style**: `<video autoplay loop muted playsinline>`
-(or img/GIF) as cover + a monochrome overlay easter egg (typed chip, YOLO box, position
-track, scanline). The hero scene is `assets/js/hero.js` (humanoid + dot cluster);
-`main.js` holds the small site-wide bits.
+(or img/GIF) as cover, no overlays. The hero scene is `assets/js/hero.js` (humanoid +
+dot cluster); `main.js` holds the small site-wide bits.
 
 Current CV snapshot (summary):
 
@@ -149,17 +148,13 @@ re-invent it, extend it:
   (voxels, 3-link arm, humanoid+dots, Adam hands — "simple and stupid"), then liked the
   3D point-cloud paradigm; parametric capsule shapes were replaced by these real-mesh
   samples at their request. Do not go back to 2D line-art heroes or made-up geometry.
-- **Easter eggs (user requirement)**: every project cover is a custom **inline SVG** in
-  `index.html` with a hover behavior tied to that project's subject (voxels refine, rotors
-  spin, LiDAR sweeps, stereo pupils track the cursor via JS, probe travels the pipe, valve
-  beats, paths/trajectories draw in). Animations live in `custom.css` behind
-  `prefers-reduced-motion: no-preference`, triggered by Tailwind `group`-hover. Any new
-  project must ship with its own easter egg in the same style.
+- **Easter eggs (removed, Jul 2026)**: project covers used to carry per-project hover
+  animations (typed chips, YOLO box, LiDAR scanline, probe track). The user asked to remove
+  them all — covers are now plain media. Do not re-add hover overlays to project covers.
 - **Recurring motif**: `.viewfinder` corner brackets (custom.css) frame the portrait and
   featured media — fiducial-marker vernacular. Portrait is rendered grayscale.
 - **Media slots**: every project card/feature has a `<figure>` marked `MEDIA SLOT` in a
-  comment. Real media replaces the inline SVG (see the commented `<video>` template);
-  real photos/GIFs are exempt from the monochrome rule.
+  comment. Real photos/GIFs are exempt from the monochrome rule.
 - Clean, minimal, academic-professional — think research-lab personal page, not a
   marketing landing page. Content first, restrained decoration.
 - **Site motion layer** (`main.js` + custom.css, all behind
