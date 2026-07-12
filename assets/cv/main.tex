@@ -1,0 +1,160 @@
+
+% Revised LaTeX CV for Alessio Salvatore — optimized for Robotics / AI / ML roles
+% extarticle: the standard article class silently ignores sizes below 10pt
+\documentclass[a4paper,9pt]{extarticle}
+
+\usepackage{parskip}
+\usepackage{fontspec}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fontawesome5}
+
+% Arimo: free, metric-compatible Arial substitute bundled with TeX Live
+% (reproducible in CI without a system font). Requires XeLaTeX/LuaLaTeX.
+\usepackage[sfdefault]{arimo}
+\pagestyle{empty}
+\linespread{0.97}
+
+%-----------------------------------------------------------
+% Section formatting
+%-----------------------------------------------------------
+\titleformat{\section}{\Large\bfseries\raggedright}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{2pt}{2pt}
+\titlespacing{\subsection}{0pt}{2pt}{1pt}
+\setlist[itemize]{noitemsep, topsep=0pt, leftmargin=1.5em}
+\setlength{\parskip}{2pt}
+
+\begin{document}
+
+%-----------------------------------------------------------
+% HEADER
+%-----------------------------------------------------------
+\begin{center}
+    {\Huge \textbf{Alessio Salvatore}}\\[2pt]
+    \faGithub\ \href{https://github.com/alessiosalvatore1703-ops}{Github}
+    \quad | \quad 
+     \faEnvelope\ alessiosalvatore1703@gmail.com 
+    \quad | \quad 
+    \faLinkedin\ \href{https://linkedin.com/in/alessiosalvatore/}{LinkedIn}\\[2pt]
+    \faFlag\ Italian 
+    \quad | \quad 
+    \faCalendar\ March 17, 2003
+    \quad | \quad 
+    \faMobile\ +39 3339858633
+\end{center}
+
+
+%-----------------------------------------------------------
+\section*{Education}
+%-----------------------------------------------------------
+
+\textbf{ETH Zürich}, Zürich, Switzerland \hfill Sep 2025--Present\\
+\textit{M.Sc. in Robotics} \\
+Coursework: Probabilistic Artificial Intelligence, Advanced Machine Learning, Image Analysis and Computer Vision,  Planning and Decision Making for Autonomous Robots, 3D Vision, Perception and Learning for Robotics, Deep Generative Models, Robot Learning
+
+\textbf{Politecnico di Milano}, Milan, Italy \hfill Sep 2022--Jul 2025\\
+\textit{B.Sc. in Automation Engineering} \\
+\textbf{Final Grade:} 110/110 \textit{cum laude} (equivalent GPA ≈ 4.0/4.0; 29.57/30).\\
+\vspace{-10pt}
+
+\textbf{Illinois Institute of Technology}, Chicago, IL, USA \hfill Aug--Dec 2024\\
+\textit{Exchange — Global E3 Program} \\
+\vspace{-10pt}
+%-----------------------------------------------------------
+\section*{Projects}
+%-----------------------------------------------------------
+\subsection*{Research Projects}
+\textbf{Goal-Driven Adaptive-Resolution 3D Mapping with RL}
+\hfill Feb--Jun 2026\\
+\textit{Computer Vision and Geometry Group -- Marc Pollefeys Lab}
+\begin{itemize}
+    \vspace{-5pt}
+    \item Trained a PPO policy that adapts per-region voxel resolution (split/keep/merge) online during navigation under a hard memory budget, reformulating an intractable per-block action space into a compact two-threshold policy
+    \item Re-implemented PEANUT's dense voxel map as a sparse hierarchical multi-resolution grid (Habitat, HM3D); the learned policy retains 79\% of point-goal navigation success with 87\% less memory than a uniformly fine map (20 unseen episodes)
+\end{itemize}
+\textbf{Knowledge Distillation for Aerial Robots Control}\hfill Feb--Jun 2026\\
+\textit{Autonomous Systems Lab -- Roland Siegwart Lab}
+\begin{itemize}
+    \vspace{-5pt}
+    \item Selected among 150 applicants for a closed cohort of 30 students in the Perception and Learning for Robotics class at ETH Zurich
+    \item Distilled parameter-matched model-based controllers for an overactuated tilt-rotor MAV (OMAV) into a single recurrent LSTM policy, trained closed-loop through differentiable vehicle dynamics with DAgger on $\sim$42 h of simulated flight
+    \item In simulation the policy outperforms the nominal model-based controller in velocity tracking ($p < 10^{-10}$, 2,000 paired rollouts) and nearly halves divergence under $\pm$30\% model mismatch; deployed zero-shot on the real OMAV
+\end{itemize}
+
+\subsection*{Selected Projects}
+\textbf{Autonomous Exploration on a Unitree A2 Quadruped} \faGithub\ \href{https://github.com/alessiosalvatore1703-ops/RSS_sim2win}{Repo} \hfill 06/2026\\
+\textit{ETH Robotics Summer School (ETHZ-RobotX)}
+\begin{itemize}
+    \vspace{-5pt}
+    \item Deployed a full autonomous search-and-explore mission with our team on a real Unitree A2 quadruped (Hesai LiDAR; TARE/FAR planners, DLIO LiDAR-inertial odometry) across three field sites
+    \item Developed the artifact-mapping node fusing YOLO detections with TF2 transforms into a deduplicated map-frame object log -- the mission's scored output
+\end{itemize}
+\textbf{Vision-Language-Action Policies on a Real SO-101 Arm} \faGithub\ \href{https://github.com/alessiosalvatore1703-ops/VLA-robotlearning}{Repo} \hfill 05/2026\\
+\textit{Project of the Class Robot Learning}
+\begin{itemize}
+    \vspace{-5pt}
+    \item Fine-tuned SmolVLA policies for language-conditioned pick-and-place across three tasks, up to grounding celebrity portraits with generalization to identities never seen in training; on-robot inference at 10 FPS
+    \item Built the LeRobot data pipeline (prompt relabeling, brightness and face-swap augmentation, DAgger-style corrections) and automated H100 cloud training with checkpoint streaming to the Hugging Face Hub
+\end{itemize}
+\textbf{Person Following on the Agibot X2 Humanoid} \faGithub\ \href{https://github.com/alessiosalvatore1703-ops/robohack2026}{Repo} \hfill 05/2026\\
+\textit{RoboHack Hackathon}
+\begin{itemize}
+    \vspace{-5pt}
+    \item Built real-time person following running fully onboard in a hackathon weekend: YOLOv8 on the head stereo cameras with disparity-based depth, Ruckig head tracking, and a state-machine locomotion supervisor holding a set distance
+\end{itemize}
+\textbf{Channel Position Estimation from Pipe-Inspection Video} \faGithub\ \href{https://github.com/MatteoR1103/PhysicalAI-Hackathon}{Repo} \hfill 05/2026\\
+\textit{Physical AI Hackathon}
+\begin{itemize}
+    \vspace{-5pt}
+    \item Estimated per-frame absolute position, turning point, and direction of a sewer-inspection probe from video alone, via sparse optical flow with outlier filtering, scene gating, and scale-free normalization -- CPU-only, $\sim$1000 frames in under 8 s
+\end{itemize}
+\textbf{DINOv3 for Mitral Valve Segmentation} \faGithub\ \href{https://github.com/alessiosalvatore1703-ops/DINO-v3-for-Mitral-Valve-Segmentation}{Repo} \hfill 12/2025
+\begin{itemize}
+    \vspace{-5pt}
+    \item Built a unified preprocessing pipeline for heterogeneous medical video datasets, generated pseudo-labels from sparse annotations via DINO-based feature propagation, and trained a U-Net segmentation model on the filtered labels
+\end{itemize}
+\textbf{Multi-Agent Multi-Goal Collection Planner}  \hfill 12/2025\\
+\textit{Project of the Class Planning and Decision Making for Autonomous Robots}
+\begin{itemize}
+\vspace{-5pt}
+    \item Designed a multi-robot planning framework combining Large Neighborhood Search for task allocation with real-time path planning and decentralized collision avoidance under partial observability.
+\end{itemize}
+ 
+\textbf{Autonomous Satellite Docking Planner}  \hfill 11/2025 -- 12/2025\\
+\textit{Project of the Class Planning and Decision Making for Autonomous Robots}
+\begin{itemize}
+\vspace{-5pt}
+    \item Implemented a trajectory optimization pipeline for autonomous satellite docking, solving non-convex guidance problems via Sequential Convexification in cluttered environments.
+\end{itemize}
+
+%-----------------------------------------------------------
+\section*{Work Experience}
+%-----------------------------------------------------------
+\textbf{JOIINT Lab — Italian Institute of Technology, Bergamo} \hfill Feb--Jun 2025\\
+\textit{Research Intern — Industrial Robotics} 
+\faGithub\ \href{https://github.com/alessiosalvatore1703-ops/Linear-Actuator}{Repo}
+\vspace{-5pt}
+\begin{itemize} 
+    \item CAD design of a linear actuator built from commercial off-the-shelf components. 
+    \item Implemented real-time control algorithms using Arduino. 
+    \item Developed a MATLAB simulation to validate system dynamics and behavior. 
+\end{itemize}
+
+\textbf{ETH Robotics Club} \hfill Nov 2025--Present\\
+\textit{Partnerships Team Lead}
+\vspace{-5pt}
+\begin{itemize}
+    \item Secured sponsorships for club initiatives and events
+\end{itemize}
+
+
+
+
+
+\end{document}
+
