@@ -1,0 +1,93 @@
+% General one-page CV for Alessio Salvatore — the condensed projection served by the
+% website (built by CI to assets/cv.pdf) and the base template for /tailor-cv.
+% Entries are intentionally duplicated with main.tex — when editing an entry,
+% check the sibling file. Layout + header live in preamble.tex.
+\documentclass[a4paper,10pt]{article}
+\input{preamble}
+
+\begin{document}
+
+\cvheader
+
+%-----------------------------------------------------------
+\section*{Education}
+%-----------------------------------------------------------
+
+\textbf{ETH Zürich}, Zürich, Switzerland \hfill Sep 2025--Present\\
+\textit{M.Sc. in Robotics} \\
+Coursework: Perception and Learning for Robotics, Robot Learning, 3D Vision, Probabilistic Artificial Intelligence
+
+\textbf{Politecnico di Milano}, Milan, Italy \hfill Sep 2022--Jul 2025\\
+\textit{B.Sc. in Automation Engineering} \\
+\textbf{Final Grade:} 110/110 \textit{cum laude} (equivalent GPA ≈ 4.0/4.0; 29.57/30).\\
+\vspace{-10pt}
+
+\textbf{Illinois Institute of Technology}, Chicago, IL, USA \hfill Aug--Dec 2024\\
+\textit{Exchange — Global E3 Program} \\
+\vspace{-10pt}
+%-----------------------------------------------------------
+\section*{Projects}
+%-----------------------------------------------------------
+\subsection*{Research Projects}
+\textbf{Goal-Driven Adaptive-Resolution 3D Mapping with RL}
+\hfill Feb--Jun 2026\\
+\textit{Computer Vision and Geometry Group -- Marc Pollefeys Lab}
+\begin{itemize}
+    \vspace{-5pt}
+    \item Trained a PPO policy that adapts per-region voxel resolution (split/keep/merge) online during navigation under a hard memory budget, reformulating an intractable per-block action space into a compact two-threshold policy
+    \item Re-implemented PEANUT's dense voxel map as a sparse hierarchical multi-resolution grid (Habitat, HM3D); the policy retains 79\% of point-goal success with 87\% less memory than a uniformly fine map (20 unseen episodes)
+\end{itemize}
+\textbf{Knowledge Distillation for Aerial Robots Control}\hfill Feb--Jun 2026\\
+\textit{Autonomous Systems Lab -- Roland Siegwart Lab}
+\begin{itemize}
+    \vspace{-5pt}
+    \item Distilled model-based controllers for an overactuated tilt-rotor MAV (OMAV) into a single recurrent LSTM policy, trained closed-loop through differentiable dynamics with DAgger on $\sim$42 h of simulated flight
+    \item In simulation the policy outperforms the nominal model-based controller in velocity tracking ($p < 10^{-10}$, 2,000 paired rollouts) and nearly halves divergence under $\pm$30\% model mismatch; deployed zero-shot on the real OMAV
+\end{itemize}
+
+\subsection*{Selected Projects}
+\textbf{Autonomous Exploration on a Unitree A2 Quadruped} \faGithub\ \href{https://github.com/alessiosalvatore1703-ops/RSS_sim2win}{Repo} \hfill 06/2026\\
+\textit{ETH Robotics Summer School (ETHZ-RobotX)}
+\begin{itemize}
+    \vspace{-5pt}
+    \item Deployed a full autonomous search-and-explore mission with our team on a real Unitree A2 quadruped across three field sites; developed the artifact-mapping node fusing YOLO detections into a deduplicated map-frame object log
+\end{itemize}
+\textbf{Vision-Language-Action Policies on a Real SO-101 Arm} \faGithub\ \href{https://github.com/alessiosalvatore1703-ops/VLA-robotlearning}{Repo} \hfill 05/2026\\
+\textit{Project of the Class Robot Learning}
+\begin{itemize}
+    \vspace{-5pt}
+    \item Fine-tuned SmolVLA policies for language-conditioned pick-and-place across three tasks with on-robot inference at 10 FPS; built the LeRobot data pipeline and automated H100 cloud training
+\end{itemize}
+\textbf{Person Following on the Agibot X2 Humanoid} \faGithub\ \href{https://github.com/alessiosalvatore1703-ops/robohack2026}{Repo} \hfill 05/2026\\
+\textit{RoboHack Hackathon}
+\begin{itemize}
+    \vspace{-5pt}
+    \item Built real-time person following running fully onboard in a hackathon weekend: YOLOv8 on the head stereo cameras with disparity-based depth, Ruckig head tracking, and a state-machine locomotion supervisor holding a set distance
+\end{itemize}
+
+%-----------------------------------------------------------
+\section*{Work Experience}
+%-----------------------------------------------------------
+\textbf{JOIINT Lab — Italian Institute of Technology, Bergamo} \hfill Feb--Jun 2025\\
+\textit{Research Intern — Industrial Robotics}
+\faGithub\ \href{https://github.com/alessiosalvatore1703-ops/Linear-Actuator}{Repo}
+\vspace{-5pt}
+\begin{itemize}
+    \item Designed a linear actuator in CAD from commercial off-the-shelf components, implemented real-time control on Arduino, and validated system dynamics with a MATLAB simulation
+\end{itemize}
+
+\textbf{ETH Robotics Club} \hfill Nov 2025--Present\\
+\textit{Partnerships Team Lead}
+\vspace{-5pt}
+\begin{itemize}
+    \item Secured sponsorships for club initiatives and events
+\end{itemize}
+
+\textbf{Laelaps AI} \hfill Jun 2026--Present\\
+\textit{Robotics Engineer}
+\vspace{-5pt}
+\begin{itemize}
+    \item Developing multi-agent systems for robot orchestration in complex real-world environments
+\end{itemize}
+
+\end{document}
