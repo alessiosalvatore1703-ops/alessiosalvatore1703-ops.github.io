@@ -11,6 +11,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <script src="https://cdn.tailwindcss.com"></script>
@@ -42,11 +43,11 @@
   <header class="fixed top-0 inset-x-0 z-50 bg-paper/85 backdrop-blur border-b border-line">
     <nav class="max-w-6xl mx-auto px-5 sm:px-8 h-14 flex items-center justify-between">
       <a href="#" class="font-mono text-sm tracking-widest uppercase hover:opacity-60">AS<span class="text-muted">/</span></a>
-      <div class="flex items-center gap-3 sm:gap-8 font-mono text-xs sm:text-sm">
-        <a href="#projects" class="hover:underline underline-offset-4">Projects</a>
-        <a href="#experience" class="hover:underline underline-offset-4">Experience</a>
-        <a href="#education" class="hover:underline underline-offset-4">Education</a>
-        <a href="assets/cv.pdf" class="border border-ink rounded px-2.5 py-1 hover:bg-ink hover:text-paper transition-colors">CV ↓</a>
+      <div class="flex items-center gap-2 sm:gap-7 font-mono text-xs sm:text-sm">
+        <a href="#projects" class="px-1 py-2 hover:underline underline-offset-4">Projects</a>
+        <a href="#experience" class="px-1 py-2 hover:underline underline-offset-4">Experience</a>
+        <a href="#education" class="hidden min-[360px]:inline-block px-1 py-2 hover:underline underline-offset-4">Education</a>
+        <a href="assets/cv.pdf" class="border border-ink rounded px-2.5 py-1.5 whitespace-nowrap hover:bg-ink hover:text-paper transition-colors">CV ↓</a>
       </div>
     </nav>
   </header>
@@ -54,6 +55,7 @@
   <!-- ============ HERO ============ -->
   <section class="relative overflow-hidden border-b border-line">
     <canvas id="hero-canvas" class="absolute inset-0 w-full h-full" aria-hidden="true"></canvas>
+    <p id="hero-shape-label" aria-hidden="true" class="pointer-events-none absolute bottom-5 left-1/2 -translate-x-1/2 font-mono text-[11px] tracking-widest uppercase text-muted whitespace-nowrap"></p>
     <div class="relative max-w-6xl mx-auto px-5 sm:px-8 pt-32 pb-24 sm:pt-40 sm:pb-32">
       <h1 class="load-fade hero-title display-expanded font-black leading-[0.95] sm:text-7xl lg:text-8xl uppercase">
         Alessio<br>Salvatore
@@ -65,16 +67,16 @@
         <span>Robotics Engineer, <a href="https://laelaps.ai/" target="_blank" rel="noopener" class="text-ink font-medium underline underline-offset-2 hover:opacity-60">Laelaps AI</a></span>
       </p>
 
-      <div class="mt-12 grid md:grid-cols-[16rem_1fr] gap-10 lg:gap-16 items-center">
-        <!-- identity rail: portrait + social links -->
-        <div class="load-fade" style="animation-delay:.34s">
+      <div class="mt-12 grid md:grid-cols-[16rem_1fr] gap-10 lg:gap-16 items-start">
+        <!-- identity rail: portrait + social links (side-by-side below md to keep the mobile hero short) -->
+        <div class="load-fade flex items-start gap-6 md:block" style="animation-delay:.34s">
           <!-- component: viewfinder-frame -->
-          <figure class="viewfinder relative w-48 sm:w-56 md:w-full">
+          <figure class="viewfinder relative w-44 sm:w-56 md:w-full">
             <img src="assets/img/portrait.jpg" alt="Portrait of Alessio Salvatore" class="w-full grayscale">
             <figcaption class="mt-3 font-mono text-[11px] tracking-widest text-muted">ZÜRICH, CH · 47.38°N 8.55°E</figcaption>
           </figure>
           <!-- component: social-icons -->
-          <div class="mt-6 flex items-center gap-3">
+          <div class="mt-2 grid grid-cols-1 gap-3 md:mt-6 md:flex md:items-center">
             <a href="https://github.com/alessiosalvatore1703-ops" aria-label="GitHub" class="grid place-items-center w-10 h-10 border border-ink/30 rounded hover:bg-ink hover:text-paper transition-colors">
               <svg viewBox="0 0 24 24" class="w-5 h-5" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.605-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.5 11.5 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222 0 1.606-.014 2.898-.014 3.293 0 .322.216.694.825.576C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
             </a>
@@ -114,16 +116,6 @@
             The rest of the time I'm a serial traveler, usually training calisthenics
             or martial arts wherever I land.
           </p>
-          <div class="mt-6">
-            <p class="font-mono text-[11px] tracking-widest uppercase text-muted mb-3">Interests</p>
-            <div class="flex flex-wrap gap-2">
-              <span class="tag-pill">Robot Learning</span>
-              <span class="tag-pill">Reinforcement Learning</span>
-              <span class="tag-pill">Computer Vision</span>
-              <span class="tag-pill">Motion Planning</span>
-              <span class="tag-pill">Aerial Robots</span>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -136,16 +128,53 @@
 
       <!-- component: project-feature -->
       <article class="group mt-12 grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-        <!-- MEDIA SLOT — to use video instead, replace the <img> with this <video>:
-             <video class="w-full aspect-[8/5] object-cover" controls muted playsinline
-                    poster="assets/projects/task-aware-3d-mapping/poster.jpg">
-               <source src="assets/projects/task-aware-3d-mapping/demo.mp4" type="video/mp4">
-               <a href="assets/projects/task-aware-3d-mapping/demo.mp4">Watch the demo video</a>
-             </video> -->
-        <figure class="viewfinder">
-          <img src="assets/projects/task-aware-3d-mapping/pipeline.png" alt="Pipeline: Habitat RGB-D feeds a 3D multi-resolution sparse map; an RL policy splits, keeps, or merges voxels; the map is projected to 2D and planned over with PEANUT, closing the loop with action commands" class="w-full aspect-[8/5] object-contain block bg-white">
+        <!-- MEDIA SLOT — real OMAV flight footage; pipeline diagram at
+             assets/projects/aerial-knowledge-distillation/pipeline.png (for detail page). -->
+        <figure class="viewfinder relative">
+          <video class="w-full aspect-video sm:aspect-[8/5] object-contain block bg-panel" loop muted playsinline preload="none"
+                 poster="assets/projects/aerial-knowledge-distillation/poster.jpg" data-autoplay
+                 aria-label="Real flight footage of the omnidirectional micro aerial vehicle">
+            <source src="assets/projects/aerial-knowledge-distillation/demo.mp4" type="video/mp4">
+            <a href="assets/projects/aerial-knowledge-distillation/demo.mp4">Watch the flight video</a>
+          </video>
         </figure>
         <div>
+          <p class="font-mono text-xs tracking-widest uppercase text-muted">Feb — Jun 2026 · Perception &amp; Learning for Robotics · ASL, Roland Siegwart Lab</p>
+          <h3 class="mt-3 text-2xl sm:text-3xl font-bold">Knowledge Distillation for Aerial Robot Control</h3>
+          <p class="mt-4 text-muted leading-relaxed">
+            Omnidirectional aerial vehicles can fly and orient in any direction, but the
+            model-based controllers behind this are computationally heavy and need careful
+            tuning for each vehicle. The goal of this project is to compress that expertise
+            into a small neural network able to run on the drone itself. Trained by imitation
+            across thousands of simulated flights, the resulting policy controls the real OMAV
+            in real time and stays reliable even when the vehicle differs from its model.
+          </p>
+          <div class="mt-5 flex flex-wrap gap-2">
+            <span class="tag-pill">Knowledge Distillation</span>
+            <span class="tag-pill">Imitation Learning</span>
+            <span class="tag-pill">Sim-to-Real</span>
+          </div>
+          <div class="mt-5 font-mono text-xs flex gap-4">
+            <a href="assets/projects/aerial-knowledge-distillation/ReportPLR_Salvatore_Stefanini.pdf" class="inline-block py-1 -my-1 underline underline-offset-4 hover:opacity-60">Report →</a>
+            <a href="https://youtu.be/oPd9mkxEaO8" class="inline-block py-1 -my-1 underline underline-offset-4 hover:opacity-60">Video →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- component: project-feature (mirrored) -->
+      <article class="group mt-16 grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+        <div class="md:order-2">
+          <!-- MEDIA SLOT — to use video instead, replace the <img> with this <video>:
+               <video class="w-full aspect-[8/5] object-cover" controls muted playsinline
+                      poster="assets/projects/task-aware-3d-mapping/poster.jpg">
+                 <source src="assets/projects/task-aware-3d-mapping/demo.mp4" type="video/mp4">
+                 <a href="assets/projects/task-aware-3d-mapping/demo.mp4">Watch the demo video</a>
+               </video> -->
+          <figure class="viewfinder">
+            <img src="assets/projects/task-aware-3d-mapping/pipeline.png" alt="Pipeline: Habitat RGB-D feeds a 3D multi-resolution sparse map; an RL policy splits, keeps, or merges voxels; the map is projected to 2D and planned over with PEANUT, closing the loop with action commands" class="w-full aspect-[8/5] object-contain block bg-white" loading="lazy" decoding="async">
+          </figure>
+        </div>
+        <div class="md:order-1">
           <p class="font-mono text-xs tracking-widest uppercase text-muted">Feb — Jun 2026 · 3D Vision · CVG, Marc Pollefeys Lab</p>
           <h3 class="mt-3 text-2xl sm:text-3xl font-bold">Goal-Driven Adaptive-Resolution 3D Mapping with RL</h3>
           <p class="mt-4 text-muted leading-relaxed">
@@ -163,44 +192,8 @@
             <span class="tag-pill">Habitat</span>
           </div>
           <div class="mt-5 font-mono text-xs flex gap-4">
-            <a href="assets/projects/task-aware-3d-mapping/3dv_final_report.pdf" class="underline underline-offset-4 hover:opacity-60">Report →</a>
-            <a href="https://github.com/vassili-de-palma/goal-driven-map-adapt" class="underline underline-offset-4 hover:opacity-60">Repo →</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- component: project-feature (mirrored) -->
-      <article class="group mt-16 grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-        <div class="md:order-2">
-          <!-- MEDIA SLOT — real OMAV flight footage; pipeline diagram at
-               assets/projects/aerial-knowledge-distillation/pipeline.png (for detail page). -->
-          <figure class="viewfinder relative">
-            <video class="w-full aspect-[8/5] object-contain block bg-panel" autoplay loop muted playsinline
-                   aria-label="Real flight footage of the omnidirectional micro aerial vehicle">
-              <source src="assets/projects/aerial-knowledge-distillation/demo.mp4" type="video/mp4">
-              <a href="assets/projects/aerial-knowledge-distillation/demo.mp4">Watch the flight video</a>
-            </video>
-          </figure>
-        </div>
-        <div class="md:order-1">
-          <p class="font-mono text-xs tracking-widest uppercase text-muted">Feb — Jun 2026 · Perception &amp; Learning for Robotics · ASL, Roland Siegwart Lab</p>
-          <h3 class="mt-3 text-2xl sm:text-3xl font-bold">Knowledge Distillation for Aerial Robot Control</h3>
-          <p class="mt-4 text-muted leading-relaxed">
-            Omnidirectional aerial vehicles can fly and orient in any direction, but the
-            model-based controllers behind this are computationally heavy and need careful
-            tuning for each vehicle. The goal of this project is to compress that expertise
-            into a small neural network able to run on the drone itself. Trained by imitation
-            across thousands of simulated flights, the resulting policy controls the real OMAV
-            in real time and stays reliable even when the vehicle differs from its model.
-          </p>
-          <div class="mt-5 flex flex-wrap gap-2">
-            <span class="tag-pill">Knowledge Distillation</span>
-            <span class="tag-pill">Imitation Learning</span>
-            <span class="tag-pill">Sim-to-Real</span>
-          </div>
-          <div class="mt-5 font-mono text-xs flex gap-4">
-            <a href="assets/projects/aerial-knowledge-distillation/ReportPLR_Salvatore_Stefanini.pdf" class="underline underline-offset-4 hover:opacity-60">Report →</a>
-            <a href="https://youtu.be/oPd9mkxEaO8" class="underline underline-offset-4 hover:opacity-60">Video →</a>
+            <a href="assets/projects/task-aware-3d-mapping/3dv_final_report.pdf" class="inline-block py-1 -my-1 underline underline-offset-4 hover:opacity-60">Report →</a>
+            <a href="https://github.com/vassili-de-palma/goal-driven-map-adapt" class="inline-block py-1 -my-1 underline underline-offset-4 hover:opacity-60">Repo →</a>
           </div>
         </div>
       </article>
@@ -216,9 +209,14 @@
 
         <!-- component: project-card · vla-so101 -->
         <article class="group border border-line rounded-lg overflow-hidden bg-white hover:border-ink/40 transition-colors">
-          <!-- MEDIA SLOT — real demo GIF -->
+          <!-- MEDIA SLOT — real demo footage (converted from the original GIF) -->
           <figure class="relative">
-            <img src="assets/projects/vla-so101/demo.gif" alt="SO-101 robot arm handing a coke can to a portrait of Michael Jackson" class="w-full aspect-[8/5] object-cover">
+            <video class="w-full aspect-[8/5] object-cover block" loop muted playsinline preload="none"
+                   poster="assets/projects/vla-so101/poster.jpg" data-autoplay
+                   aria-label="SO-101 robot arm handing a coke can to a portrait of Michael Jackson">
+              <source src="assets/projects/vla-so101/demo.mp4" type="video/mp4">
+              <a href="assets/projects/vla-so101/demo.mp4">Watch the demo video</a>
+            </video>
           </figure>
           <div class="p-5">
             <p class="font-mono text-[11px] tracking-widest uppercase text-muted">May 2026 · Robot Learning, ETH Zürich</p>
@@ -229,8 +227,8 @@
               training. Inference runs on the robot at 10&nbsp;FPS.
             </p>
             <div class="mt-4 font-mono text-xs flex gap-4">
-              <a href="https://github.com/alessiosalvatore1703-ops/VLA-robotlearning" class="underline underline-offset-4 hover:opacity-60">Repo →</a>
-              <a href="https://huggingface.co/ETHrobotlearning" class="underline underline-offset-4 hover:opacity-60">HF Hub →</a>
+              <a href="https://github.com/alessiosalvatore1703-ops/VLA-robotlearning" class="inline-block py-1 -my-1 underline underline-offset-4 hover:opacity-60">Repo →</a>
+              <a href="https://huggingface.co/ETHrobotlearning" class="inline-block py-1 -my-1 underline underline-offset-4 hover:opacity-60">HF Hub →</a>
             </div>
           </div>
         </article>
@@ -239,7 +237,7 @@
         <article class="group border border-line rounded-lg overflow-hidden bg-white hover:border-ink/40 transition-colors">
           <!-- MEDIA SLOT — real photo from the summer school -->
           <figure class="relative overflow-hidden">
-            <img src="assets/projects/unitree-a2-exploration/cover.jpeg" alt="Unitree A2 quadruped during the ETH Robotics Summer School field deployment" class="w-full aspect-[8/5] object-cover block">
+            <img src="assets/projects/unitree-a2-exploration/cover.jpeg" alt="Unitree A2 quadruped during the ETH Robotics Summer School field deployment" class="w-full aspect-[8/5] object-cover block" loading="lazy" decoding="async">
           </figure>
           <div class="p-5">
             <p class="font-mono text-[11px] tracking-widest uppercase text-muted">Jun 2026 · ETH Robotics Summer School</p>
@@ -250,7 +248,7 @@
               exploration stack (TARE, FAR, DLIO) was field-tuned for tight spaces.
             </p>
             <div class="mt-4 font-mono text-xs flex gap-4">
-              <a href="https://github.com/alessiosalvatore1703-ops/RSS_sim2win" class="underline underline-offset-4 hover:opacity-60">Repo →</a>
+              <a href="https://github.com/alessiosalvatore1703-ops/RSS_sim2win" class="inline-block py-1 -my-1 underline underline-offset-4 hover:opacity-60">Repo →</a>
             </div>
           </div>
         </article>
@@ -259,7 +257,8 @@
         <article class="group border border-line rounded-lg overflow-hidden bg-white hover:border-ink/40 transition-colors">
           <!-- MEDIA SLOT — real demo footage -->
           <figure class="relative">
-            <video class="w-full aspect-[8/5] object-cover block" autoplay loop muted playsinline
+            <video class="w-full aspect-[8/5] object-cover block" loop muted playsinline preload="none"
+                   poster="assets/projects/agibot-x2-person-following/poster.jpg" data-autoplay
                    aria-label="Agibot X2 humanoid following a person">
               <source src="assets/projects/agibot-x2-person-following/demo.mp4" type="video/mp4">
               <a href="assets/projects/agibot-x2-person-following/demo.mp4">Watch the demo video</a>
@@ -274,7 +273,7 @@
               supervisor that walks to the person and holds a set distance.
             </p>
             <div class="mt-4 font-mono text-xs flex gap-4">
-              <a href="https://github.com/alessiosalvatore1703-ops/robohack2026" class="underline underline-offset-4 hover:opacity-60">Repo →</a>
+              <a href="https://github.com/alessiosalvatore1703-ops/robohack2026" class="inline-block py-1 -my-1 underline underline-offset-4 hover:opacity-60">Repo →</a>
             </div>
           </div>
         </article>
@@ -284,7 +283,8 @@
           <!-- MEDIA SLOT — real inspection footage; results figure at
                assets/projects/pipe-inspection-odometry/results.jpeg -->
           <figure class="relative">
-            <video class="w-full aspect-[8/5] object-contain block bg-panel" autoplay loop muted playsinline
+            <video class="w-full aspect-[4/3] sm:aspect-[8/5] object-contain block bg-panel" loop muted playsinline preload="none"
+                   poster="assets/projects/pipe-inspection-odometry/poster.jpg" data-autoplay
                    aria-label="Sewer-inspection probe footage inside the channel">
               <source src="assets/projects/pipe-inspection-odometry/demo.mp4" type="video/mp4">
               <a href="assets/projects/pipe-inspection-odometry/demo.mp4">Watch the inspection video</a>
@@ -299,8 +299,8 @@
               in under 8&nbsp;s. A zero-shot YOLO-World pass adds a pipe-condition report.
             </p>
             <div class="mt-4 font-mono text-xs flex gap-4">
-              <a href="https://github.com/MatteoR1103/PhysicalAI-Hackathon" class="underline underline-offset-4 hover:opacity-60">Repo →</a>
-              <a href="assets/projects/pipe-inspection-odometry/slides.pdf" class="underline underline-offset-4 hover:opacity-60">Slides ↓</a>
+              <a href="https://github.com/MatteoR1103/PhysicalAI-Hackathon" class="inline-block py-1 -my-1 underline underline-offset-4 hover:opacity-60">Repo →</a>
+              <a href="assets/projects/pipe-inspection-odometry/slides.pdf" class="inline-block py-1 -my-1 underline underline-offset-4 hover:opacity-60">Slides ↓</a>
             </div>
           </div>
         </article>
@@ -309,7 +309,8 @@
         <article class="group border border-line rounded-lg overflow-hidden bg-white hover:border-ink/40 transition-colors">
           <!-- MEDIA SLOT — real segmentation output on echo video -->
           <figure class="relative">
-            <video class="w-full aspect-[8/5] object-contain block bg-panel" autoplay loop muted playsinline
+            <video class="w-full aspect-[4/3] sm:aspect-[8/5] object-contain block bg-panel" loop muted playsinline preload="none"
+                   poster="assets/projects/mitral-valve-segmentation/poster.jpg" data-autoplay
                    aria-label="Predicted mitral valve segmentation mask tracking the leaflets in an echocardiography clip">
               <source src="assets/projects/mitral-valve-segmentation/demo.mp4" type="video/mp4">
               <a href="assets/projects/mitral-valve-segmentation/demo.mp4">Watch the segmentation demo</a>
@@ -323,7 +324,7 @@
               heterogeneous medical video; a U-Net is trained on the filtered labels.
             </p>
             <div class="mt-4 font-mono text-xs flex gap-4">
-              <a href="https://github.com/alessiosalvatore1703-ops/DINO-v3-for-Mitral-Valve-Segmentation" target="_blank" rel="noopener" class="underline underline-offset-4 hover:opacity-60">Repo →</a>
+              <a href="https://github.com/alessiosalvatore1703-ops/DINO-v3-for-Mitral-Valve-Segmentation" target="_blank" rel="noopener" class="inline-block py-1 -my-1 underline underline-offset-4 hover:opacity-60">Repo →</a>
             </div>
           </div>
         </article>
@@ -332,7 +333,8 @@
         <article class="group border border-line rounded-lg overflow-hidden bg-white hover:border-ink/40 transition-colors">
           <!-- MEDIA SLOT — real planner rollout from the course simulator -->
           <figure class="relative">
-            <video class="w-full aspect-[8/5] object-contain block bg-panel" autoplay loop muted playsinline
+            <video class="w-full aspect-square sm:aspect-[8/5] object-contain block bg-panel" loop muted playsinline preload="none"
+                   poster="assets/projects/multi-agent-planner/poster.jpg" data-autoplay
                    aria-label="Multiple robots collecting goals among obstacles in simulation">
               <source src="assets/projects/multi-agent-planner/demo.mp4" type="video/mp4">
               <a href="assets/projects/multi-agent-planner/demo.mp4">Watch the planner demo</a>
@@ -353,7 +355,8 @@
         <article class="group border border-line rounded-lg overflow-hidden bg-white hover:border-ink/40 transition-colors">
           <!-- MEDIA SLOT — real planner rollout from the course simulator -->
           <figure class="relative">
-            <video class="w-full aspect-[8/5] object-contain block bg-panel" autoplay loop muted playsinline
+            <video class="w-full aspect-square sm:aspect-[8/5] object-contain block bg-panel" loop muted playsinline preload="none"
+                   poster="assets/projects/satellite-docking/poster.jpg" data-autoplay
                    aria-label="Spacecraft steering between circular obstacles toward its docking target in simulation">
               <source src="assets/projects/satellite-docking/demo.mp4" type="video/mp4">
               <a href="assets/projects/satellite-docking/demo.mp4">Watch the docking demo</a>
@@ -388,7 +391,7 @@
             <p class="mt-3 text-muted text-sm leading-relaxed">
               CAD design of a linear actuator from off-the-shelf components, real-time control on
               Arduino, and a MATLAB simulation validating system dynamics.
-              <a href="https://github.com/alessiosalvatore1703-ops/Linear-Actuator" target="_blank" rel="noopener" class="font-mono text-xs underline underline-offset-4 hover:opacity-60 ml-1">Repo →</a>
+              <a href="https://github.com/alessiosalvatore1703-ops/Linear-Actuator" target="_blank" rel="noopener" class="inline-block py-1 -my-1 font-mono text-xs underline underline-offset-4 hover:opacity-60 ml-1">Repo →</a>
             </p>
           </div>
         </article>
@@ -470,20 +473,33 @@
       <div>
         <p class="display-expanded font-black uppercase text-xl">Alessio Salvatore</p>
         <p class="font-mono text-xs text-muted mt-2">© <span id="year"></span> · Zürich, Switzerland</p>
-        <p class="font-mono text-[10px] text-muted mt-1">Hero robots: Unitree A2 &amp; G1 meshes (BSD-3) · ETH ASL RotorS Firefly (Apache-2.0)</p>
+        <p class="font-mono text-[10px] text-muted mt-1">Hero robots: Agibot X2 &amp; SO-101 meshes (Apache-2.0) · Unitree A2 (BSD-3) · ETH ASL RotorS Firefly (Apache-2.0)</p>
       </div>
       <div class="flex gap-6 font-mono text-sm">
-        <a href="mailto:alessiosalvatore1703@gmail.com" class="hover:underline underline-offset-4">Email</a>
-        <a href="https://github.com/alessiosalvatore1703-ops" class="hover:underline underline-offset-4">GitHub</a>
-        <a href="https://www.linkedin.com/in/alessiosalvatore/" target="_blank" rel="noopener" class="hover:underline underline-offset-4">LinkedIn</a>
-        <a href="assets/cv.pdf" class="underline underline-offset-4 hover:opacity-60">CV ↓</a>
+        <a href="mailto:alessiosalvatore1703@gmail.com" class="inline-block py-2 -my-2 hover:underline underline-offset-4">Email</a>
+        <a href="https://github.com/alessiosalvatore1703-ops" class="inline-block py-2 -my-2 hover:underline underline-offset-4">GitHub</a>
+        <a href="https://www.linkedin.com/in/alessiosalvatore/" target="_blank" rel="noopener" class="inline-block py-2 -my-2 hover:underline underline-offset-4">LinkedIn</a>
+        <a href="assets/cv.pdf" class="inline-block py-1 -my-1 underline underline-offset-4 hover:opacity-60">CV ↓</a>
       </div>
     </div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.min.js"></script>
-  <script src="assets/js/hero-shapes.js"></script>
-  <script src="assets/js/hero.js"></script>
+  <!-- hero point cloud: desktop/tablet only — phones skip three.js + shape data
+       (~900 KB) entirely; the hero copy stands on plain paper there -->
+  <script>
+    if (window.matchMedia('(min-width: 768px)').matches) {
+      [
+        'https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.min.js',
+        'assets/js/hero-shapes.js',
+        'assets/js/hero.js',
+      ].forEach(function (src) {
+        var s = document.createElement('script');
+        s.src = src;
+        s.async = false; // preserve order: hero.js needs THREE + HERO_SHAPES
+        document.body.appendChild(s);
+      });
+    }
+  </script>
   <script src="assets/js/main.js"></script>
 </body>
 </html>

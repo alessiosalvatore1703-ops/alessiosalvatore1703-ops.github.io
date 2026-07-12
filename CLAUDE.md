@@ -69,13 +69,17 @@ Two sources, in priority order:
    must keep their "validation" qualifier, and some quantitative claims are forbidden
    (VLA success rates, OMAV final numbers). Its bottom checklist tracks what's still
    needed from the user.
-2. **The CV** (`assets/cv.pdf`, from `~/Downloads/cvalessio (2).pdf`, May 2025) — for
-   About/Experience/Education and the 2025 projects.
+2. **The CV** — LaTeX source lives at `assets/cv/main.tex` (single source of truth; XeLaTeX,
+   Arimo font). `assets/cv.pdf` (what the site links) is **built from it**, not edited by hand:
+   the `.github/workflows/build-cv.yml` GitHub Action recompiles it on any push touching
+   `assets/cv/**`. Edit the `.tex`, not the PDF. Use it for About/Experience/Education and the
+   2025 projects.
 
 Never invent achievements or reword claims into stronger ones than the sources state.
 GitHub username confirmed: `alessiosalvatore1703-ops`. Real media already in the site:
 
-- `vla-so101/demo.gif` — card cover
+- `vla-so101/demo.mp4` — card cover (converted Jul 2026 from the original `demo.gif`,
+  which was then deleted; it lives in git history)
 - `aerial-knowledge-distillation/demo.mp4` — card cover (transcoded from the user's 8K
   original with ffmpeg, 1280px CRF26; the 194 MB original was deleted after transcoding —
   user's own copy is on their phone/source device, not this machine). `pipeline.png` for a
@@ -83,9 +87,15 @@ GitHub username confirmed: `alessiosalvatore1703-ops`. Real media already in the
 - `agibot-x2-person-following/demo.mp4`, `pipe-inspection-odometry/demo.mp4` +
   `slides.pdf` + `results.jpeg`, `unitree-a2-exploration/cover.jpeg` — card covers.
 
-Cards with real media follow the **VLA style**: `<video autoplay loop muted playsinline>`
-(or img/GIF) as cover, no overlays. The hero scene is `assets/js/hero.js` (humanoid +
-dot cluster); `main.js` holds the small site-wide bits.
+Cards with real media follow the **VLA style**:
+`<video loop muted playsinline preload="none" poster="…/poster.jpg" data-autoplay>`
+(or img) as cover, no overlays. Every video has a committed `poster.jpg` next to it;
+`main.js` plays/pauses `[data-autoplay]` videos as they enter/leave the viewport
+(mobile perf pass, Jul 2026 — do not put a bare `autoplay` attribute back, it defeats
+`preload="none"`). Below-fold `<img>`s get `loading="lazy" decoding="async"`. The hero
+scripts (three.js + `hero-shapes.js` + `hero.js`) load only at ≥768px via the inline
+loader at the bottom of `index.html` — phones skip the ~900 KB entirely; `main.js`
+holds the small site-wide bits.
 
 Current CV snapshot (summary):
 
@@ -126,12 +136,16 @@ re-invent it, extend it:
 - **Type**: Archivo (variable; `.display-expanded` = font-stretch 125% for display) +
   IBM Plex Mono for all meta text (dates, tags, nav, eyebrows). Both from Google Fonts.
 - **Signature element**: hero WebGL point cloud (`assets/js/hero.js`, three.js) — 12k
-  monochrome points cycling through **real robot hardware**: sparse cloud → Unitree G1
-  humanoid → sparse → ETH ASL RotorS Firefly hexacopter → sparse → Unitree A2 quadruped
-  → repeat (the Firefly and A2 echo the user's ASL and summer-school projects). Point
-  data lives in `assets/js/hero-shapes.js` (base64 int16 mm), sampled offline from the
-  manufacturers' own meshes by `tools/sample_hero_shapes.py` (Unitree meshes BSD-3,
-  RotorS Apache-2.0 — credited in the footer; keep that line). State machine: form
+  monochrome points cycling through **the robots the user has actually worked with**
+  (user request, Jul 2026): sparse cloud → Agibot X2 humanoid → sparse → SO-101 arm →
+  sparse → Unitree A2 quadruped → sparse → ETH ASL RotorS Firefly hexacopter → repeat
+  (the Firefly is a stand-in for the OMAV, whose mesh is lab-internal). While a shape
+  holds, a small mono caption (`#hero-shape-label`, bottom-center of the hero) names
+  the robot and its project — keep captions honest (the Firefly one must not claim it
+  is the OMAV). Point data lives in `assets/js/hero-shapes.js` (base64 int16 mm),
+  sampled offline from the manufacturers' own meshes by `tools/sample_hero_shapes.py`
+  (Unitree BSD-3; RotorS, Agibot X2 URDF, SO-101 Apache-2.0 — credited in the footer;
+  keep that line). State machine: form
   2.0 s (built bottom-up) → hold 6 s → disperse 1.4 s. Constant behaviors: slow sway
   (BASE_YAW 0.5), per-point breathing noise, cursor parallax, and **cursor dissolve** —
   points near the pointer ray melt outward along fixed per-point directions and heal
@@ -141,10 +155,10 @@ re-invent it, extend it:
   must NEVER overlap text or the portrait. On xl+ (≥1280px) they stand centered UNDER
   the name block (user request): cx = name center (margin+32+372), strip from y≈585
   (below paragraph and buttons) to the hero's bottom edge (`xl:pb-64` reserves it);
-  those pixel constants in `resize()` mirror the hero grid, so re-verify all three
+  those pixel constants in `resize()` mirror the hero grid, so re-verify all four
   shapes after any hero layout change. Below 1280px it falls back to a reserved bottom
   band (`bandH = min(38% height, 280px)`, hero keeps `pb-72 sm:pb-80`). Reduced motion:
-  static G1 frame; no WebGL: empty canvas. History: user rejected FOUR 2D canvas heroes
+  static X2 frame with its caption; no WebGL: empty canvas. History: user rejected FOUR 2D canvas heroes
   (voxels, 3-link arm, humanoid+dots, Adam hands — "simple and stupid"), then liked the
   3D point-cloud paradigm; parametric capsule shapes were replaced by these real-mesh
   samples at their request. Do not go back to 2D line-art heroes or made-up geometry.
