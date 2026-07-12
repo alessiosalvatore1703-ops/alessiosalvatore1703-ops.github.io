@@ -1,0 +1,48 @@
+name: Build CV
+
+# Compiles both CVs (XeLaTeX) and commits the results:
+#   assets/cv/onepage.tex -> assets/cv.pdf      (general 1-page CV, linked from the site)
+#   assets/cv/main.tex    -> assets/cv-full.pdf (full 2-page CV, committed but not linked)
+# Keeps the downloadable CVs in sync with the LaTeX sources.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'assets/cv/**'
+      - '.github/workflows/build-cv.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Compile CVs (XeLaTeX)
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: |
+            main.tex
+            onepage.tex
+          working_directory: assets/cv
+          latexmk_use_xelatex: true
+
+      - name: Publish PDFs
+        run: |
+          mv assets/cv/onepage.pdf assets/cv.pdf
+          mv assets/cv/main.pdf assets/cv-full.pdf
+
+      - name: Commit if changed
+        run: |
+          git config user.name "cv-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add assets/cv.pdf assets/cv-full.pdf
+          if git diff --staged --quiet; then
+            echo "CV PDFs unchanged — nothing to commit."
+          else
+            git commit -m "Rebuild CV PDFs from LaTeX [skip ci]"
+            git push
+          fi
