@@ -29,6 +29,13 @@ Coursework: Probabilistic Artificial Intelligence, Advanced Machine Learning, Im
 \section*{Projects}
 %-----------------------------------------------------------
 \subsection*{Research Projects}
+\textbf{Knowledge Distillation for Aerial Robots Control} \faVideo\ \href{https://www.youtube.com/watch?v=oPd9mkxEaO8}{Video} \faFilePdf\ \href{https://alessiosalvatore1703-ops.github.io/assets/projects/aerial-knowledge-distillation/ReportPLR_Salvatore_Stefanini.pdf}{Report}\hfill Feb--Jun 2026\\
+\textit{Autonomous Systems Lab -- Roland Siegwart Lab}
+\begin{itemize}
+    \vspace{-5pt}
+    \item Distilled model-based controllers for an overactuated tilt-rotor MAV (OMAV) into a single recurrent LSTM policy, trained closed-loop through differentiable dynamics with DAgger on $\sim$42 h of simulated flight
+    \item In simulation the policy outperforms the nominal model-based controller in velocity tracking ($p < 10^{-10}$, 2,000 paired rollouts) and nearly halves divergence under $\pm$30\% model mismatch; deployed zero-shot on the real OMAV
+\end{itemize}
 \textbf{Goal-Driven Adaptive-Resolution 3D Mapping with RL} \faFilePdf\ \href{https://alessiosalvatore1703-ops.github.io/assets/projects/task-aware-3d-mapping/3dv_final_report.pdf}{Report}
 \hfill Feb--Jun 2026\\
 \textit{Computer Vision and Geometry Group -- Marc Pollefeys Lab}
@@ -36,13 +43,6 @@ Coursework: Probabilistic Artificial Intelligence, Advanced Machine Learning, Im
     \vspace{-5pt}
     \item Trained a PPO policy that adapts per-region voxel resolution (split/keep/merge) online during navigation under a hard memory budget, reformulating an intractable per-block action space into a compact two-threshold policy
     \item Re-implemented PEANUT's dense voxel map as a sparse hierarchical multi-resolution grid (Habitat, HM3D); the policy retains 79\% of point-goal success with 87\% less memory than a uniformly fine map (20 unseen episodes)
-\end{itemize}
-\textbf{Knowledge Distillation for Aerial Robots Control} \faVideo\ \href{https://www.youtube.com/watch?v=oPd9mkxEaO8}{Video} \faFilePdf\ \href{https://alessiosalvatore1703-ops.github.io/assets/projects/aerial-knowledge-distillation/ReportPLR_Salvatore_Stefanini.pdf}{Report}\hfill Feb--Jun 2026\\
-\textit{Autonomous Systems Lab -- Roland Siegwart Lab}
-\begin{itemize}
-    \vspace{-5pt}
-    \item Distilled model-based controllers for an overactuated tilt-rotor MAV (OMAV) into a single recurrent LSTM policy, trained closed-loop through differentiable dynamics with DAgger on $\sim$42 h of simulated flight
-    \item In simulation the policy outperforms the nominal model-based controller in velocity tracking ($p < 10^{-10}$, 2,000 paired rollouts) and nearly halves divergence under $\pm$30\% model mismatch; deployed zero-shot on the real OMAV
 \end{itemize}
 
 \subsection*{Selected Projects}
