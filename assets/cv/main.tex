@@ -31,7 +31,7 @@ Coursework: Probabilistic Artificial Intelligence, Advanced Machine Learning, Im
 \section*{Projects}
 %-----------------------------------------------------------
 \subsection*{Research Projects}
-\textbf{Goal-Driven Adaptive-Resolution 3D Mapping with RL}
+\textbf{Goal-Driven Adaptive-Resolution 3D Mapping with RL} \faFilePdf\ \href{https://alessiosalvatore1703-ops.github.io/assets/projects/task-aware-3d-mapping/3dv_final_report.pdf}{Report}
 \hfill Feb--Jun 2026\\
 \textit{Computer Vision and Geometry Group -- Marc Pollefeys Lab}
 \begin{itemize}
@@ -39,7 +39,7 @@ Coursework: Probabilistic Artificial Intelligence, Advanced Machine Learning, Im
     \item Trained a PPO policy that adapts per-region voxel resolution (split/keep/merge) online during navigation under a hard memory budget, reformulating an intractable per-block action space into a compact two-threshold policy
     \item Re-implemented PEANUT's dense voxel map as a sparse hierarchical multi-resolution grid (Habitat, HM3D); the learned policy retains 79\% of point-goal navigation success with 87\% less memory than a uniformly fine map (20 unseen episodes)
 \end{itemize}
-\textbf{Knowledge Distillation for Aerial Robots Control}\hfill Feb--Jun 2026\\
+\textbf{Knowledge Distillation for Aerial Robots Control} \faVideo\ \href{https://alessiosalvatore1703-ops.github.io/assets/projects/aerial-knowledge-distillation/demo.mp4}{Video} \faFilePdf\ \href{https://alessiosalvatore1703-ops.github.io/assets/projects/aerial-knowledge-distillation/ReportPLR_Salvatore_Stefanini.pdf}{Report}\hfill Feb--Jun 2026\\
 \textit{Autonomous Systems Lab -- Roland Siegwart Lab}
 \begin{itemize}
     \vspace{-5pt}
@@ -56,39 +56,39 @@ Coursework: Probabilistic Artificial Intelligence, Advanced Machine Learning, Im
     \item Deployed a full autonomous search-and-explore mission with our team on a real Unitree A2 quadruped (Hesai LiDAR; TARE/FAR planners, DLIO LiDAR-inertial odometry) across three field sites
     \item Developed the artifact-mapping node fusing YOLO detections with TF2 transforms into a deduplicated map-frame object log -- the mission's scored output
 \end{itemize}
-\textbf{Vision-Language-Action Policies on a Real SO-101 Arm} \faGithub\ \href{https://github.com/alessiosalvatore1703-ops/VLA-robotlearning}{Repo} \hfill 05/2026\\
+\textbf{Vision-Language-Action Policies on a Real SO-101 Arm} \faGithub\ \href{https://github.com/alessiosalvatore1703-ops/VLA-robotlearning}{Repo} \faVideo\ \href{https://alessiosalvatore1703-ops.github.io/assets/projects/vla-so101/demo.mp4}{Video} \hfill 05/2026\\
 \textit{Project of the Class Robot Learning}
 \begin{itemize}
     \vspace{-5pt}
     \item Fine-tuned SmolVLA policies for language-conditioned pick-and-place across three tasks, up to grounding celebrity portraits with generalization to identities never seen in training; on-robot inference at 10 FPS
     \item Built the LeRobot data pipeline (prompt relabeling, brightness and face-swap augmentation, DAgger-style corrections) and automated H100 cloud training with checkpoint streaming to the Hugging Face Hub
 \end{itemize}
-\textbf{Person Following on the Agibot X2 Humanoid} \faGithub\ \href{https://github.com/alessiosalvatore1703-ops/robohack2026}{Repo} \hfill 05/2026\\
+\textbf{Person Following on the Agibot X2 Humanoid} \faGithub\ \href{https://github.com/alessiosalvatore1703-ops/robohack2026}{Repo} \faVideo\ \href{https://alessiosalvatore1703-ops.github.io/assets/projects/agibot-x2-person-following/demo.mp4}{Video} \hfill 05/2026\\
 \textit{RoboHack Hackathon}
 \begin{itemize}
     \vspace{-5pt}
     \item Built real-time person following running fully onboard in a hackathon weekend: YOLOv8 on the head stereo cameras with disparity-based depth, Ruckig head tracking, and a state-machine locomotion supervisor holding a set distance
 \end{itemize}
 \newpage
-\textbf{Channel Position Estimation from Pipe-Inspection Video} \faGithub\ \href{https://github.com/MatteoR1103/PhysicalAI-Hackathon}{Repo} \hfill 05/2026\\
+\textbf{Channel Position Estimation from Pipe-Inspection Video} \faGithub\ \href{https://github.com/MatteoR1103/PhysicalAI-Hackathon}{Repo} \faVideo\ \href{https://alessiosalvatore1703-ops.github.io/assets/projects/pipe-inspection-odometry/demo.mp4}{Video} \faFilePdf\ \href{https://alessiosalvatore1703-ops.github.io/assets/projects/pipe-inspection-odometry/slides.pdf}{Slides} \hfill 05/2026\\
 \textit{Physical AI Hackathon}
 \begin{itemize}
     \vspace{-5pt}
     \item Estimated per-frame absolute position, turning point, and direction of a sewer-inspection probe from video alone, via sparse optical flow with outlier filtering, scene gating, and scale-free normalization -- CPU-only, $\sim$1000 frames in under 8 s
 \end{itemize}
-\textbf{DINOv3 for Mitral Valve Segmentation} \faGithub\ \href{https://github.com/alessiosalvatore1703-ops/DINO-v3-for-Mitral-Valve-Segmentation}{Repo} \hfill 12/2025
+\textbf{DINOv3 for Mitral Valve Segmentation} \faGithub\ \href{https://github.com/alessiosalvatore1703-ops/DINO-v3-for-Mitral-Valve-Segmentation}{Repo} \faVideo\ \href{https://alessiosalvatore1703-ops.github.io/assets/projects/mitral-valve-segmentation/demo.mp4}{Video} \hfill 12/2025
 \begin{itemize}
     \vspace{-5pt}
     \item Built a unified preprocessing pipeline for heterogeneous medical video datasets, generated pseudo-labels from sparse annotations via DINO-based feature propagation, and trained a U-Net segmentation model on the filtered labels
 \end{itemize}
-\textbf{Multi-Agent Multi-Goal Collection Planner}  \hfill 12/2025\\
+\textbf{Multi-Agent Multi-Goal Collection Planner} \faVideo\ \href{https://alessiosalvatore1703-ops.github.io/assets/projects/multi-agent-planner/demo.mp4}{Video} \hfill 12/2025\\
 \textit{Project of the Class Planning and Decision Making for Autonomous Robots}
 \begin{itemize}
 \vspace{-5pt}
     \item Designed a multi-robot planning framework combining Large Neighborhood Search for task allocation with real-time path planning and decentralized collision avoidance under partial observability.
 \end{itemize}
  
-\textbf{Autonomous Satellite Docking Planner}  \hfill 11/2025 -- 12/2025\\
+\textbf{Autonomous Satellite Docking Planner} \faVideo\ \href{https://alessiosalvatore1703-ops.github.io/assets/projects/satellite-docking/demo.mp4}{Video} \hfill 11/2025 -- 12/2025\\
 \textit{Project of the Class Planning and Decision Making for Autonomous Robots}
 \begin{itemize}
 \vspace{-5pt}
