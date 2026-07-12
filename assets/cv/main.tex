@@ -1,51 +1,14 @@
 
-% Revised LaTeX CV for Alessio Salvatore — optimized for Robotics / AI / ML roles
+% Full (master) CV for Alessio Salvatore — 2 pages, every entry. Built by CI to
+% assets/cv-full.pdf (not linked on the site; the site serves the one-pager).
+% Entries are intentionally duplicated with onepage.tex — when editing an entry,
+% check the sibling file. Layout + header live in preamble.tex.
 \documentclass[a4paper,10pt]{article}
-
-\usepackage{parskip}
-\usepackage{fontspec}
-\usepackage[margin=0.6in]{geometry}
-\usepackage{tabularx}
-\usepackage{enumitem}
-\usepackage{titlesec}
-\usepackage{multicol}
-\usepackage{multirow}
-\usepackage[hidelinks]{hyperref}
-\usepackage{fontawesome5}
-
-% Arimo: free, metric-compatible Arial substitute bundled with TeX Live
-% (reproducible in CI without a system font). Requires XeLaTeX/LuaLaTeX.
-\usepackage[sfdefault]{arimo}
-\pagestyle{empty}
-
-%-----------------------------------------------------------
-% Section formatting
-%-----------------------------------------------------------
-\titleformat{\section}{\Large\bfseries\raggedright}{}{0em}{}[\titlerule]
-\titlespacing{\section}{0pt}{4pt}{4pt}
-\titlespacing{\subsection}{0pt}{4pt}{2pt}
-\setlist[itemize]{noitemsep, topsep=0pt, leftmargin=1.5em}
+\input{preamble}
 
 \begin{document}
 
-%-----------------------------------------------------------
-% HEADER
-%-----------------------------------------------------------
-\begin{center}
-    {\Huge \textbf{Alessio Salvatore}}\\[4pt]
-    \faGithub\ \href{https://github.com/alessiosalvatore1703-ops}{Github}
-    \quad | \quad
-     \faEnvelope\ alessiosalvatore1703@gmail.com
-    \quad | \quad
-    \faLinkedin\ \href{https://linkedin.com/in/alessiosalvatore/}{LinkedIn}
-    \quad | \quad
-    \faGlobe\ \href{https://alessiosalvatore1703-ops.github.io}{Website}\\[4pt]
-    \faFlag\ Italian 
-    \quad | \quad 
-    \faCalendar\ March 17, 2003
-    \quad | \quad 
-    \faMobile\ +39 3339858633
-\end{center}
+\cvheader
 
 
 %-----------------------------------------------------------

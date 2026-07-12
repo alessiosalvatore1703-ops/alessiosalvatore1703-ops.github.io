@@ -1,0 +1,8 @@
+# LaTeX build artifacts — only main.tex is source; the PDF is built to /assets/cv.pdf
+*.aux
+*.log
+*.out
+*.fls
+*.fdb_latexmk
+*.xdv
+*.pdf

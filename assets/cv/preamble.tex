@@ -1,0 +1,48 @@
+% Shared CV preamble: packages, layout, and header — \input by main.tex and onepage.tex.
+% Tailored CVs (applications/<slug>/cv.tex) COPY this file into their folder so a sent
+% application stays frozen; edits here do not retroactively change old applications.
+
+\usepackage{parskip}
+\usepackage{fontspec}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fontawesome5}
+
+% Arimo: free, metric-compatible Arial substitute bundled with TeX Live
+% (reproducible in CI without a system font). Requires XeLaTeX/LuaLaTeX.
+\usepackage[sfdefault]{arimo}
+\pagestyle{empty}
+
+%-----------------------------------------------------------
+% Section formatting
+%-----------------------------------------------------------
+\titleformat{\section}{\Large\bfseries\raggedright}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{4pt}{4pt}
+\titlespacing{\subsection}{0pt}{4pt}{2pt}
+\setlist[itemize]{noitemsep, topsep=0pt, leftmargin=1.5em}
+
+%-----------------------------------------------------------
+% Header (name + contact block)
+%-----------------------------------------------------------
+\newcommand{\cvheader}{%
+\begin{center}
+    {\Huge \textbf{Alessio Salvatore}}\\[4pt]
+    \faGithub\ \href{https://github.com/alessiosalvatore1703-ops}{Github}
+    \quad | \quad
+     \faEnvelope\ alessiosalvatore1703@gmail.com
+    \quad | \quad
+    \faLinkedin\ \href{https://linkedin.com/in/alessiosalvatore/}{LinkedIn}
+    \quad | \quad
+    \faGlobe\ \href{https://alessiosalvatore1703-ops.github.io}{Website}\\[4pt]
+    \faFlag\ Italian
+    \quad | \quad
+    \faCalendar\ March 17, 2003
+    \quad | \quad
+    \faMobile\ +39 3339858633
+\end{center}
+}
