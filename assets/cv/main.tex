@@ -1,11 +1,10 @@
 
 % Revised LaTeX CV for Alessio Salvatore — optimized for Robotics / AI / ML roles
-% extarticle: the standard article class silently ignores sizes below 10pt
-\documentclass[a4paper,9pt]{extarticle}
+\documentclass[a4paper,10pt]{article}
 
 \usepackage{parskip}
 \usepackage{fontspec}
-\usepackage[margin=0.5in]{geometry}
+\usepackage[margin=0.6in]{geometry}
 \usepackage{tabularx}
 \usepackage{enumitem}
 \usepackage{titlesec}
@@ -18,16 +17,14 @@
 % (reproducible in CI without a system font). Requires XeLaTeX/LuaLaTeX.
 \usepackage[sfdefault]{arimo}
 \pagestyle{empty}
-\linespread{0.97}
 
 %-----------------------------------------------------------
 % Section formatting
 %-----------------------------------------------------------
 \titleformat{\section}{\Large\bfseries\raggedright}{}{0em}{}[\titlerule]
-\titlespacing{\section}{0pt}{2pt}{2pt}
-\titlespacing{\subsection}{0pt}{2pt}{1pt}
+\titlespacing{\section}{0pt}{4pt}{4pt}
+\titlespacing{\subsection}{0pt}{4pt}{2pt}
 \setlist[itemize]{noitemsep, topsep=0pt, leftmargin=1.5em}
-\setlength{\parskip}{2pt}
 
 \begin{document}
 
@@ -35,12 +32,14 @@
 % HEADER
 %-----------------------------------------------------------
 \begin{center}
-    {\Huge \textbf{Alessio Salvatore}}\\[2pt]
+    {\Huge \textbf{Alessio Salvatore}}\\[4pt]
     \faGithub\ \href{https://github.com/alessiosalvatore1703-ops}{Github}
-    \quad | \quad 
-     \faEnvelope\ alessiosalvatore1703@gmail.com 
-    \quad | \quad 
-    \faLinkedin\ \href{https://linkedin.com/in/alessiosalvatore/}{LinkedIn}\\[2pt]
+    \quad | \quad
+     \faEnvelope\ alessiosalvatore1703@gmail.com
+    \quad | \quad
+    \faLinkedin\ \href{https://linkedin.com/in/alessiosalvatore/}{LinkedIn}
+    \quad | \quad
+    \faGlobe\ \href{https://alessiosalvatore1703-ops.github.io}{Website}\\[4pt]
     \faFlag\ Italian 
     \quad | \quad 
     \faCalendar\ March 17, 2003
@@ -107,6 +106,7 @@ Coursework: Probabilistic Artificial Intelligence, Advanced Machine Learning, Im
     \vspace{-5pt}
     \item Built real-time person following running fully onboard in a hackathon weekend: YOLOv8 on the head stereo cameras with disparity-based depth, Ruckig head tracking, and a state-machine locomotion supervisor holding a set distance
 \end{itemize}
+\newpage
 \textbf{Channel Position Estimation from Pipe-Inspection Video} \faGithub\ \href{https://github.com/MatteoR1103/PhysicalAI-Hackathon}{Repo} \hfill 05/2026\\
 \textit{Physical AI Hackathon}
 \begin{itemize}
@@ -150,6 +150,13 @@ Coursework: Probabilistic Artificial Intelligence, Advanced Machine Learning, Im
 \vspace{-5pt}
 \begin{itemize}
     \item Secured sponsorships for club initiatives and events
+\end{itemize}
+
+\textbf{Laelaps AI} \hfill Jun 2026--Present\\
+\textit{Robotics Engineer}
+\vspace{-5pt}
+\begin{itemize}
+    \item Developing multi-agent systems for robot orchestration in complex real-world environments
 \end{itemize}
 
 
