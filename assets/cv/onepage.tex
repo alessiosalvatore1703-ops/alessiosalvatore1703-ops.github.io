@@ -33,16 +33,16 @@ Coursework: Probabilistic Artificial Intelligence, Advanced Machine Learning, Im
 \textit{Autonomous Systems Lab -- Roland Siegwart Lab}
 \begin{itemize}
     \vspace{-5pt}
-    \item Distilled model-based controllers for an overactuated tilt-rotor MAV (OMAV) into a single recurrent LSTM policy, trained closed-loop through differentiable dynamics with DAgger on $\sim$42 h of simulated flight
-    \item In simulation the policy outperforms the nominal model-based controller in velocity tracking ($p < 10^{-10}$, 2,000 paired rollouts) and nearly halves divergence under $\pm$30\% model mismatch; deployed zero-shot on the real OMAV
+    \item Multi-teacher distillation for the OMAV, an overactuated tilt-rotor MAV: each randomized simulated vehicle is flown by its own parameter-matched expert, and the whole expert family is compressed into one LSTM policy trained closed-loop through differentiable dynamics with DAgger on $\sim$42 h of simulated flight
+    \item The student beats its teachers: better velocity tracking than the nominal expert (2,000 paired rollouts) and nearly half the divergence under $\pm$30\% model mismatch; deployed zero-shot on the real OMAV
 \end{itemize}
 \textbf{Goal-Driven Adaptive-Resolution 3D Mapping with RL} \faFilePdf\ \href{https://alessiosalvatore1703-ops.github.io/assets/projects/task-aware-3d-mapping/3dv_final_report.pdf}{Report}
 \hfill Feb--Jun 2026\\
 \textit{Computer Vision and Geometry Group -- Marc Pollefeys Lab}
 \begin{itemize}
     \vspace{-5pt}
-    \item Trained a PPO policy that adapts per-region voxel resolution (split/keep/merge) online during navigation under a hard memory budget, reformulating an intractable per-block action space into a compact two-threshold policy
-    \item Re-implemented PEANUT's dense voxel map as a sparse hierarchical multi-resolution grid (Habitat, HM3D); the policy retains 79\% of point-goal success with 87\% less memory than a uniformly fine map (20 unseen episodes)
+    \item Dense 3D maps waste memory on detail the task never uses -- trained a PPO agent that decides online, region by region, where the map needs fine voxels and where coarse ones suffice, under a hard memory budget
+    \item On unseen scenes the learned map keeps 79\% of point-goal success with 87\% less memory than a uniformly fine map (20-episode validation); built as a sparse hierarchical rewrite of PEANUT's voxel map (Habitat, HM3D)
 \end{itemize}
 
 \subsection*{Selected Projects}
@@ -50,19 +50,19 @@ Coursework: Probabilistic Artificial Intelligence, Advanced Machine Learning, Im
 \textit{ETH Robotics Summer School (ETHZ-RobotX)}
 \begin{itemize}
     \vspace{-5pt}
-    \item Deployed an autonomous search-and-explore mission with our team on a real Unitree A2 quadruped across three field sites; developed the artifact-mapping node fusing YOLO detections into a deduplicated object log
+    \item Our quadruped autonomously searched three real field sites and reported the objects it found; built the mission's scored output -- the node fusing YOLO detections into a clean, deduplicated map of object positions
 \end{itemize}
 \textbf{Vision-Language-Action Policies on a Real SO-101 Arm} \faGithub\ \href{https://github.com/alessiosalvatore1703-ops/VLA-robotlearning}{Repo} \hfill 05/2026\\
 \textit{Project of the Class Robot Learning}
 \begin{itemize}
     \vspace{-5pt}
-    \item Fine-tuned SmolVLA policies for language-conditioned pick-and-place across three tasks with on-robot inference at 10 FPS; built the LeRobot data pipeline and automated H100 cloud training
+    \item Fine-tuned SmolVLA policies to follow written commands -- ``place the can on the person left of Obama'' -- generalizing to celebrity faces never seen in training, on-robot at 10 FPS; built the LeRobot data pipeline and H100 cloud training
 \end{itemize}
 \textbf{Person Following on the Agibot X2 Humanoid} \faGithub\ \href{https://github.com/alessiosalvatore1703-ops/robohack2026}{Repo} \hfill 05/2026\\
 \textit{RoboHack Hackathon}
 \begin{itemize}
     \vspace{-5pt}
-    \item Built real-time person following running fully onboard in a hackathon weekend: YOLOv8 with stereo disparity depth, Ruckig head tracking, and a state-machine locomotion supervisor holding a set distance
+    \item In a hackathon weekend, made the humanoid find and follow a person at a fixed distance, fully onboard: YOLOv8 with stereo disparity depth, Ruckig head tracking, and a state-machine locomotion supervisor
 \end{itemize}
 
 %-----------------------------------------------------------
@@ -73,21 +73,21 @@ Coursework: Probabilistic Artificial Intelligence, Advanced Machine Learning, Im
 \faGithub\ \href{https://github.com/alessiosalvatore1703-ops/Linear-Actuator}{Repo}
 \vspace{-5pt}
 \begin{itemize}
-    \item Designed a linear actuator in CAD, implemented real-time control on Arduino, and validated system dynamics in MATLAB
+    \item Took a linear actuator from CAD design to real-time Arduino control, validated in MATLAB simulation
 \end{itemize}
 
 \textbf{ETH Robotics Club} \hfill Nov 2025--Present\\
 \textit{Partnerships Team Lead}
 \vspace{-5pt}
 \begin{itemize}
-    \item Secured sponsorships for club initiatives and events
+    \item Secured industry sponsorships for RoboHack 2026, the club's flagship robotics hackathon
 \end{itemize}
-
+\vspace{-8pt}
 \textbf{Laelaps AI} \hfill Jun 2026--Present\\
 \textit{Robotics Engineer}
 \vspace{-5pt}
 \begin{itemize}
-    \item Developing multi-agent systems for robot orchestration in complex real-world environments
+    \item Developing a multi-agent RL (MARL) framework for scalable patrolling of large areas with robot teams
 \end{itemize}
 
 \end{document}

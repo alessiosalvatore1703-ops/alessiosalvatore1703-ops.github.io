@@ -35,17 +35,16 @@ Coursework: Probabilistic Artificial Intelligence, Advanced Machine Learning, Im
 \textit{Autonomous Systems Lab -- Roland Siegwart Lab}
 \begin{itemize}
     \vspace{-5pt}
-    \item Selected among 150 applicants for a closed cohort of 30 students in the Perception and Learning for Robotics class at ETH Zurich
-    \item Distilled parameter-matched model-based controllers for an overactuated tilt-rotor MAV (OMAV) into a single recurrent LSTM policy, trained closed-loop through differentiable vehicle dynamics with DAgger on $\sim$42 h of simulated flight
-    \item In simulation the policy outperforms the nominal model-based controller in velocity tracking ($p < 10^{-10}$, 2,000 paired rollouts) and nearly halves divergence under $\pm$30\% model mismatch; deployed zero-shot on the real OMAV
+    \item Multi-teacher distillation for the OMAV, an overactuated tilt-rotor MAV: every randomized simulated vehicle is flown by its own parameter-matched model-based expert, and the full family of experts is compressed into a single LSTM policy -- trained closed-loop through differentiable vehicle dynamics with DAgger on $\sim$42 h of simulated flight
+    \item The student beats its teachers: better velocity tracking than the nominal model-based controller (2,000 paired simulated rollouts) and nearly half the divergence under $\pm$30\% model mismatch; deployed zero-shot on the real OMAV
 \end{itemize}
 \textbf{Goal-Driven Adaptive-Resolution 3D Mapping with RL} \faFilePdf\ \href{https://alessiosalvatore1703-ops.github.io/assets/projects/task-aware-3d-mapping/3dv_final_report.pdf}{Report}
 \hfill Feb--Jun 2026\\
 \textit{Computer Vision and Geometry Group -- Marc Pollefeys Lab}
 \begin{itemize}
     \vspace{-5pt}
-    \item Trained a PPO policy that adapts per-region voxel resolution (split/keep/merge) online during navigation under a hard memory budget, reformulating an intractable per-block action space into a compact two-threshold policy
-    \item Re-implemented PEANUT's dense voxel map as a sparse hierarchical multi-resolution grid (Habitat, HM3D); the learned policy retains 79\% of point-goal navigation success with 87\% less memory than a uniformly fine map (20 unseen episodes)
+    \item Dense 3D maps waste memory on detail the task never uses -- trained a PPO agent that decides, region by region and online during navigation, where the map needs fine voxels and where coarse ones suffice, under a hard memory budget
+    \item On unseen scenes the learned map keeps 79\% of point-goal navigation success with 87\% less memory than a uniformly fine map (20-episode validation); built as a sparse hierarchical multi-resolution rewrite of PEANUT's voxel map (Habitat, HM3D)
 \end{itemize}
 
 \subsection*{Selected Projects}
@@ -53,46 +52,46 @@ Coursework: Probabilistic Artificial Intelligence, Advanced Machine Learning, Im
 \textit{ETH Robotics Summer School (ETHZ-RobotX)}
 \begin{itemize}
     \vspace{-5pt}
-    \item Deployed a full autonomous search-and-explore mission with our team on a real Unitree A2 quadruped (Hesai LiDAR; TARE/FAR planners, DLIO LiDAR-inertial odometry) across three field sites
-    \item Developed the artifact-mapping node fusing YOLO detections with TF2 transforms into a deduplicated map-frame object log -- the mission's scored output
+    \item Our quadruped autonomously searched three real field sites (Hesai LiDAR; TARE/FAR planners, DLIO LiDAR-inertial odometry) and reported the objects it found
+    \item Built the mission's scored output: the artifact-mapping node fusing YOLO detections with TF2 transforms into a clean, deduplicated map of object positions
 \end{itemize}
 \textbf{Vision-Language-Action Policies on a Real SO-101 Arm} \faGithub\ \href{https://github.com/alessiosalvatore1703-ops/VLA-robotlearning}{Repo} \hfill 05/2026\\
 \textit{Project of the Class Robot Learning}
 \begin{itemize}
     \vspace{-5pt}
-    \item Fine-tuned SmolVLA policies for language-conditioned pick-and-place across three tasks, up to grounding celebrity portraits with generalization to identities never seen in training; on-robot inference at 10 FPS
-    \item Built the LeRobot data pipeline (prompt relabeling, brightness and face-swap augmentation, DAgger-style corrections) and automated H100 cloud training with checkpoint streaming to the Hugging Face Hub
+    \item Fine-tuned SmolVLA policies to follow written commands -- ``place the can on the person left of Obama'' -- across three pick-and-place tasks, generalizing to celebrity faces never seen in training; on-robot inference at 10 FPS
+    \item Owned the data side: LeRobot pipeline with prompt relabeling, brightness and face-swap augmentation, DAgger-style corrective demonstrations, and automated H100 cloud training with checkpoint streaming to the Hugging Face Hub
 \end{itemize}
 \textbf{Person Following on the Agibot X2 Humanoid} \faGithub\ \href{https://github.com/alessiosalvatore1703-ops/robohack2026}{Repo} \hfill 05/2026\\
 \textit{RoboHack Hackathon}
 \begin{itemize}
     \vspace{-5pt}
-    \item Built real-time person following running fully onboard in a hackathon weekend: YOLOv8 on the head stereo cameras with disparity-based depth, Ruckig head tracking, and a state-machine locomotion supervisor holding a set distance
+    \item In one hackathon weekend, made the humanoid find a person and follow them at a fixed distance with everything running onboard: YOLOv8 on the head stereo cameras with disparity-based depth, Ruckig head tracking, and a state-machine locomotion supervisor
 \end{itemize}
 \newpage
 \textbf{Channel Position Estimation from Pipe-Inspection Video} \faGithub\ \href{https://github.com/MatteoR1103/PhysicalAI-Hackathon}{Repo} \hfill 05/2026\\
 \textit{Physical AI Hackathon}
 \begin{itemize}
     \vspace{-5pt}
-    \item Estimated per-frame absolute position, turning point, and direction of a sewer-inspection probe from video alone, via sparse optical flow with outlier filtering, scene gating, and scale-free normalization -- CPU-only, $\sim$1000 frames in under 8 s
+    \item Recovered where a sewer-inspection probe is along the pipe at every frame -- plus when it turned around -- from its video alone: no encoder, no learning, just sparse optical flow with outlier filtering, scene gating, and scale-free normalization; $\sim$1000 frames in under 8 s on CPU
 \end{itemize}
 \textbf{DINOv3 for Mitral Valve Segmentation} \faGithub\ \href{https://github.com/alessiosalvatore1703-ops/DINO-v3-for-Mitral-Valve-Segmentation}{Repo} \hfill 12/2025
 \begin{itemize}
     \vspace{-5pt}
-    \item Built a unified preprocessing pipeline for heterogeneous medical video datasets, generated pseudo-labels from sparse annotations via DINO-based feature propagation, and trained a U-Net segmentation model on the filtered labels
+    \item Clinicians annotate only a few frames per medical video -- propagated those sparse labels through whole videos via DINO-based feature propagation to generate a full pseudo-labeled training set, then trained a U-Net segmentation model on it
 \end{itemize}
 \textbf{Multi-Agent Multi-Goal Collection Planner}  \hfill 12/2025\\
 \textit{Project of the Class Planning and Decision Making for Autonomous Robots}
 \begin{itemize}
 \vspace{-5pt}
-    \item Designed a multi-robot planning framework combining Large Neighborhood Search for task allocation with real-time path planning and decentralized collision avoidance under partial observability.
+    \item A fleet of robots divides up collection goals among themselves (Large Neighborhood Search), plans paths in real time, and avoids each other with no central coordinator -- each robot seeing only part of the map
 \end{itemize}
  
 \textbf{Autonomous Satellite Docking Planner}  \hfill 11/2025 -- 12/2025\\
 \textit{Project of the Class Planning and Decision Making for Autonomous Robots}
 \begin{itemize}
 \vspace{-5pt}
-    \item Implemented a trajectory optimization pipeline for autonomous satellite docking, solving non-convex guidance problems via Sequential Convexification in cluttered environments.
+    \item Planned collision-free docking trajectories for a satellite maneuvering through orbital clutter, solving the non-convex guidance problem as a sequence of convex ones (Sequential Convexification)
 \end{itemize}
 
 %-----------------------------------------------------------
@@ -103,23 +102,21 @@ Coursework: Probabilistic Artificial Intelligence, Advanced Machine Learning, Im
 \faGithub\ \href{https://github.com/alessiosalvatore1703-ops/Linear-Actuator}{Repo}
 \vspace{-5pt}
 \begin{itemize} 
-    \item CAD design of a linear actuator built from commercial off-the-shelf components. 
-    \item Implemented real-time control algorithms using Arduino. 
-    \item Developed a MATLAB simulation to validate system dynamics and behavior. 
+    \item Took a linear actuator from CAD design (commercial off-the-shelf components) to real-time control on Arduino, with a MATLAB simulation validating the system dynamics
 \end{itemize}
 
 \textbf{ETH Robotics Club} \hfill Nov 2025--Present\\
 \textit{Partnerships Team Lead}
 \vspace{-5pt}
 \begin{itemize}
-    \item Secured sponsorships for club initiatives and events
+    \item Secured industry sponsorships for RoboHack 2026, the club's flagship robotics hackathon
 \end{itemize}
 
 \textbf{Laelaps AI} \hfill Jun 2026--Present\\
 \textit{Robotics Engineer}
 \vspace{-5pt}
 \begin{itemize}
-    \item Developing multi-agent systems for robot orchestration in complex real-world environments
+    \item Developing a multi-agent reinforcement learning (MARL) framework for efficient, scalable patrolling of large areas with teams of robots
 \end{itemize}
 
 
