@@ -33,8 +33,8 @@ Coursework: Probabilistic Artificial Intelligence, Advanced Machine Learning, Im
 \textit{Autonomous Systems Lab -- Roland Siegwart Lab}
 \begin{itemize}
     \vspace{-5pt}
-    \item Multi-teacher distillation for the OMAV, an overactuated tilt-rotor MAV: each randomized simulated vehicle is flown by its own parameter-matched expert, and the whole expert family is compressed into one LSTM policy trained closed-loop through differentiable dynamics with DAgger on $\sim$42 h of simulated flight
-    \item The student beats its teachers: better velocity tracking than the nominal expert (2,000 paired rollouts) and nearly half the divergence under $\pm$30\% model mismatch; deployed zero-shot on the real OMAV
+    \item Multi-teacher distillation for the OMAV, an overactuated tilt-rotor MAV: each of 30,000 randomized simulated vehicles is flown by its own parameter-matched expert, and the whole expert family is compressed into one LSTM policy trained closed-loop by backpropagating through the differentiable vehicle dynamics (BPTT)
+    \item Outperforms the nominal model-based controller in velocity tracking (2,000 paired rollouts) and nearly halves its divergence rate under $\pm$30\% model mismatch; deployed zero-shot on the real OMAV
 \end{itemize}
 \textbf{Goal-Driven Adaptive-Resolution 3D Mapping with RL} \faFilePdf\ \href{https://alessiosalvatore1703-ops.github.io/assets/projects/task-aware-3d-mapping/3dv_final_report.pdf}{Report}
 \hfill Feb--Jun 2026\\
