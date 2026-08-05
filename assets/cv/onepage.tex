@@ -46,23 +46,22 @@ Coursework: Probabilistic Artificial Intelligence, Advanced Machine Learning, Im
 \end{itemize}
 
 \subsection*{Selected Projects}
-\textbf{Autonomous Exploration on a Unitree A2 Quadruped} \faGithub\ \href{https://github.com/alessiosalvatore1703-ops/RSS_sim2win}{Repo} \hfill 06/2026\\
-\textit{ETH Robotics Summer School (ETHZ-RobotX)}
-\begin{itemize}
-    \vspace{-5pt}
-    \item Our quadruped autonomously searched three real field sites and reported the objects it found; built the mission's scored output -- the node fusing YOLO detections into a clean, deduplicated map of object positions
-\end{itemize}
-\textbf{Vision-Language-Action Policies on a Real SO-101 Arm} \faGithub\ \href{https://github.com/alessiosalvatore1703-ops/VLA-robotlearning}{Repo} \hfill 05/2026\\
+\textbf{Vision-Language-Action Policies on a SO-101 Arm} \faGithub\ \href{https://github.com/alessiosalvatore1703-ops/VLA-robotlearning}{Repo} \hfill 05/2026\\
 \textit{Project of the Class Robot Learning}
 \begin{itemize}
     \vspace{-5pt}
     \item Fine-tuned SmolVLA policies to follow written commands -- ``place the can on the person left of Obama'' -- generalizing to celebrity faces never seen in training, on-robot at 10 FPS; built the LeRobot data pipeline and H100 cloud training
 \end{itemize}
-\textbf{Person Following on the Agibot X2 Humanoid} \faGithub\ \href{https://github.com/alessiosalvatore1703-ops/robohack2026}{Repo} \hfill 05/2026\\
-\textit{RoboHack Hackathon}
+\textbf{DINOv3 for Mitral Valve Segmentation} \faGithub\ \href{https://github.com/alessiosalvatore1703-ops/DINO-v3-for-Mitral-Valve-Segmentation}{Repo} \hfill 12/2025
 \begin{itemize}
     \vspace{-5pt}
-    \item In a hackathon weekend, made the humanoid find and follow a person at a fixed distance, fully onboard: YOLOv8 with stereo disparity depth, Ruckig head tracking, and a state-machine locomotion supervisor
+    \item Clinicians annotate only a few frames per medical video -- propagated those sparse labels through whole videos via DINO-based feature propagation to generate a full pseudo-labeled training set, then trained a U-Net segmentation model on it
+\end{itemize}
+\textbf{Multi-Agent Multi-Goal Collection Planner}  \hfill 12/2025\\
+\textit{Project of the Class Planning and Decision Making for Autonomous Robots}
+\begin{itemize}
+    \vspace{-5pt}
+    \item A fleet of robots divides up collection goals among themselves (Large Neighborhood Search), plans paths in real time, and avoids each other with no central coordinator -- each robot seeing only part of the map
 \end{itemize}
 
 %-----------------------------------------------------------
