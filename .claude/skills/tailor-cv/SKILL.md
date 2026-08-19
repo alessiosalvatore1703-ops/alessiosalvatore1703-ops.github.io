@@ -28,10 +28,15 @@ sources, in this precedence order:
 1. `content/projects/README.md` — declares precedence rules and result supersessions.
 2. `content/projects/<slug>.md` for every candidate project — **the `## Flags`
    sections are BINDING constraints on what may be claimed.**
-3. `assets/cv/main.tex` — the full master CV; canonical wording for Education, Work
-   Experience, and pre-2026 projects not covered by the content bank (DINOv3
+3. `content/projects/laelaps-marl-patrol.md` — **always read this one**, for every
+   application: it is the source of truth for the Laelaps AI work-experience entry and
+   supersedes `main.tex`'s wording for it. Use its ready-made bullet sets and its
+   "Tailoring angles" line to pick the facet this role selects for; its `## Flags` are
+   binding (private employer repo — no links, no internal numbers).
+4. `assets/cv/main.tex` — the full master CV; canonical wording for Education, the other
+   Work Experience entries, and pre-2026 projects not covered by the content bank (DINOv3
    mitral-valve, PDM4AR planners, satellite docking, JOIINT Lab).
-4. `content/projects-2026.md` — background only; where it disagrees with a
+5. `content/projects-2026.md` — background only; where it disagrees with a
    per-project file, the per-project file wins.
 
 Where a selected project has a public repo, optionally fetch its README for extra
@@ -65,7 +70,9 @@ this analysis.
   - Team work stays phrased as team work; individually-attributed work follows the
     content bank's attribution notes.
   - No links to private or lab-internal repos (3D-mapping teammate repo, omav_sim
-    fork — check the flags).
+    fork, the Laelaps orchestrator repo — check the flags).
+  - Employer-confidential work (Laelaps) stays at architecture level: no internal
+    numbers, file/module names, or config keys unless Alessio clears them.
 - Also write `applications/<slug>/notes.md`: the job description (verbatim), today's
   date, the approved selection table, and any claims deliberately left out and why.
 

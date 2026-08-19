@@ -35,6 +35,15 @@ superseded where the two disagree (differences are flagged inside each file).
   CPU-only visual odometry for sewer-probe position (~1000 frames < 8 s). No accuracy
   metrics exist anywhere — do not quote error numbers. Repo on a teammate's account.
 
+## Work experience (2026–)
+
+- [laelaps-marl-patrol.md](laelaps-marl-patrol.md) — **Laelaps AI, Robotics Engineer**: MARL
+  (MAPPO/CTDE) pipeline built from scratch for autonomous patrol of large areas, map-agnostic
+  via SLAM map ingestion + domain randomization; sweep/cloud training infra and an Isaac
+  Sim / ROS 2 Go2 validation bridge. **Source of truth for the Laelaps CV entry — read it
+  every time that entry is written or tailored.** ⚠️ Private employer repo: no links, no
+  file/module names, and no internal numbers without Alessio's explicit OK.
+
 ## Background
 
 - [eth-coursework.md](eth-coursework.md) — compact sweep of graded AML / PAI / IAACV

@@ -61,15 +61,22 @@ directly to the repo/report.
 
 ## Content — source of truth
 
-Two sources, in priority order:
+Three sources, in priority order:
 
-1. **`content/projects-2026.md`** — website-ready copy for the six 2026 projects, compiled
+1. **`content/projects/`** — one file per project/entry, compiled from the local project
+   folders and reports; `content/projects/README.md` is its index and declares precedence
+   and result supersessions. Each file's `## Flags` section is a **binding** constraint on
+   what may be claimed. **`content/projects/laelaps-marl-patrol.md` is the source of truth
+   for the Laelaps AI work-experience entry** (CV `.tex`, tailored CVs, and the site's
+   Experience section) — read it every time that entry is touched; it is employer-
+   confidential work, so no repo links, no internal numbers, architecture level only.
+2. **`content/projects-2026.md`** — website-ready copy for the six 2026 projects, compiled
    from the local project folders. **Read its ⚠️ flags before editing project copy**: some
    repos are private or lab-internal (MapAdapt, OMAV fork — no public links), some numbers
    must keep their "validation" qualifier, and some quantitative claims are forbidden
    (VLA success rates, OMAV final numbers). Its bottom checklist tracks what's still
    needed from the user.
-2. **The CV** — LaTeX sources live in `assets/cv/` (XeLaTeX, Arimo font):
+3. **The CV** — LaTeX sources live in `assets/cv/` (XeLaTeX, Arimo font):
    `preamble.tex` (shared packages/layout/header — the `\cvheader` macro),
    `main.tex` (full 2-page master CV → built to `assets/cv-full.pdf`, committed but not
    linked on the site), and `onepage.tex` (general 1-page CV → built to `assets/cv.pdf`,

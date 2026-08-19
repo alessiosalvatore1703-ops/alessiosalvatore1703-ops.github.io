@@ -126,7 +126,9 @@ Coursework: Probabilistic Artificial Intelligence, Advanced Machine Learning, Im
 \textit{Robotics Engineer}
 \vspace{-5pt}
 \begin{itemize}
-    \item Developing multi-agent systems for robot orchestration in complex real-world environments
+    \item Built from scratch a multi-agent reinforcement learning pipeline (MAPPO, CTDE) that trains robot teams for autonomous patrol of large areas, minimizing map idleness under field-of-view coverage.
+    \item Made the policies map-agnostic: a map-ingestion pipeline turns real SLAM occupancy maps into immutable training bundles, and domain randomization transfers one policy across different maps in simulation.
+    \item Built the surrounding research infrastructure: batched GPU simulation, a fixed evaluation scenario suite, bit-for-bit reproducible runs, automated sweeps on self-terminating GCP GPU VMs, and a ROS 2 / Isaac Sim bridge validating 2D-trained policies on two Unitree Go2.
 \end{itemize}
 
 
