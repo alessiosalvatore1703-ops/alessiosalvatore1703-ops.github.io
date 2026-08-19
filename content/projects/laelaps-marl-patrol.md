@@ -13,23 +13,26 @@
 ## Overview
 
 I built, from scratch, a multi-agent reinforcement learning pipeline that trains teams of
-robots to patrol large areas autonomously — and to keep patrolling when the area changes.
-Two cooperating agents minimize **map idleness** (the time since each free cell was last
-seen by an agent's field of view): pure coverage, no target to chase. The same trained
-policy transfers across different maps, because maps are a data input to training, not
-code: a real SLAM occupancy map is ingested into an immutable, content-hashed map bundle,
-and training, evaluation and deployment all read the map through that one interface.
+robots to patrol large areas autonomously — both the patrol simulator and the MAPPO training
+framework are mine. The same trained policy transfers across different maps, because the
+policy encodes only each agent's **local observations**, which makes deployment easy and
+straightforward. The policy is **end-to-end**, from position to velocity commands, so
+integration on a robot is equally straightforward.
 
 ## What I built
 
-- **MAPPO training substrate** on TorchRL — CTDE with a parameter-shared recurrent (GRU)
+- **The patrol simulator itself**, written from scratch in two mirrored implementations: a
+  batched torch-native simulator (hundreds of parallel envs, GPU or CPU) as the training path,
+  and a Gymnasium reference implementation for rendering, demos and cross-checks. Line-of-sight
+  FOV coverage, lidar, collision sliding, and a decoupled coarse/fine coverage grid.
+- **MAPPO training framework** on TorchRL — CTDE with a parameter-shared recurrent (GRU)
   actor and a centralized critic, truncation-correct GAE, chunked-BPTT recurrent minibatching,
   online observation normalization saved into the checkpoint, and continuous or binned-discrete
-  action heads over `[vx, vy, omega]`.
-- **Map-agnostic patrol environment** in two mirrored implementations: a batched torch-native
-  simulator (hundreds of parallel envs, GPU or CPU) as the training path, and a Gymnasium
-  reference implementation used for rendering, demos and cross-checks. Line-of-sight FOV
-  coverage, lidar, collision sliding and a decoupled coarse/fine idleness grid.
+  action heads.
+- **A deployment-ready policy interface**: the actor consumes only the agent's own local
+  observations (its pose, its own sensing, one teammate term) — no global state, no map at
+  inference — and outputs velocity commands end-to-end, so serving it on a robot needs no
+  planner or map server in the loop.
 - **Map ingestion pipeline** (separate module and environment): raw ROS occupancy map →
   morphological cleaning → agent-radius inflation and largest-reachable-region extraction →
   discretization to the training grid → a deterministic, per-map evaluation scenario suite.
@@ -76,27 +79,27 @@ Google Cloud (Compute Engine, GCS, Secret Manager), W&B, OpenCV, pytest.
 ## CV / site copy (use these; re-frame by selection, never by inflation)
 
 **Full entry (`assets/cv/main.tex`, 3 bullets):**
-- Built from scratch a multi-agent reinforcement learning pipeline (MAPPO, CTDE) that trains
-  robot teams for autonomous patrol of large areas, minimizing map idleness under
-  field-of-view coverage.
-- Made the policies map-agnostic: a map-ingestion pipeline turns real SLAM occupancy maps into
-  immutable training bundles, and domain randomization transfers one policy across different
-  maps in simulation.
+- Built from scratch a multi-agent reinforcement learning pipeline — both the patrol simulator
+  and the MAPPO (CTDE) training framework — that trains robot teams for autonomous patrol of
+  large areas.
+- Kept the learned policy deployment-ready: it consumes only each agent's local observations
+  and maps them end-to-end to velocity commands, and one policy transfers across different maps.
 - Built the surrounding research infrastructure — batched GPU simulation, a fixed evaluation
   scenario suite, bit-for-bit reproducible runs, automated sweeps on self-terminating GCP GPU
   VMs, and a ROS 2 / Isaac Sim bridge validating 2D-trained policies on two Unitree Go2.
 
 **One-pager (`assets/cv/onepage.tex`, 1 bullet):** the one-pager is full — measured
 2026-08-19, this entry has room for exactly **one ~110-character line** before the page
-breaks, so it carries only: "Built from scratch a multi-agent RL pipeline for autonomous
-patrol of large areas, generalizing across maps." A longer version needs space freed
+breaks, so it carries only: "Built from scratch a MARL pipeline (simulator + MAPPO) for
+autonomous patrol of large areas, map-agnostic." A longer version needs space freed
 elsewhere first; always re-check `pdfinfo cv.pdf | grep Pages` after touching it.
 
 **Site experience blurb (one sentence):** Building a multi-agent reinforcement learning
-pipeline that trains robot teams to patrol large areas autonomously, and generalizes across
-different maps ingested from real SLAM data.
+pipeline from scratch — simulator and MAPPO training framework — that trains robot teams to
+patrol large areas autonomously, from each agent's local observations straight to velocity
+commands, and transfers across different maps.
 
 **Tailoring angles (per application):** RL/learning roles → lead with MAPPO, recurrent CTDE,
-reward and observation-space design. Infrastructure/MLOps roles → lead with reproducibility,
+reward and observation-space design; the simulator being mine is the differentiator. Infrastructure/MLOps roles → lead with reproducibility,
 sweep automation, cloud training and the test suite. Robotics/field roles → lead with map
 ingestion from SLAM, sim2real noise, ROS 2 and the Go2 / Isaac Sim validation stack.

@@ -12,6 +12,35 @@
 
 
 %-----------------------------------------------------------
+\section*{Work Experience}
+%-----------------------------------------------------------
+\textbf{Laelaps AI} \hfill Jun 2026--Present\\
+\textit{Robotics Engineer}
+\vspace{-5pt}
+\begin{itemize}
+    \item Built from scratch a multi-agent reinforcement learning pipeline --- both the patrol simulator and the MAPPO (CTDE) training framework --- that trains robot teams for autonomous patrol of large areas.
+    \item Kept the learned policy deployment-ready: it consumes only each agent's local observations and maps them end-to-end to velocity commands, and one policy transfers across different maps.
+    \item Built the surrounding research infrastructure: batched GPU simulation, a fixed evaluation scenario suite, bit-for-bit reproducible runs, automated sweeps on self-terminating GCP GPU VMs, and a ROS 2 / Isaac Sim bridge validating 2D-trained policies on two Unitree Go2.
+\end{itemize}
+
+\textbf{ETH Robotics Club} \hfill Nov 2025--Present\\
+\textit{Partnerships Team Lead}
+\vspace{-5pt}
+\begin{itemize}
+    \item Secured sponsorships for club initiatives and events
+\end{itemize}
+
+\textbf{JOIINT Lab — Italian Institute of Technology, Bergamo} \hfill Feb--Jun 2025\\
+\textit{Research Intern — Industrial Robotics} 
+\faGithub\ \href{https://github.com/alessiosalvatore1703-ops/Linear-Actuator}{Repo}
+\vspace{-5pt}
+\begin{itemize} 
+    \item CAD design of a linear actuator built from commercial off-the-shelf components. 
+    \item Implemented real-time control algorithms using Arduino. 
+    \item Developed a MATLAB simulation to validate system dynamics and behavior. 
+\end{itemize}
+
+%-----------------------------------------------------------
 \section*{Education}
 %-----------------------------------------------------------
 
@@ -101,39 +130,6 @@ Coursework: Probabilistic Artificial Intelligence, Advanced Machine Learning, Im
     \item Built a trajectory optimization pipeline for autonomous satellite docking in cluttered environments, where obstacle avoidance makes the guidance problem non-convex.
     \item Solved it via Sequential Convexification, iteratively optimizing convexified subproblems to produce trajectories that steer the spacecraft past obstacles to its docking target in the course simulator.
 \end{itemize}
-
-%-----------------------------------------------------------
-\section*{Work Experience}
-%-----------------------------------------------------------
-\textbf{JOIINT Lab — Italian Institute of Technology, Bergamo} \hfill Feb--Jun 2025\\
-\textit{Research Intern — Industrial Robotics} 
-\faGithub\ \href{https://github.com/alessiosalvatore1703-ops/Linear-Actuator}{Repo}
-\vspace{-5pt}
-\begin{itemize} 
-    \item CAD design of a linear actuator built from commercial off-the-shelf components. 
-    \item Implemented real-time control algorithms using Arduino. 
-    \item Developed a MATLAB simulation to validate system dynamics and behavior. 
-\end{itemize}
-
-\textbf{ETH Robotics Club} \hfill Nov 2025--Present\\
-\textit{Partnerships Team Lead}
-\vspace{-5pt}
-\begin{itemize}
-    \item Secured sponsorships for club initiatives and events
-\end{itemize}
-
-\textbf{Laelaps AI} \hfill Jun 2026--Present\\
-\textit{Robotics Engineer}
-\vspace{-5pt}
-\begin{itemize}
-    \item Built from scratch a multi-agent reinforcement learning pipeline (MAPPO, CTDE) that trains robot teams for autonomous patrol of large areas, minimizing map idleness under field-of-view coverage.
-    \item Made the policies map-agnostic: a map-ingestion pipeline turns real SLAM occupancy maps into immutable training bundles, and domain randomization transfers one policy across different maps in simulation.
-    \item Built the surrounding research infrastructure: batched GPU simulation, a fixed evaluation scenario suite, bit-for-bit reproducible runs, automated sweeps on self-terminating GCP GPU VMs, and a ROS 2 / Isaac Sim bridge validating 2D-trained policies on two Unitree Go2.
-\end{itemize}
-
-
-
-
 
 \end{document}
 

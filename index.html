@@ -44,8 +44,8 @@
     <nav class="max-w-6xl mx-auto px-5 sm:px-8 h-14 flex items-center justify-between">
       <a href="#" class="font-mono text-sm tracking-widest uppercase hover:opacity-60">AS<span class="text-muted">/</span></a>
       <div class="flex items-center gap-2 sm:gap-7 font-mono text-xs sm:text-sm">
-        <a href="#projects" class="px-1 py-2 hover:underline underline-offset-4">Projects</a>
         <a href="#experience" class="px-1 py-2 hover:underline underline-offset-4">Experience</a>
+        <a href="#projects" class="px-1 py-2 hover:underline underline-offset-4">Projects</a>
         <a href="#education" class="hidden min-[360px]:inline-block px-1 py-2 hover:underline underline-offset-4">Education</a>
         <a href="assets/cv.pdf" class="border border-ink rounded px-2.5 py-1.5 whitespace-nowrap hover:bg-ink hover:text-paper transition-colors">CV ↓</a>
       </div>
@@ -121,8 +121,58 @@
     </div>
   </section>
 
+  <!-- ============ EXPERIENCE ============ -->
+  <section id="experience">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8 py-16 sm:py-24">
+      <h2 class="section-label">Experience</h2>
+      <div class="mt-10 divide-y divide-line">
+
+        <!-- component: timeline-entry -->
+        <article class="py-7 grid sm:grid-cols-[200px_1fr] gap-2 sm:gap-8">
+          <p class="font-mono text-xs tracking-widest uppercase text-muted pt-1">Jun 2026 — Present</p>
+          <div>
+            <h3 class="text-lg font-bold">Robotics Engineer</h3>
+            <p class="text-sm text-muted mt-0.5">Laelaps AI</p>
+            <p class="mt-3 text-muted text-sm leading-relaxed">
+              Building a multi-agent reinforcement learning pipeline from scratch — simulator and MAPPO
+              training framework — that trains robot teams to patrol large areas autonomously, from each
+              agent's local observations straight to velocity commands, and transfers across different maps.
+            </p>
+          </div>
+        </article>
+
+        <!-- component: timeline-entry -->
+        <article class="py-7 grid sm:grid-cols-[200px_1fr] gap-2 sm:gap-8">
+          <p class="font-mono text-xs tracking-widest uppercase text-muted pt-1">Nov 2025 — Present</p>
+          <div>
+            <h3 class="text-lg font-bold">Partnerships Team Lead</h3>
+            <p class="text-sm text-muted mt-0.5">ETH Robotics Club · Zürich</p>
+            <p class="mt-3 text-muted text-sm leading-relaxed">
+              Securing sponsorships for club initiatives and events.
+            </p>
+          </div>
+        </article>
+
+        <!-- component: timeline-entry -->
+        <article class="py-7 grid sm:grid-cols-[200px_1fr] gap-2 sm:gap-8">
+          <p class="font-mono text-xs tracking-widest uppercase text-muted pt-1">Feb — Jun 2025</p>
+          <div>
+            <h3 class="text-lg font-bold">Research Intern — Industrial Robotics</h3>
+            <p class="text-sm text-muted mt-0.5">JOIINT Lab, Italian Institute of Technology · Bergamo</p>
+            <p class="mt-3 text-muted text-sm leading-relaxed">
+              CAD design of a linear actuator from off-the-shelf components, real-time control on
+              Arduino, and a MATLAB simulation validating system dynamics.
+              <a href="https://github.com/alessiosalvatore1703-ops/Linear-Actuator" target="_blank" rel="noopener" class="inline-block py-1 -my-1 font-mono text-xs underline underline-offset-4 hover:opacity-60 ml-1">Repo →</a>
+            </p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
   <!-- ============ FEATURED WORK ============ -->
-  <section id="projects">
+  <section id="projects" class="border-t border-line">
     <div class="max-w-6xl mx-auto px-5 sm:px-8 py-16 sm:py-24">
       <h2 class="section-label">Featured Work</h2>
 
@@ -368,55 +418,6 @@
             <p class="mt-2 text-sm text-muted leading-relaxed">
               Trajectory optimization pipeline for autonomous docking, solving non-convex guidance
               problems via Sequential Convexification in cluttered environments.
-            </p>
-          </div>
-        </article>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ EXPERIENCE ============ -->
-  <section id="experience" class="border-t border-line">
-    <div class="max-w-6xl mx-auto px-5 sm:px-8 py-16 sm:py-24">
-      <h2 class="section-label">Experience</h2>
-      <div class="mt-10 divide-y divide-line">
-
-        <!-- component: timeline-entry -->
-        <article class="py-7 grid sm:grid-cols-[200px_1fr] gap-2 sm:gap-8">
-          <p class="font-mono text-xs tracking-widest uppercase text-muted pt-1">Feb — Jun 2025</p>
-          <div>
-            <h3 class="text-lg font-bold">Research Intern — Industrial Robotics</h3>
-            <p class="text-sm text-muted mt-0.5">JOIINT Lab, Italian Institute of Technology · Bergamo</p>
-            <p class="mt-3 text-muted text-sm leading-relaxed">
-              CAD design of a linear actuator from off-the-shelf components, real-time control on
-              Arduino, and a MATLAB simulation validating system dynamics.
-              <a href="https://github.com/alessiosalvatore1703-ops/Linear-Actuator" target="_blank" rel="noopener" class="inline-block py-1 -my-1 font-mono text-xs underline underline-offset-4 hover:opacity-60 ml-1">Repo →</a>
-            </p>
-          </div>
-        </article>
-
-        <!-- component: timeline-entry -->
-        <article class="py-7 grid sm:grid-cols-[200px_1fr] gap-2 sm:gap-8">
-          <p class="font-mono text-xs tracking-widest uppercase text-muted pt-1">Nov 2025 — Present</p>
-          <div>
-            <h3 class="text-lg font-bold">Partnerships Team Lead</h3>
-            <p class="text-sm text-muted mt-0.5">ETH Robotics Club · Zürich</p>
-            <p class="mt-3 text-muted text-sm leading-relaxed">
-              Securing sponsorships for club initiatives and events.
-            </p>
-          </div>
-        </article>
-
-        <!-- component: timeline-entry -->
-        <article class="py-7 grid sm:grid-cols-[200px_1fr] gap-2 sm:gap-8">
-          <p class="font-mono text-xs tracking-widest uppercase text-muted pt-1">Jun 2026 — Present</p>
-          <div>
-            <h3 class="text-lg font-bold">Robotics Engineer</h3>
-            <p class="text-sm text-muted mt-0.5">Laelaps AI</p>
-            <p class="mt-3 text-muted text-sm leading-relaxed">
-              Building a multi-agent reinforcement learning pipeline that trains robot teams to patrol large
-              areas autonomously, and generalizes across different maps ingested from real SLAM data.
             </p>
           </div>
         </article>
