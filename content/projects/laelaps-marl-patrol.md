@@ -12,6 +12,11 @@
 
 ## Overview
 
+**Role framing (confirmed by Alessio 2026-10-01):** the job is the **orchestration of robot
+fleets** — developing low-level robot skills and orchestrating them with **AI agents**. The
+MARL patrol pipeline below is one of those low-level skills. Lead with this framing on the
+site and in the CV.
+
 I built, from scratch, a multi-agent reinforcement learning pipeline that trains teams of
 robots to patrol large areas autonomously — both the patrol simulator and the MAPPO training
 framework are mine. The same trained policy transfers across different maps, because the
@@ -77,8 +82,8 @@ Google Cloud (Compute Engine, GCS, Secret Manager), W&B, OpenCV, pytest.
   the earlier "no real-robot deployment" flag. Still binding: **no numbers** (see above), and
   do not claim validated 3D *patrol performance* in Isaac Sim — that stack remains
   plumbing-verified.
-- **Two agents**, not a large fleet. Say "teams of agents" or "two cooperating agents";
-  never imply swarm scale.
+- **Fleets are correct** (Alessio, 2026-10-01): the earlier "two agents, never imply fleet
+  scale" flag was wrong and is withdrawn. "Robot fleets" is the right wording.
 - **Ongoing work.** Present tense, no completion claims.
 
 ## CV / site copy (use these; re-frame by selection, never by inflation)
@@ -110,10 +115,8 @@ one-pager carries two bullets and has no slack left:
 A longer version needs space freed elsewhere first; always re-check
 `pdfinfo cv.pdf | grep Pages` after touching it.
 
-**Site experience blurb (one sentence):** Building a multi-agent reinforcement learning
-pipeline from scratch — simulator and MAPPO training framework — that trains robot teams to
-patrol large areas autonomously, from each agent's local observations straight to velocity
-commands, and transfers across different maps.
+**Site experience blurb (one sentence, 2026-10-01):** Working on the orchestration of robot
+fleets: developing low-level robot skills and orchestrating them with AI agents.
 
 **Tailoring angles (per application):** RL/learning roles → lead with MAPPO, recurrent CTDE,
 reward and observation-space design, TorchRL batched GPU training and BenchMARL baseline

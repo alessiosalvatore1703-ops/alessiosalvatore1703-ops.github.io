@@ -18,7 +18,8 @@
 \textit{Robotics Engineer}
 \vspace{-5pt}
 \begin{itemize}
-    \item Built from scratch a multi-agent reinforcement learning pipeline --- both the patrol simulator and the MAPPO (CTDE) training framework --- that trains robot teams for autonomous patrol of large areas.
+    \item Working on the orchestration of robot fleets: developing low-level robot skills and orchestrating them with AI agents.
+    \item As one such skill, built from scratch a multi-agent reinforcement learning pipeline --- both the patrol simulator and the MAPPO (CTDE) training framework --- that trains robot fleets for autonomous patrol of large areas.
     \item Kept the learned policy deployment-ready: it consumes only each agent's local observations and maps them end-to-end to velocity commands, and one policy transfers across different maps.
     \item Benchmarked policies intensively in the custom 2D simulator, with BenchMARL for different training algorithms, built on TorchRL for efficient GPU compute.
     \item Deployed and evaluated the trained policies on Unitree Go2 quadrupeds, scoring my framework against state-of-the-art approaches on the same scenarios.
