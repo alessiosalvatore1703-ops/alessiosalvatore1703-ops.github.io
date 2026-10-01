@@ -20,7 +20,9 @@
 \begin{itemize}
     \item Built from scratch a multi-agent reinforcement learning pipeline --- both the patrol simulator and the MAPPO (CTDE) training framework --- that trains robot teams for autonomous patrol of large areas.
     \item Kept the learned policy deployment-ready: it consumes only each agent's local observations and maps them end-to-end to velocity commands, and one policy transfers across different maps.
-    \item Built the surrounding research infrastructure: batched GPU simulation, a fixed evaluation scenario suite, bit-for-bit reproducible runs, automated sweeps on self-terminating GCP GPU VMs, and a ROS 2 / Isaac Sim bridge validating 2D-trained policies on two Unitree Go2.
+    \item Benchmarked policies intensively in the custom 2D simulator, with BenchMARL for different training algorithms, built on TorchRL for efficient GPU compute.
+    \item Deployed and evaluated the trained policies on Unitree Go2 quadrupeds, scoring my framework against state-of-the-art approaches on the same scenarios.
+    \item Built the automated data-collection and evaluation infrastructure behind that: batched GPU simulation, a fixed evaluation scenario suite, bit-for-bit reproducible runs, automated sweeps on self-terminating GCP GPU VMs, and a ROS 2 / Isaac Sim bridge.
 \end{itemize}
 
 \textbf{ETH Robotics Club} \hfill Nov 2025--Present\\
@@ -61,19 +63,19 @@ Coursework: Probabilistic Artificial Intelligence, Advanced Machine Learning, Im
 %-----------------------------------------------------------
 \subsection*{Research Projects}
 \textbf{Knowledge Distillation for Aerial Robots Control} \faVideo\ \href{https://www.youtube.com/watch?v=oPd9mkxEaO8}{Video} \faFilePdf\ \href{https://alessiosalvatore1703-ops.github.io/assets/projects/aerial-knowledge-distillation/ReportPLR_Salvatore_Stefanini.pdf}{Report}\hfill Feb--Jun 2026\\
-\textit{Autonomous Systems Lab -- Roland Siegwart Lab}
+\textit{Autonomous Systems Lab -- Roland Siegwart Lab} (selected among 150 applicants for a 30-student cohort)
 \begin{itemize}
     \vspace{-5pt}
-    \item Selected among 150 applicants for a closed cohort of 30 students in the Perception and Learning for Robotics class at ETH Zurich
-    \item Distilled parameter-matched model-based controllers for an overactuated tilt-rotor MAV (OMAV) into a single recurrent LSTM policy, trained closed-loop through differentiable vehicle dynamics on $\sim$42 h of simulated flight across 30,000 randomized plants
-    \item In simulation the policy outperforms the nominal model-based controller in velocity tracking ($p < 10^{-10}$, 2,000 paired rollouts) and cuts divergence under $\pm$30\% model mismatch from 41.5\% to 24\%; deployed zero-shot on the real OMAV
+    \item Model-based controllers for an overactuated tilt-rotor MAV (OMAV, 10 actuators) rely on disturbance observers to handle model mismatch and external forces, but observer bandwidth, measurement noise, and tuning limit how fast they adapt
+    \item Replaced it with a single recurrent LSTM policy distilling parameter-matched expert controllers over 30,000 randomized plants, trained closed-loop through differentiable vehicle dynamics on $\sim$42 h of simulated flight
+    \item In simulation the policy outperforms the nominal model-based controller in velocity tracking ($p < 10^{-10}$, 2,000 paired rollouts) and cuts divergence under $\pm$30\% model mismatch from 41.5\% to 24\%; deployed zero-shot on the OMAV
 \end{itemize}
 \textbf{Goal-Driven Adaptive-Resolution 3D Mapping with RL} \faFilePdf\ \href{https://alessiosalvatore1703-ops.github.io/assets/projects/task-aware-3d-mapping/3dv_final_report.pdf}{Report}
 \hfill Feb--Jun 2026\\
 \textit{Computer Vision and Geometry Group -- Marc Pollefeys Lab}
 \begin{itemize}
     \vspace{-5pt}
-    \item Uniform-resolution 3D maps waste memory on regions irrelevant to the robot's task; framed online per-region voxel-resolution allocation (split/keep/merge) as an RL problem under an explicit memory budget
+    \item A robot mapping a building at uniform voxel resolution spends most of its memory on regions irrelevant to the task it was sent to do; framed online per-region resolution allocation (split/keep/merge) as an RL problem under an explicit memory budget
     \item Re-implemented PEANUT's dense voxel map as a sparse hierarchical multi-resolution grid (5/10/20 cm; Habitat, HM3D) and trained a PPO policy acting through two learned score thresholds, sidestepping an intractable per-block action space
     \item The learned policy retains 79\% of a uniformly fine map's point-goal navigation success with 87\% less memory (20 unseen episodes), matching an all-coarse map's memory footprint at far higher success
 \end{itemize}
@@ -83,15 +85,15 @@ Coursework: Probabilistic Artificial Intelligence, Advanced Machine Learning, Im
 \textit{ETH Robotics Summer School (ETHZ-RobotX)}
 \begin{itemize}
     \vspace{-5pt}
-    \item Deployed a fully autonomous search-and-explore mission with our team on a real Unitree A2 quadruped across three field sites, exploring unknown environments to find and localize artifacts
+    \item Deployed a fully autonomous search-and-explore mission with our team on a Unitree A2 quadruped across three field sites, exploring unknown environments to find and localize artifacts
     \item With the team, integrated and field-tuned the exploration stack -- TARE and FAR planners with DLIO LiDAR-inertial odometry on a Hesai LiDAR -- for real-robot deployment in tight spaces
     \item Developed the artifact-mapping node that fuses YOLO detections with TF2 transforms into a deduplicated map-frame log of artifact classes and 3D positions -- the mission's scored output
 \end{itemize}
-\textbf{Vision-Language-Action Policies on a Real SO-101 Arm} \faGithub\ \href{https://github.com/alessiosalvatore1703-ops/VLA-robotlearning}{Repo} \hfill 05/2026\\
+\textbf{Vision-Language-Action Policies on an SO-101 Arm} \faGithub\ \href{https://github.com/alessiosalvatore1703-ops/VLA-robotlearning}{Repo} \hfill 05/2026\\
 \textit{Project of the Class Robot Learning}
 \begin{itemize}
     \vspace{-5pt}
-    \item Investigated whether small open vision-language-action models (SmolVLA) can be fine-tuned to follow natural-language pick-and-place commands on a real low-cost SO-101 arm, across three tasks of increasing linguistic difficulty
+    \item Investigated whether small open vision-language-action models (SmolVLA) can be fine-tuned to follow natural-language pick-and-place commands on a low-cost SO-101 arm, across three tasks of increasing linguistic difficulty
     \item Built the LeRobot training pipeline -- prompt relabeling for linguistic variety, brightness and celebrity face-swap augmentation, and DAgger-style corrective demonstrations -- with automated H100 cloud training streaming checkpoints to the Hugging Face Hub
     \item Final policies grounded color, compositional (ordinal, relative, negated), and celebrity-portrait references on the robot at 10 FPS, including generalization to celebrity identities never seen in training
 \end{itemize}
@@ -100,7 +102,7 @@ Coursework: Probabilistic Artificial Intelligence, Advanced Machine Learning, Im
 \begin{itemize}
     \vspace{-5pt}
     \item Built real-time person detection and following on the Agibot X2 humanoid in a hackathon weekend, running fully onboard: YOLOv8 on the head stereo cameras with disparity-based depth giving the target's 3D position
-    \item Closed the loop with Ruckig head tracking and a state-machine locomotion supervisor (approach / stop-band / align) holding a set distance, deployed on the real robot behind dry-run and gantry test stages and a 0.5 s velocity watchdog
+    \item Closed the loop with Ruckig head tracking and a state-machine locomotion supervisor (approach / stop-band / align) holding a set distance, deployed on the robot behind dry-run and gantry test stages and a 0.5 s velocity watchdog
 \end{itemize}
 \textbf{Channel Position Estimation from Pipe-Inspection Video} \faGithub\ \href{https://github.com/MatteoR1103/PhysicalAI-Hackathon}{Repo} \hfill 05/2026\\
 \textit{Physical AI Hackathon}

@@ -25,10 +25,11 @@ integration on a robot is equally straightforward.
   batched torch-native simulator (hundreds of parallel envs, GPU or CPU) as the training path,
   and a Gymnasium reference implementation for rendering, demos and cross-checks. Line-of-sight
   FOV coverage, lidar, collision sliding, and a decoupled coarse/fine coverage grid.
-- **MAPPO training framework** on TorchRL — CTDE with a parameter-shared recurrent (GRU)
-  actor and a centralized critic, truncation-correct GAE, chunked-BPTT recurrent minibatching,
-  online observation normalization saved into the checkpoint, and continuous or binned-discrete
-  action heads.
+- **MAPPO training framework** on TorchRL — chosen for batched GPU compute — CTDE with a
+  parameter-shared recurrent (GRU) actor and a centralized critic, truncation-correct GAE,
+  chunked-BPTT recurrent minibatching, online observation normalization saved into the
+  checkpoint, and continuous or binned-discrete action heads. **BenchMARL** on top, to run
+  and compare different MARL training pipelines efficiently against this framework.
 - **A deployment-ready policy interface**: the actor consumes only the agent's own local
   observations (its pose, its own sensing, one teammate term) — no global state, no map at
   inference — and outputs velocity commands end-to-end, so serving it on a robot needs no
@@ -54,7 +55,7 @@ integration on a robot is equally straightforward.
 - **~90-test CPU/headless smoke suite** covering contracts, reproducibility, the cloud
   layer and the 3D bridge.
 
-**Stack:** Python, PyTorch, TorchRL/TensorDict, Gymnasium, ROS 2, Isaac Sim, Docker,
+**Stack:** Python, PyTorch, TorchRL/TensorDict, BenchMARL, Gymnasium, ROS 2, Isaac Sim, Docker,
 Google Cloud (Compute Engine, GCS, Secret Manager), W&B, OpenCV, pytest.
 
 ## Flags (BINDING — read before writing any CV bullet or web copy)
@@ -69,30 +70,45 @@ Google Cloud (Compute Engine, GCS, Secret Manager), W&B, OpenCV, pytest.
 - **"Different maps" means map bundles + domain randomization**, validated in simulation
   on ingested real SLAM maps. It does **not** mean a fielded multi-site deployment —
   keep the "in simulation" qualifier.
-- **3D validation = plumbing verified, behavior not yet judged.** A policy has been rolled
-  out on 2 Go2 in Isaac Sim; do not claim validated 3D patrol *performance*, and do not
-  claim real-robot deployment.
+- **Deployment and benchmarking (confirmed by Alessio 2026-09-03).** Policies have been
+  deployed and benchmarked intensively both in the custom 2D simulator and on **real Unitree
+  Go2 quadrupeds**, on automated data-collection and evaluation infrastructure that scores
+  this framework against state-of-the-art approaches on the same scenarios. This supersedes
+  the earlier "no real-robot deployment" flag. Still binding: **no numbers** (see above), and
+  do not claim validated 3D *patrol performance* in Isaac Sim — that stack remains
+  plumbing-verified.
 - **Two agents**, not a large fleet. Say "teams of agents" or "two cooperating agents";
   never imply swarm scale.
 - **Ongoing work.** Present tense, no completion claims.
 
 ## CV / site copy (use these; re-frame by selection, never by inflation)
 
-**Full entry (`assets/cv/main.tex`, 3 bullets):**
+**Full entry (`assets/cv/main.tex`, 5 bullets):**
 - Built from scratch a multi-agent reinforcement learning pipeline — both the patrol simulator
   and the MAPPO (CTDE) training framework — that trains robot teams for autonomous patrol of
   large areas.
 - Kept the learned policy deployment-ready: it consumes only each agent's local observations
   and maps them end-to-end to velocity commands, and one policy transfers across different maps.
-- Built the surrounding research infrastructure — batched GPU simulation, a fixed evaluation
-  scenario suite, bit-for-bit reproducible runs, automated sweeps on self-terminating GCP GPU
-  VMs, and a ROS 2 / Isaac Sim bridge validating 2D-trained policies on two Unitree Go2.
+- Benchmarked policies intensively in the custom 2D simulator, with BenchMARL for different
+  training algorithms, wrapped on TorchRL for efficient GPU compute.
+- Deployed and evaluated the trained policies on real Unitree Go2 quadrupeds, scoring my
+  framework against state-of-the-art approaches on the same scenarios.
+- Built the automated data-collection and evaluation infrastructure behind that: batched GPU
+  simulation, a fixed evaluation scenario suite, bit-for-bit reproducible runs, automated
+  sweeps on self-terminating GCP GPU VMs, and a ROS 2 / Isaac Sim bridge.
 
-**One-pager (`assets/cv/onepage.tex`, 1 bullet):** the one-pager is full — measured
-2026-08-19, this entry has room for exactly **one ~110-character line** before the page
-breaks, so it carries only: "Built from scratch a MARL pipeline (simulator + MAPPO) for
-autonomous patrol of large areas, map-agnostic." A longer version needs space freed
-elsewhere first; always re-check `pdfinfo cv.pdf | grep Pages` after touching it.
+**One-pager (`assets/cv/onepage.tex`, 3 bullets):** as of the 2026-09-03 regeneration the
+one-pager carries two bullets and has no slack left:
+- Built from scratch a multi-agent RL pipeline teaching robot teams to patrol large areas
+  from local observations, one policy transferring across maps
+- Benchmarked policies intensively in the custom 2D simulator, with BenchMARL for different
+  training algorithms, wrapped on TorchRL for efficient GPU compute
+- Deployed and evaluated the trained policies on real Unitree Go2 quadrupeds, on automated
+  data-collection and evaluation infrastructure scoring my framework against state-of-the-art
+  approaches
+
+A longer version needs space freed elsewhere first; always re-check
+`pdfinfo cv.pdf | grep Pages` after touching it.
 
 **Site experience blurb (one sentence):** Building a multi-agent reinforcement learning
 pipeline from scratch — simulator and MAPPO training framework — that trains robot teams to
@@ -100,6 +116,7 @@ patrol large areas autonomously, from each agent's local observations straight t
 commands, and transfers across different maps.
 
 **Tailoring angles (per application):** RL/learning roles → lead with MAPPO, recurrent CTDE,
-reward and observation-space design; the simulator being mine is the differentiator. Infrastructure/MLOps roles → lead with reproducibility,
+reward and observation-space design, TorchRL batched GPU training and BenchMARL baseline
+comparisons; the simulator being mine is the differentiator. Infrastructure/MLOps roles → lead with reproducibility,
 sweep automation, cloud training and the test suite. Robotics/field roles → lead with map
 ingestion from SLAM, sim2real noise, ROS 2 and the Go2 / Isaac Sim validation stack.

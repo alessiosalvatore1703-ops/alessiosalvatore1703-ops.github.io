@@ -85,7 +85,7 @@ get the poster/report from Overleaf before claiming quantitative results. The re
 
 ---
 
-## 3. Vision-Language-Action Policies on a Real SO-101 Arm
+## 3. Vision-Language-Action Policies on an SO-101 Arm
 
 **Slug suggestion:** `vla-so101`
 **Context line:** Robot Learning course, ETH Zürich — group project
@@ -95,7 +95,7 @@ get the poster/report from Overleaf before claiming quantitative results. The re
 ### Card description
 
 I fine-tuned SmolVLA vision-language-action policies for language-conditioned pick-and-place
-on a real SO-101 arm, across three tasks of increasing difficulty — from color-conditioned
+on an SO-101 arm, across three tasks of increasing difficulty — from color-conditioned
 commands to compositional instructions (ordinal, relative, and negated references) to
 grounding celebrity portraits, with generalization to identities never seen in training.
 

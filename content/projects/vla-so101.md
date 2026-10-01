@@ -1,4 +1,4 @@
-# Vision-Language-Action Policies on a Real SO-101 Arm
+# Vision-Language-Action Policies on an SO-101 Arm
 
 **Slug:** `vla-so101`
 **Context:** Robot Learning course, ETH Zürich — group project
@@ -11,7 +11,7 @@
 ## Overview
 
 Fine-tuned SmolVLA vision-language-action policies for language-conditioned pick-and-place
-on a real SO-101 arm, across three tasks of increasing difficulty in what the language must
+on an SO-101 arm, across three tasks of increasing difficulty in what the language must
 do: color-conditioned commands ("place the banana in the red bowl"), compositional
 instructions (ordinal, relative, and negated bowl references), and grounding celebrity
 portraits ("place the coke on Barack Obama") — including generalization to

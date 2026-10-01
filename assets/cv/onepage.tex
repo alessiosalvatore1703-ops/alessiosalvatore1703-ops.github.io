@@ -16,23 +16,17 @@
 \textit{Robotics Engineer}
 \vspace{-5pt}
 \begin{itemize}
-    \item Built from scratch a MARL pipeline (simulator + MAPPO) for autonomous patrol of large areas, map-agnostic.
+    \item Built from scratch a multi-agent RL pipeline teaching robot teams to patrol large areas autonomously, from the simulator to the cloud training pipeline
+    \item Defined metrics to evaluate the quality of the patrol, its adaptability to changes in the environment, and its unpredictability
+    \item Deployed and evaluated the trained policies on Unitree Go2 quadrupeds, scoring my framework against state-of-the-art approaches; submitted as a paper to ICRA 2027
 \end{itemize}
 
 \textbf{ETH Robotics Club} \hfill Nov 2025--Present\\
-\textit{Partnerships Team Lead}
-\vspace{-5pt}
-\begin{itemize}
-    \item Secured sponsorships for club initiatives and events
-\end{itemize}
+\textit{Partnerships Team Lead}. Closed the club's 2025--2026 partnerships, including the annual sponsor and Hack2026
 
-\textbf{JOIINT Lab — Italian Institute of Technology, Bergamo} \hfill Feb--Jun 2025\\
-\textit{Research Intern — Industrial Robotics}
-\faGithub\ \href{https://github.com/alessiosalvatore1703-ops/Linear-Actuator}{Repo}
-\vspace{-5pt}
-\begin{itemize}
-    \item Designed a linear actuator in CAD, implemented real-time control on Arduino, and validated system dynamics in MATLAB
-\end{itemize}
+\textbf{JOIINT Lab — Italian Institute of Technology, Bergamo} \faGithub\ \href{https://github.com/alessiosalvatore1703-ops/Linear-Actuator}{Repo} \hfill Feb--Jun 2025\\
+\textit{Research Intern — Industrial Robotics}. Linear actuator CAD, real-time Arduino control, MATLAB validation
+\vspace{4pt}
 
 %-----------------------------------------------------------
 \section*{Education}
@@ -40,7 +34,7 @@
 
 \textbf{ETH Zürich}, Zürich, Switzerland \hfill Sep 2025--Present\\
 \textit{M.Sc. in Robotics} \\
-Coursework: Probabilistic Artificial Intelligence, Advanced Machine Learning, Image Analysis and Computer Vision,  Planning and Decision Making for Autonomous Robots, 3D Vision, Perception and Learning for Robotics, Deep Generative Models, Robot Learning
+Coursework: Probabilistic AI, Advanced Machine Learning, Deep Generative Models, Robot Learning, Perception and Learning for Robotics, 3D Vision, Image Analysis and Computer Vision, Planning and Decision Making
 
 \textbf{Politecnico di Milano}, Milan, Italy \hfill Sep 2022--Jul 2025\\
 \textit{B.Sc. in Automation Engineering} \\
@@ -50,44 +44,35 @@ Coursework: Probabilistic Artificial Intelligence, Advanced Machine Learning, Im
 \textbf{Illinois Institute of Technology}, Chicago, IL, USA \hfill Aug--Dec 2024\\
 \textit{Exchange — Global E3 Program} \\
 \vspace{-10pt}
+
 %-----------------------------------------------------------
 \section*{Projects}
 %-----------------------------------------------------------
 \subsection*{Research Projects}
 \textbf{Knowledge Distillation for Aerial Robots Control} \faVideo\ \href{https://www.youtube.com/watch?v=oPd9mkxEaO8}{Video} \faFilePdf\ \href{https://alessiosalvatore1703-ops.github.io/assets/projects/aerial-knowledge-distillation/ReportPLR_Salvatore_Stefanini.pdf}{Report}\hfill Feb--Jun 2026\\
-\textit{Autonomous Systems Lab -- Roland Siegwart Lab}
+\textit{Autonomous Systems Lab}
 \begin{itemize}
     \vspace{-5pt}
-    \item Distilled model-based controllers for an overactuated tilt-rotor MAV (OMAV) into a single recurrent LSTM policy, trained closed-loop through differentiable vehicle dynamics on $\sim$42 h of simulated flight
-    \item In simulation the policy outperforms the nominal controller in velocity tracking ($p < 10^{-10}$, 2,000 paired rollouts) and cuts divergence under $\pm$30\% model mismatch from 41.5\% to 24\%; deployed zero-shot on the real OMAV
+    \item Model-based controllers for an overactuated drone (OMAV) lose accuracy when the vehicle drifts from its model, and disturbance observers can be too slow to compensate
+    \item Distilled multiple expert controllers, each tuned to a different version of the vehicle, into a single recurrent neural controller that adapts from its recent flight history: in simulation it tracks velocity better and diverges far less under $\pm$30\% model errors (41.5\% $\rightarrow$ 24\%), and it flew the OMAV without retraining
 \end{itemize}
 \textbf{Goal-Driven Adaptive-Resolution 3D Mapping with RL} \faFilePdf\ \href{https://alessiosalvatore1703-ops.github.io/assets/projects/task-aware-3d-mapping/3dv_final_report.pdf}{Report}
 \hfill Feb--Jun 2026\\
-\textit{Computer Vision and Geometry Group -- Marc Pollefeys Lab}
+\textit{Computer Vision and Geometry Group}
 \begin{itemize}
     \vspace{-5pt}
-    \item Uniform-resolution 3D maps waste memory on task-irrelevant regions; trained a PPO policy that adapts per-region voxel resolution (split/keep/merge) online under an explicit memory budget via two learned score thresholds
-    \item Re-implemented PEANUT's dense voxel map as a sparse hierarchical multi-resolution grid (Habitat, HM3D); the policy retains 79\% of point-goal success with 87\% less memory than a uniformly fine map (20 unseen episodes)
+    \item A robot mapping a building at uniform voxel resolution spends most of its memory on regions irrelevant to its task
+    \item Trained a PPO agent reallocating resolution per region online under a memory budget, on a sparse hierarchical grid in Habitat/HM3D: it keeps 79\% of a uniformly fine map's point-goal success with 87\% less memory on 20 unseen episodes
 \end{itemize}
 
 \subsection*{Selected Projects}
 \textbf{Autonomous Exploration on a Unitree A2 Quadruped} \faGithub\ \href{https://github.com/alessiosalvatore1703-ops/RSS_sim2win}{Repo} \hfill 06/2026\\
-\textit{ETH Robotics Summer School (ETHZ-RobotX)}
-\begin{itemize}
-    \vspace{-5pt}
-    \item Deployed an autonomous search-and-explore mission with our team on a real Unitree A2 quadruped at three field sites; developed the artifact-mapping node fusing YOLO detections into a deduplicated map-frame artifact log
-\end{itemize}
-\textbf{Vision-Language-Action Policies on a Real SO-101 Arm} \faGithub\ \href{https://github.com/alessiosalvatore1703-ops/VLA-robotlearning}{Repo} \hfill 05/2026\\
-\textit{Project of the Class Robot Learning}
-\begin{itemize}
-    \vspace{-5pt}
-    \item Fine-tuned SmolVLA policies for language-conditioned pick-and-place on a real SO-101 arm at 10 FPS, generalizing to identities unseen in training; built the LeRobot data pipeline and automated H100 cloud training
-\end{itemize}
+\textit{ETH Robotics Summer School (ETHZ-RobotX)} --- deployed an autonomous search-and-explore mission with our team on a Unitree A2 at three field sites
+
+\textbf{Vision-Language-Action Policies on an SO-101 Arm} \faGithub\ \href{https://github.com/alessiosalvatore1703-ops/VLA-robotlearning}{Repo} \hfill 05/2026\\
+\textit{Project of the Class Robot Learning} --- fine-tuned SmolVLA for language-conditioned pick-and-place on an SO-101 arm at 10 FPS
+
 \textbf{Person Following on the Agibot X2 Humanoid} \faGithub\ \href{https://github.com/alessiosalvatore1703-ops/robohack2026}{Repo} \hfill 05/2026\\
-\textit{RoboHack Hackathon}
-\begin{itemize}
-    \vspace{-5pt}
-    \item Built real-time person detection and following running fully onboard in a hackathon weekend: YOLOv8 with stereo disparity depth, Ruckig head tracking, and a state-machine locomotion supervisor holding a set distance
-\end{itemize}
+\textit{RoboHack Hackathon} --- built real-time onboard person detection and following in a hackathon weekend: YOLOv8 stereo-disparity depth, Ruckig head tracking, and a state-machine locomotion supervisor holding a set distance
 
 \end{document}
