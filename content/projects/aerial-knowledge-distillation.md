@@ -9,7 +9,7 @@
 
 ## Overview
 
-Overactuated tilt-rotor aerial vehicles (OMAVs — 5 independently tiltable propeller arms, 10 actuators) can exert forces independently of their attitude, but their model-based controllers degrade when the real platform deviates from the identified model. We distilled a *family* of parameter-matched model-based expert controllers — each tuned to a different randomized simulated plant — into a single recurrent LSTM policy, trained closed-loop through differentiable vehicle dynamics. In simulation the distilled controller outperforms the nominal model-based controller in both tracking accuracy and robustness to model mismatch while approaching the parameter-matched teachers, exhibits emergent system identification in its hidden state, and transfers zero-shot to the real OMAV.
+Overactuated tilt-rotor aerial vehicles (OMAVs — 5 independently tiltable propeller arms, 10 actuators) can exert forces independently of their attitude. Their model-based controllers can use disturbance observers to handle model mismatch and external forces, but observer bandwidth, noisy velocity/force measurements, and tuning limit how fast they adapt to changing dynamics. We distilled a *family* of parameter-matched model-based expert controllers — each tuned to a different randomized simulated plant — into a single recurrent LSTM policy, trained closed-loop through differentiable vehicle dynamics. In simulation the distilled controller outperforms the nominal model-based controller in both tracking accuracy and robustness to model mismatch while approaching the parameter-matched teachers, exhibits emergent system identification in its hidden state, and transfers zero-shot to the real OMAV.
 
 ## Infrastructure built
 
@@ -24,7 +24,7 @@ All in the `omav_models` package of the `omav_sim` fork (`/Users/AndreaBlumer/De
 
 ## Results achieved
 
-All numbers from the final report (`ReportPLR_Salvatore_Stefanini.pdf`); simulation results are on a test set of **2,000 paired 5 s closed-loop rollouts** over perturbed OMAV configurations and varied velocity references, comparing the distilled LSTM against the nominal model-based controller (MBC) and the parameter-matched MBC.
+All numbers from the final report (`ReportPLR_Salvatore_Stefanini.pdf`; replaced 2026-10-01 with the revised version — abstract/intro reframed around disturbance-observer limits and Figs. 3–4 captions rewritten, every number unchanged); simulation results are on a test set of **2,000 paired 5 s closed-loop rollouts** over perturbed OMAV configurations and varied velocity references, comparing the distilled LSTM against the nominal model-based controller (MBC) and the parameter-matched MBC.
 
 - **Tracking:** the recurrent student consistently reduces mean linear and angular velocity-tracking errors compared with the nominal MBC across the whole reference-velocity range, while approaching the performance of the parameter-matched MBC. The improvement is statistically significant for both linear and angular tracking (paired Wilcoxon signed-rank tests with Holm correction, p < 10⁻¹⁰), and is largest in the angular components.
 - **Robustness to model mismatch** (divergent-trajectory rate under increasing plant-parameter randomization, report Fig. 6): at ±15% randomization 2.5% of student rollouts diverge vs 11.0% for the nominal MBC; at ±20%: 9.0% vs 20.5%; at ±25%: 15.0% vs 32.0%; at ±30%: 24.0% vs 41.5%.
