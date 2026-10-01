@@ -17,29 +17,22 @@ Deployed as a **GitHub Pages user site** (`alessiosalvatore1703.github.io`).
 ## Stack
 
 - Semantic HTML5 pages.
-- **Tailwind CSS via Play CDN** (`<script src="https://cdn.tailwindcss.com"></script>`)
-  — acceptable for a personal site with this traffic; revisit only if performance becomes
-  a real complaint.
-- A single small `assets/css/custom.css` for anything Tailwind can't express cleanly
-  (keep it minimal).
-- Vanilla JS in `assets/js/main.js`. No jQuery, no frameworks — with ONE deliberate,
-  user-approved exception: **three.js** (classic UMD build via jsdelivr CDN, pinned
-  `three@0.149.0`, global `THREE`) powering the hero point cloud in `assets/js/hero.js`.
-  The UMD build is required because ES modules don't load over `file://` and the user
-  previews by opening `index.html` directly. Do not add other libraries.
+- Plain CSS in a single `assets/css/custom.css` (no Tailwind since the 2026-10-01
+  redesign — keep it minimal).
+- Vanilla JS in `assets/js/main.js`. No jQuery, no frameworks, no libraries. The user
+  previews by opening `index.html` directly over `file://`, so no ES modules.
 
 ## Site structure (mirrors the CV template — this order is intentional)
 
 The homepage (`index.html`) follows the CV top-to-bottom:
 
-1. **Hero / About** — who Alessio is, one short paragraph + interests
-   (robotics, RL, computer vision, planning, aerial robots). Photo optional. Links:
-   GitHub, LinkedIn, email, "Download CV" → `assets/cv.pdf`.
+1. **Sidebar + About** — profile sidebar (photo, name, role, links, "Download CV" →
+   `assets/cv.pdf`) and a short first-person About Me.
 2. **Experience** — work experience entries, reverse-chronological (Laelaps AI,
    ETH Robotics Club, JOIINT Lab). Moved above Projects on 2026-08-19 at the user's
    request, now that the Laelaps MARL patrol work leads the CV — the CV's
    `\section*{Work Experience}` sits first in `main.tex`/`onepage.tex` for the same
-   reason, and the nav order follows. Keep the three in sync.
+   reason. Keep the CV files and the site in sync.
 3. **Projects** — the centerpiece. Two groups, matching the CV:
    - *Current Projects* (ongoing research)
    - *Past Projects*
@@ -110,15 +103,14 @@ GitHub username confirmed: `alessiosalvatore1703-ops`. Real media already in the
 - `agibot-x2-person-following/demo.mp4`, `pipe-inspection-odometry/demo.mp4` +
   `slides.pdf` + `results.jpeg`, `unitree-a2-exploration/cover.jpeg` — card covers.
 
-Cards with real media follow the **VLA style**:
+Project rows with real media use
 `<video loop muted playsinline preload="none" poster="…/poster.jpg" data-autoplay>`
-(or img) as cover, no overlays. Every video has a committed `poster.jpg` next to it;
-`main.js` plays/pauses `[data-autoplay]` videos as they enter/leave the viewport
-(mobile perf pass, Jul 2026 — do not put a bare `autoplay` attribute back, it defeats
-`preload="none"`). Below-fold `<img>`s get `loading="lazy" decoding="async"`. The hero
-scripts (three.js + `hero-shapes.js` + `hero.js`) load only at ≥768px via the inline
-loader at the bottom of `index.html` — phones skip the ~900 KB entirely; `main.js`
-holds the small site-wide bits.
+(or img) as the thumbnail, no overlays. Every video has a committed `poster.jpg` next to
+it; `main.js` plays/pauses `[data-autoplay]` videos as they enter/leave the viewport, so
+they are always running while visible (mobile perf pass, Jul 2026 — do not put a bare
+`autoplay` attribute back, it defeats `preload="none"`). Below-fold `<img>`s get
+`loading="lazy" decoding="async"`. `main.js` holds the small site-wide bits (footer year,
+video autoplay).
 
 Current CV snapshot (summary):
 
@@ -148,72 +140,49 @@ from the user before publishing; use `#` placeholders in the meantime and flag t
 
 ## Design & tone
 
-The design system is decided (user-chosen: **strict monochrome, professional**) — do not
-re-invent it, extend it:
+The design was reset on 2026-10-01 at the user's request ("more sober, really standard"),
+modelled on the academic pages https://renezurbruegg.github.io/ and
+https://mgomezandreu.github.io/personal/. The user compared three mockups and picked the
+**academic sidebar** layout — extend it, do not re-invent it:
 
-- **Palette** (Tailwind tokens in the inline Play-CDN config in each page's `<head>`):
-  `paper #FCFCFB` (bg), `ink #121212` (text), `muted #6E6E6E` (meta), `line #E4E4E1`
-  (hairlines), `panel #131313` (cover-art background). **No color accents anywhere** —
-  emphasis via weight, underline, and inversion (black fill, white text). Cover linework
-  grays: `#3E3E3E` dim / `#7A7A7A` mid / `#A8A8A8` / `#B5B5B5` / `#F2F2F2` bright.
-- **Type**: Archivo (variable; `.display-expanded` = font-stretch 125% for display) +
-  IBM Plex Mono for all meta text (dates, tags, nav, eyebrows). Both from Google Fonts.
-- **Signature element**: hero WebGL point cloud (`assets/js/hero.js`, three.js) — 12k
-  monochrome points cycling through **the robots the user has actually worked with**
-  (user request, Jul 2026): sparse cloud → Agibot X2 humanoid → sparse → SO-101 arm →
-  sparse → Unitree A2 quadruped → sparse → ETH ASL RotorS Firefly hexacopter → repeat
-  (the Firefly is a stand-in for the OMAV, whose mesh is lab-internal). While a shape
-  holds, a small mono caption (`#hero-shape-label`, bottom-center of the hero) names
-  the robot and its project — keep captions honest (the Firefly one must not claim it
-  is the OMAV). Point data lives in `assets/js/hero-shapes.js` (base64 int16 mm),
-  sampled offline from the manufacturers' own meshes by `tools/sample_hero_shapes.py`
-  (Unitree BSD-3; RotorS, Agibot X2 URDF, SO-101 Apache-2.0 — credited in the footer;
-  keep that line). State machine: form
-  2.0 s (built bottom-up) → hold 6 s → disperse 1.4 s. Constant behaviors: slow sway
-  (BASE_YAW 0.5), per-point breathing noise, cursor parallax, and **cursor dissolve** —
-  points near the pointer ray melt outward along fixed per-point directions and heal
-  when it leaves (user chose dissolve over the earlier scatter-repel).
-  **Layout rule (two prior user complaints — do not regress):** the DISPERSED dots
-  intentionally roam the full hero (user request — atmospheric), but the FORMED shapes
-  must NEVER overlap text or the portrait. On xl+ (≥1280px) they stand centered UNDER
-  the name block (user request): cx = name center (margin+32+372), strip from y≈585
-  (below paragraph and buttons) to the hero's bottom edge (`xl:pb-64` reserves it);
-  those pixel constants in `resize()` mirror the hero grid, so re-verify all four
-  shapes after any hero layout change. Below 1280px it falls back to a reserved bottom
-  band (`bandH = min(38% height, 280px)`, hero keeps `pb-72 sm:pb-80`). Reduced motion:
-  static X2 frame with its caption; no WebGL: empty canvas. History: user rejected FOUR 2D canvas heroes
-  (voxels, 3-link arm, humanoid+dots, Adam hands — "simple and stupid"), then liked the
-  3D point-cloud paradigm; parametric capsule shapes were replaced by these real-mesh
-  samples at their request. Do not go back to 2D line-art heroes or made-up geometry.
-- **Easter eggs (removed, Jul 2026)**: project covers used to carry per-project hover
-  animations (typed chips, YOLO box, LiDAR scanline, probe track). The user asked to remove
-  them all — covers are now plain media. Do not re-add hover overlays to project covers.
-- **Recurring motif**: `.viewfinder` corner brackets (custom.css) frame the portrait and
-  featured media — fiducial-marker vernacular. Portrait is rendered grayscale.
-- **Media slots**: every project card/feature has a `<figure>` marked `MEDIA SLOT` in a
-  comment. Real photos/GIFs are exempt from the monochrome rule.
-- Clean, minimal, academic-professional — think research-lab personal page, not a
-  marketing landing page. Content first, restrained decoration.
-- **Site motion layer** (`main.js` + custom.css, all behind
-  `prefers-reduced-motion: no-preference`): scroll reveals via IntersectionObserver
-  (`data-reveal` attribute added by JS so no-JS users see everything; sibling stagger
-  ≤ 350 ms), magnetic hover on hero/nav buttons (fine pointers only), and `.load-fade`
-  staggered hero load-in (classes in `index.html`). New sections/cards inherit reveals
-  automatically (`section article` selector).
-- Typography-led hierarchy; generous whitespace; subtle hover states only. No scroll-jacking,
-  no heavy animation libraries.
+- **Layout**: two columns (`.layout`, max 1100px). Left: sticky `.profile` sidebar —
+  round portrait, name, role, ETH / Laelaps affiliation, obfuscated email, text links
+  (Email, GitHub, LinkedIn, X), outlined "Download CV" button. Right: `About Me`,
+  `Experience`, `Research Projects`, `Other Projects`, `Education`, small footer.
+  Below 820px the sidebar stacks on top and project rows stack thumbnail-over-text.
+- **Palette** (CSS vars on `:root` in custom.css): `--ink #222`, `--muted #666`,
+  `--line #e5e5e5`, `--link #1f4e8c` (navy — user explicitly chose to keep coloured
+  links), `--bg #fff`. The old strict-monochrome rule no longer applies.
+- **Type**: Lato (Google Fonts) everywhere; ui-monospace only for the email line.
+- **Project rows** (`.project`): 200px 8:5 `.thumb` on the left, vertically centered
+  against the text (user request), then title, meta line (context · date),
+  description, small outlined `.btn` links (Report / Code / Video / Slides / HF Hub).
+  **No badges/labels on thumbnails** (user rejected them). Photos crop (`cover`);
+  plots and diagrams use `.thumb-fit` (contain on white), the pipe video
+  `.thumb-fit .thumb-dark` (contain on black).
+- **Videos always play** (user request): see the media conventions above — loop while
+  on-screen, no hover/click needed.
+- **Removed on 2026-10-01**: the three.js hero point cloud (`hero.js`, `hero-shapes.js`,
+  `tools/sample_hero_shapes.py` — all in git history), Tailwind, Archivo/IBM Plex Mono,
+  viewfinder brackets, tag pills, the scroll-reveal/magnetic/load-fade motion layer,
+  and the card grid. Do not bring them back without asking. Project covers carry no
+  hover overlays.
+- **Media slots**: every project row has a `<figure>` marked `MEDIA SLOT` in a comment.
+- Clean, minimal, academic-professional — a research-lab personal page, not a
+  marketing landing page. No animation beyond the looping project videos.
 - Fully responsive; must read well on a phone since recruiters open links from email.
 - Writing tone on the site: first person, concise, technically precise — matches the CV's
   bullet style. English only.
 
 ## Component conventions (no framework, so discipline replaces tooling)
 
-- Repeating UI (project card, section heading, tag pill) is defined **once** as a copyable
-  HTML pattern in `index.html`, marked with a comment `<!-- component: project-card -->`.
-  When editing one instance, update all instances to stay identical in structure.
-- Tailwind class order: layout → spacing → typography → color → state variants.
-- All pages share the same `<head>` block (Tailwind CDN + inline config + custom.css +
-  meta/OG tags) — when changing it, change it in every page.
+- Repeating UI (project row, timeline entry) is defined **once** as a copyable HTML
+  pattern in `index.html`, marked with a comment `<!-- component: project-row -->` /
+  `<!-- component: timeline-entry -->`. When editing one instance, update all instances
+  to stay identical in structure.
+- Styling is plain CSS classes in `assets/css/custom.css` — no utility framework.
+- All pages share the same `<head>` block (Lato font + custom.css + meta/OG tags) — when
+  changing it, change it in every page.
 - Relative links only (site lives at domain root, but keep pages portable).
 - Images get `alt` text; embedded videos get a poster image and a text fallback link.
 

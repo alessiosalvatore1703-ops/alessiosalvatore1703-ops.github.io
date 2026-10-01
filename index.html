@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,129 +11,71 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://cdn.jsdelivr.net">
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            paper: '#FCFCFB',
-            ink:   '#121212',
-            muted: '#6E6E6E',
-            line:  '#E4E4E1',
-            panel: '#131313',
-          },
-          fontFamily: {
-            sans: ['Archivo', 'system-ui', 'sans-serif'],
-            mono: ['"IBM Plex Mono"', 'ui-monospace', 'monospace'],
-          },
-        }
-      }
-    }
-  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/custom.css">
 </head>
 
-<body class="bg-paper text-ink font-sans antialiased">
+<body>
+  <div class="layout">
 
-  <!-- ============ NAV ============ -->
-  <header class="fixed top-0 inset-x-0 z-50 bg-paper/85 backdrop-blur border-b border-line">
-    <nav class="max-w-6xl mx-auto px-5 sm:px-8 h-14 flex items-center justify-between">
-      <a href="#" class="font-mono text-sm tracking-widest uppercase hover:opacity-60">AS<span class="text-muted">/</span></a>
-      <div class="flex items-center gap-2 sm:gap-7 font-mono text-xs sm:text-sm">
-        <a href="#experience" class="px-1 py-2 hover:underline underline-offset-4">Experience</a>
-        <a href="#projects" class="px-1 py-2 hover:underline underline-offset-4">Projects</a>
-        <a href="#education" class="hidden min-[360px]:inline-block px-1 py-2 hover:underline underline-offset-4">Education</a>
-        <a href="assets/cv.pdf" class="border border-ink rounded px-2.5 py-1.5 whitespace-nowrap hover:bg-ink hover:text-paper transition-colors">CV ↓</a>
-      </div>
-    </nav>
-  </header>
-
-  <!-- ============ HERO ============ -->
-  <section class="relative overflow-hidden border-b border-line">
-    <canvas id="hero-canvas" class="absolute inset-0 w-full h-full" aria-hidden="true"></canvas>
-    <p id="hero-shape-label" aria-hidden="true" class="pointer-events-none absolute bottom-5 left-1/2 -translate-x-1/2 font-mono text-[11px] tracking-widest uppercase text-muted whitespace-nowrap"></p>
-    <div class="relative max-w-6xl mx-auto px-5 sm:px-8 pt-32 pb-24 sm:pt-40 sm:pb-32">
-      <h1 class="load-fade hero-title display-expanded font-black leading-[0.95] sm:text-7xl lg:text-8xl uppercase">
-        Alessio<br>Salvatore
-      </h1>
-      <!-- role line: dual identity, stated once and scannable -->
-      <p class="load-fade mt-5 flex flex-col sm:flex-row sm:items-center gap-x-4 gap-y-1 text-base sm:text-xl text-muted" style="animation-delay:.12s">
-        <span>M.Sc. Robotics, <span class="text-ink font-medium">ETH Zürich</span></span>
-        <span class="hidden sm:inline-block w-px h-5 bg-line" aria-hidden="true"></span>
-        <span>Robotics Engineer, <a href="https://laelaps.ai/" target="_blank" rel="noopener" class="text-ink font-medium underline underline-offset-2 hover:opacity-60">Laelaps AI</a></span>
+    <!-- ============ SIDEBAR (profile) ============ -->
+    <aside class="profile">
+      <img src="assets/img/portrait.jpg" alt="Portrait of Alessio Salvatore" class="profile-photo">
+      <h1>Alessio Salvatore</h1>
+      <p class="profile-role">M.Sc. Robotics student</p>
+      <p class="profile-aff">
+        <a href="https://ethz.ch/" target="_blank" rel="noopener">ETH Zürich</a><br>
+        Robotics Engineer, <a href="https://laelaps.ai/" target="_blank" rel="noopener">Laelaps AI</a>
       </p>
+      <p class="profile-mail">alessiosalvatore1703 (at) gmail.com</p>
+      <nav class="profile-links">
+        <a href="mailto:alessiosalvatore1703@gmail.com">Email</a>
+        <a href="https://github.com/alessiosalvatore1703-ops">GitHub</a>
+        <a href="https://www.linkedin.com/in/alessiosalvatore/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://x.com/alesalvatore44" target="_blank" rel="noopener">X</a>
+      </nav>
+      <a href="assets/cv.pdf" class="profile-cv">Download CV</a>
+    </aside>
 
-      <div class="mt-12 grid md:grid-cols-[16rem_1fr] gap-10 lg:gap-16 items-start">
-        <!-- identity rail: portrait + social links (side-by-side below md to keep the mobile hero short) -->
-        <div class="load-fade flex items-start gap-6 md:block" style="animation-delay:.34s">
-          <!-- component: viewfinder-frame -->
-          <figure class="viewfinder relative w-44 sm:w-56 md:w-full">
-            <img src="assets/img/portrait.jpg" alt="Portrait of Alessio Salvatore" class="w-full grayscale">
-            <figcaption class="mt-3 font-mono text-[11px] tracking-widest text-muted">ZÜRICH, CH · 47.38°N 8.55°E</figcaption>
-          </figure>
-          <!-- component: social-icons -->
-          <div class="mt-2 grid grid-cols-1 gap-3 md:mt-6 md:flex md:items-center">
-            <a href="https://github.com/alessiosalvatore1703-ops" aria-label="GitHub" class="grid place-items-center w-10 h-10 border border-ink/30 rounded hover:bg-ink hover:text-paper transition-colors">
-              <svg viewBox="0 0 24 24" class="w-5 h-5" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.605-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.5 11.5 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222 0 1.606-.014 2.898-.014 3.293 0 .322.216.694.825.576C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-            </a>
-            <a href="https://www.linkedin.com/in/alessiosalvatore/" target="_blank" rel="noopener" aria-label="LinkedIn" class="grid place-items-center w-10 h-10 border border-ink/30 rounded hover:bg-ink hover:text-paper transition-colors">
-              <svg viewBox="0 0 24 24" class="w-5 h-5" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg>
-            </a>
-            <a href="https://x.com/alesalvatore44" target="_blank" rel="noopener" aria-label="X" class="grid place-items-center w-10 h-10 border border-ink/30 rounded hover:bg-ink hover:text-paper transition-colors">
-              <svg viewBox="0 0 24 24" class="w-[18px] h-[18px]" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-            </a>
-            <a href="mailto:alessiosalvatore1703@gmail.com" aria-label="Email" class="grid place-items-center w-10 h-10 border border-ink/30 rounded hover:bg-ink hover:text-paper transition-colors">
-              <svg viewBox="0 0 24 24" class="w-5 h-5" fill="currentColor" aria-hidden="true"><path d="M1.5 8.67v8.58a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V8.67l-8.928 5.493a3 3 0 0 1-3.144 0L1.5 8.67Z"/><path d="M22.5 6.908V6.75a3 3 0 0 0-3-3h-15a3 3 0 0 0-3 3v.158l9.714 5.978a1.5 1.5 0 0 0 1.572 0L22.5 6.908Z"/></svg>
-            </a>
-          </div>
-        </div>
+    <main>
 
-        <!-- about: short bio -->
-        <div class="load-fade" style="animation-delay:.22s">
-          <p class="text-base sm:text-lg leading-relaxed max-w-2xl">
-            Originally from
-            <a href="https://www.google.com/maps/place/Cenate+Sotto" target="_blank" rel="noopener" class="underline underline-offset-2 hover:opacity-60">Cenate Sotto</a>,
-            a small town near Bergamo, I graduated <em>cum laude</em> in
-            <a href="https://www.polimi.it/en/education/laurea-programmes/programme-detail/automation-engineering" target="_blank" rel="noopener" class="underline underline-offset-2 hover:opacity-60">Automation Engineering</a>
-            at Politecnico di Milano in 2025, with an exchange semester at the
-            <a href="https://www.iit.edu/" target="_blank" rel="noopener" class="underline underline-offset-2 hover:opacity-60">Illinois Institute of Technology</a>
-            in Chicago. Along the way, I also worked as a collaborating investigator
-            at <a href="https://topsecret.it/" target="_blank" rel="noopener" class="underline underline-offset-2 hover:opacity-60">Top Secret</a>,
-            a private investigation agency. My research path started at the
-            <a href="https://www.joiintlab.com/network/" target="_blank" rel="noopener" class="underline underline-offset-2 hover:opacity-60">JOIINT Lab</a>
-            back home in Bergamo, where I first made control run on real hardware.
-          </p>
-          <p class="mt-4 text-base sm:text-lg leading-relaxed max-w-2xl">
-            What fascinates me is physical AI: machines that learn skills from data
-            and experience, and everything it takes to make those skills hold up in
-            the real world, safely and robustly.
-          </p>
-          <p class="mt-4 text-base sm:text-lg leading-relaxed max-w-2xl">
-            The rest of the time I'm a serial traveler, usually training calisthenics
-            or martial arts wherever I land.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
+      <!-- ============ ABOUT ============ -->
+      <section id="about">
+        <h2>About Me</h2>
+        <p>
+          Originally from
+          <a href="https://www.google.com/maps/place/Cenate+Sotto" target="_blank" rel="noopener">Cenate Sotto</a>,
+          a small town near Bergamo, I graduated <em>cum laude</em> in
+          <a href="https://www.polimi.it/en/education/laurea-programmes/programme-detail/automation-engineering" target="_blank" rel="noopener">Automation Engineering</a>
+          at Politecnico di Milano in 2025, with an exchange semester at the
+          <a href="https://www.iit.edu/" target="_blank" rel="noopener">Illinois Institute of Technology</a>
+          in Chicago. Along the way, I also worked as a collaborating investigator
+          at <a href="https://topsecret.it/" target="_blank" rel="noopener">Top Secret</a>,
+          a private investigation agency. My research path started at the
+          <a href="https://www.joiintlab.com/network/" target="_blank" rel="noopener">JOIINT Lab</a>
+          back home in Bergamo, where I first made control run on real hardware.
+        </p>
+        <p>
+          What fascinates me is physical AI: machines that learn skills from data
+          and experience, and everything it takes to make those skills hold up in
+          the real world, safely and robustly.
+        </p>
+        <p>
+          The rest of the time I'm a serial traveler, usually training calisthenics
+          or martial arts wherever I land.
+        </p>
+      </section>
 
-  <!-- ============ EXPERIENCE ============ -->
-  <section id="experience">
-    <div class="max-w-6xl mx-auto px-5 sm:px-8 py-16 sm:py-24">
-      <h2 class="section-label">Experience</h2>
-      <div class="mt-10 divide-y divide-line">
+      <!-- ============ EXPERIENCE ============ -->
+      <section id="experience">
+        <h2>Experience</h2>
 
         <!-- component: timeline-entry -->
-        <article class="py-7 grid sm:grid-cols-[200px_1fr] gap-2 sm:gap-8">
-          <p class="font-mono text-xs tracking-widest uppercase text-muted pt-1">Jun 2026 — Present</p>
+        <article class="entry">
+          <p class="entry-date">Jun 2026 – Present</p>
           <div>
-            <h3 class="text-lg font-bold">Robotics Engineer</h3>
-            <p class="text-sm text-muted mt-0.5">Laelaps AI</p>
-            <p class="mt-3 text-muted text-sm leading-relaxed">
+            <p><b>Robotics Engineer</b>, <a href="https://laelaps.ai/" target="_blank" rel="noopener">Laelaps AI</a></p>
+            <p class="desc">
               Building a multi-agent reinforcement learning pipeline from scratch — simulator and MAPPO
               training framework — that trains robot teams to patrol large areas autonomously, from each
               agent's local observations straight to velocity commands, and transfers across different maps.
@@ -142,258 +84,230 @@
         </article>
 
         <!-- component: timeline-entry -->
-        <article class="py-7 grid sm:grid-cols-[200px_1fr] gap-2 sm:gap-8">
-          <p class="font-mono text-xs tracking-widest uppercase text-muted pt-1">Nov 2025 — Present</p>
+        <article class="entry">
+          <p class="entry-date">Nov 2025 – Present</p>
           <div>
-            <h3 class="text-lg font-bold">Partnerships Team Lead</h3>
-            <p class="text-sm text-muted mt-0.5">ETH Robotics Club · Zürich</p>
-            <p class="mt-3 text-muted text-sm leading-relaxed">
-              Securing sponsorships for club initiatives and events.
-            </p>
+            <p><b>Partnerships Team Lead</b>, ETH Robotics Club · Zürich</p>
+            <p class="desc">Securing sponsorships for club initiatives and events.</p>
           </div>
         </article>
 
         <!-- component: timeline-entry -->
-        <article class="py-7 grid sm:grid-cols-[200px_1fr] gap-2 sm:gap-8">
-          <p class="font-mono text-xs tracking-widest uppercase text-muted pt-1">Feb — Jun 2025</p>
+        <article class="entry">
+          <p class="entry-date">Feb – Jun 2025</p>
           <div>
-            <h3 class="text-lg font-bold">Research Intern — Industrial Robotics</h3>
-            <p class="text-sm text-muted mt-0.5">JOIINT Lab, Italian Institute of Technology · Bergamo</p>
-            <p class="mt-3 text-muted text-sm leading-relaxed">
+            <p><b>Research Intern — Industrial Robotics</b>, JOIINT Lab, Italian Institute of Technology · Bergamo</p>
+            <p class="desc">
               CAD design of a linear actuator from off-the-shelf components, real-time control on
               Arduino, and a MATLAB simulation validating system dynamics.
-              <a href="https://github.com/alessiosalvatore1703-ops/Linear-Actuator" target="_blank" rel="noopener" class="inline-block py-1 -my-1 font-mono text-xs underline underline-offset-4 hover:opacity-60 ml-1">Repo →</a>
             </p>
+            <div class="btns"><a class="btn" href="https://github.com/alessiosalvatore1703-ops/Linear-Actuator" target="_blank" rel="noopener">Code</a></div>
+          </div>
+        </article>
+      </section>
+
+      <!-- ============ RESEARCH PROJECTS ============ -->
+      <section id="projects">
+        <h2>Research Projects</h2>
+
+        <!-- component: project-row · aerial-knowledge-distillation -->
+        <article class="project">
+          <!-- MEDIA SLOT — real OMAV flight footage; pipeline diagram at
+               assets/projects/aerial-knowledge-distillation/pipeline.png (for detail page). -->
+          <figure class="thumb">
+            <video loop muted playsinline preload="none" data-autoplay
+                   poster="assets/projects/aerial-knowledge-distillation/poster.jpg"
+                   aria-label="Real flight footage of the omnidirectional micro aerial vehicle">
+              <source src="assets/projects/aerial-knowledge-distillation/demo.mp4" type="video/mp4">
+              <a href="assets/projects/aerial-knowledge-distillation/demo.mp4">Watch the flight video</a>
+            </video>
+          </figure>
+          <div>
+            <h3>Knowledge Distillation for Aerial Robot Control</h3>
+            <p class="meta">Perception &amp; Learning for Robotics · ASL, Roland Siegwart Lab · Feb – Jun 2026</p>
+            <p class="desc">
+              Omnidirectional aerial vehicles can fly and orient in any direction, but the
+              model-based controllers behind this are computationally heavy and need careful
+              tuning for each vehicle. The goal of this project is to compress that expertise
+              into a small neural network able to run on the drone itself. Trained by imitation
+              across thousands of simulated flights, the resulting policy controls the real OMAV
+              in real time and stays reliable even when the vehicle differs from its model.
+            </p>
+            <div class="btns">
+              <a class="btn" href="assets/projects/aerial-knowledge-distillation/ReportPLR_Salvatore_Stefanini.pdf">Report</a>
+              <a class="btn" href="https://youtu.be/oPd9mkxEaO8">Video</a>
+            </div>
           </div>
         </article>
 
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ FEATURED WORK ============ -->
-  <section id="projects" class="border-t border-line">
-    <div class="max-w-6xl mx-auto px-5 sm:px-8 py-16 sm:py-24">
-      <h2 class="section-label">Featured Work</h2>
-
-      <!-- component: project-feature -->
-      <article class="group mt-12 grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-        <!-- MEDIA SLOT — real OMAV flight footage; pipeline diagram at
-             assets/projects/aerial-knowledge-distillation/pipeline.png (for detail page). -->
-        <figure class="viewfinder relative">
-          <video class="w-full aspect-video sm:aspect-[8/5] object-contain block bg-panel" loop muted playsinline preload="none"
-                 poster="assets/projects/aerial-knowledge-distillation/poster.jpg" data-autoplay
-                 aria-label="Real flight footage of the omnidirectional micro aerial vehicle">
-            <source src="assets/projects/aerial-knowledge-distillation/demo.mp4" type="video/mp4">
-            <a href="assets/projects/aerial-knowledge-distillation/demo.mp4">Watch the flight video</a>
-          </video>
-        </figure>
-        <div>
-          <p class="font-mono text-xs tracking-widest uppercase text-muted">Feb — Jun 2026 · Perception &amp; Learning for Robotics · ASL, Roland Siegwart Lab</p>
-          <h3 class="mt-3 text-2xl sm:text-3xl font-bold">Knowledge Distillation for Aerial Robot Control</h3>
-          <p class="mt-4 text-muted leading-relaxed">
-            Omnidirectional aerial vehicles can fly and orient in any direction, but the
-            model-based controllers behind this are computationally heavy and need careful
-            tuning for each vehicle. The goal of this project is to compress that expertise
-            into a small neural network able to run on the drone itself. Trained by imitation
-            across thousands of simulated flights, the resulting policy controls the real OMAV
-            in real time and stays reliable even when the vehicle differs from its model.
-          </p>
-          <div class="mt-5 flex flex-wrap gap-2">
-            <span class="tag-pill">Knowledge Distillation</span>
-            <span class="tag-pill">Imitation Learning</span>
-            <span class="tag-pill">Sim-to-Real</span>
-          </div>
-          <div class="mt-5 font-mono text-xs flex gap-4">
-            <a href="assets/projects/aerial-knowledge-distillation/ReportPLR_Salvatore_Stefanini.pdf" class="inline-block py-1 -my-1 underline underline-offset-4 hover:opacity-60">Report →</a>
-            <a href="https://youtu.be/oPd9mkxEaO8" class="inline-block py-1 -my-1 underline underline-offset-4 hover:opacity-60">Video →</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- component: project-feature (mirrored) -->
-      <article class="group mt-16 grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-        <div class="md:order-2">
-          <!-- MEDIA SLOT — to use video instead, replace the <img> with this <video>:
-               <video class="w-full aspect-[8/5] object-cover" controls muted playsinline
-                      poster="assets/projects/task-aware-3d-mapping/poster.jpg">
-                 <source src="assets/projects/task-aware-3d-mapping/demo.mp4" type="video/mp4">
-                 <a href="assets/projects/task-aware-3d-mapping/demo.mp4">Watch the demo video</a>
-               </video> -->
-          <figure class="viewfinder">
-            <img src="assets/projects/task-aware-3d-mapping/pipeline.png" alt="Pipeline: Habitat RGB-D feeds a 3D multi-resolution sparse map; an RL policy splits, keeps, or merges voxels; the map is projected to 2D and planned over with PEANUT, closing the loop with action commands" class="w-full aspect-[8/5] object-contain block bg-white" loading="lazy" decoding="async">
+        <!-- component: project-row · task-aware-3d-mapping -->
+        <article class="project">
+          <!-- MEDIA SLOT — pipeline figure; a demo video can replace it later
+               (assets/projects/task-aware-3d-mapping/demo.mp4 + poster.jpg). -->
+          <figure class="thumb thumb-fit">
+            <img src="assets/projects/task-aware-3d-mapping/pipeline.png" alt="Pipeline: Habitat RGB-D feeds a 3D multi-resolution sparse map; an RL policy splits, keeps, or merges voxels; the map is projected to 2D and planned over with PEANUT, closing the loop with action commands" loading="lazy" decoding="async">
           </figure>
-        </div>
-        <div class="md:order-1">
-          <p class="font-mono text-xs tracking-widest uppercase text-muted">Feb — Jun 2026 · 3D Vision · CVG, Marc Pollefeys Lab</p>
-          <h3 class="mt-3 text-2xl sm:text-3xl font-bold">Goal-Driven Adaptive-Resolution 3D Mapping with RL</h3>
-          <p class="mt-4 text-muted leading-relaxed">
-            3D maps are essential to robotic systems for tasks like navigation and manipulation,
-            but their memory cost grows quickly with scene size and detail. The goal of this
-            project is a quality-adaptive mapping system that reconstructs in high quality only
-            the parts of the scene relevant to the task at hand. Built on MapAdapt and PEANUT,
-            a learned goal-conditioned policy decides where detail is worth its cost — the
-            resulting map keeps 79&nbsp;% of navigation success with 87&nbsp;% less memory than
-            a uniformly fine one.
-          </p>
-          <div class="mt-5 flex flex-wrap gap-2">
-            <span class="tag-pill">Reinforcement Learning</span>
-            <span class="tag-pill">3D Reconstruction</span>
-            <span class="tag-pill">Habitat</span>
+          <div>
+            <h3>Goal-Driven Adaptive-Resolution 3D Mapping with RL</h3>
+            <p class="meta">3D Vision · CVG, Marc Pollefeys Lab · Feb – Jun 2026</p>
+            <p class="desc">
+              3D maps are essential to robotic systems for tasks like navigation and manipulation,
+              but their memory cost grows quickly with scene size and detail. The goal of this
+              project is a quality-adaptive mapping system that reconstructs in high quality only
+              the parts of the scene relevant to the task at hand. Built on MapAdapt and PEANUT,
+              a learned goal-conditioned policy decides where detail is worth its cost — the
+              resulting map keeps 79&nbsp;% of navigation success with 87&nbsp;% less memory than
+              a uniformly fine one.
+            </p>
+            <div class="btns">
+              <a class="btn" href="assets/projects/task-aware-3d-mapping/3dv_final_report.pdf">Report</a>
+              <a class="btn" href="https://github.com/vassili-de-palma/goal-driven-map-adapt">Code</a>
+            </div>
           </div>
-          <div class="mt-5 font-mono text-xs flex gap-4">
-            <a href="assets/projects/task-aware-3d-mapping/3dv_final_report.pdf" class="inline-block py-1 -my-1 underline underline-offset-4 hover:opacity-60">Report →</a>
-            <a href="https://github.com/vassili-de-palma/goal-driven-map-adapt" class="inline-block py-1 -my-1 underline underline-offset-4 hover:opacity-60">Repo →</a>
-          </div>
-        </div>
-      </article>
-    </div>
-  </section>
+        </article>
+      </section>
 
-  <!-- ============ PROJECTS GRID ============ -->
-  <section class="border-t border-line">
-    <div class="max-w-6xl mx-auto px-5 sm:px-8 py-16 sm:py-24">
-      <h2 class="section-label">Projects</h2>
+      <!-- ============ OTHER PROJECTS ============ -->
+      <section>
+        <h2>Other Projects</h2>
 
-      <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-
-        <!-- component: project-card · vla-so101 -->
-        <article class="group border border-line rounded-lg overflow-hidden bg-white hover:border-ink/40 transition-colors">
+        <!-- component: project-row · vla-so101 -->
+        <article class="project">
           <!-- MEDIA SLOT — real demo footage (converted from the original GIF) -->
-          <figure class="relative">
-            <video class="w-full aspect-[8/5] object-cover block" loop muted playsinline preload="none"
-                   poster="assets/projects/vla-so101/poster.jpg" data-autoplay
+          <figure class="thumb">
+            <video loop muted playsinline preload="none" data-autoplay
+                   poster="assets/projects/vla-so101/poster.jpg"
                    aria-label="SO-101 robot arm handing a coke can to a portrait of Michael Jackson">
               <source src="assets/projects/vla-so101/demo.mp4" type="video/mp4">
               <a href="assets/projects/vla-so101/demo.mp4">Watch the demo video</a>
             </video>
           </figure>
-          <div class="p-5">
-            <p class="font-mono text-[11px] tracking-widest uppercase text-muted">May 2026 · Robot Learning, ETH Zürich</p>
-            <h3 class="mt-2 text-lg font-bold leading-snug">Vision-Language-Action Policies on an SO-101 Arm</h3>
-            <p class="mt-2 text-sm text-muted leading-relaxed">
+          <div>
+            <h3>Vision-Language-Action Policies on an SO-101 Arm</h3>
+            <p class="meta">Robot Learning, ETH Zürich · May 2026</p>
+            <p class="desc">
               SmolVLA policies are fine-tuned for language-conditioned pick-and-place — from color
               commands to grounding celebrity portraits, generalizing to identities never seen in
               training. Inference runs on the robot at 10&nbsp;FPS.
             </p>
-            <div class="mt-4 font-mono text-xs flex gap-4">
-              <a href="https://github.com/alessiosalvatore1703-ops/VLA-robotlearning" class="inline-block py-1 -my-1 underline underline-offset-4 hover:opacity-60">Repo →</a>
-              <a href="https://huggingface.co/ETHrobotlearning" class="inline-block py-1 -my-1 underline underline-offset-4 hover:opacity-60">HF Hub →</a>
+            <div class="btns">
+              <a class="btn" href="https://github.com/alessiosalvatore1703-ops/VLA-robotlearning">Code</a>
+              <a class="btn" href="https://huggingface.co/ETHrobotlearning">HF Hub</a>
             </div>
           </div>
         </article>
 
-        <!-- component: project-card · unitree-a2-exploration -->
-        <article class="group border border-line rounded-lg overflow-hidden bg-white hover:border-ink/40 transition-colors">
+        <!-- component: project-row · unitree-a2-exploration -->
+        <article class="project">
           <!-- MEDIA SLOT — real photo from the summer school -->
-          <figure class="relative overflow-hidden">
-            <img src="assets/projects/unitree-a2-exploration/cover.jpeg" alt="Unitree A2 quadruped during the ETH Robotics Summer School field deployment" class="w-full aspect-[8/5] object-cover block" loading="lazy" decoding="async">
+          <figure class="thumb">
+            <img src="assets/projects/unitree-a2-exploration/cover.jpeg" alt="Unitree A2 quadruped during the ETH Robotics Summer School field deployment" loading="lazy" decoding="async">
           </figure>
-          <div class="p-5">
-            <p class="font-mono text-[11px] tracking-widest uppercase text-muted">Jun 2026 · ETH Robotics Summer School</p>
-            <h3 class="mt-2 text-lg font-bold leading-snug">Autonomous Exploration on a Unitree A2 Quadruped</h3>
-            <p class="mt-2 text-sm text-muted leading-relaxed">
+          <div>
+            <h3>Autonomous Exploration on a Unitree A2 Quadruped</h3>
+            <p class="meta">ETH Robotics Summer School · Jun 2026</p>
+            <p class="desc">
               An autonomous search-and-explore mission deployed on a real A2 across three field
               sites. YOLO detections are fused into a deduplicated map of located objects, and the
               exploration stack (TARE, FAR, DLIO) was field-tuned for tight spaces.
             </p>
-            <div class="mt-4 font-mono text-xs flex gap-4">
-              <a href="https://github.com/alessiosalvatore1703-ops/RSS_sim2win" class="inline-block py-1 -my-1 underline underline-offset-4 hover:opacity-60">Repo →</a>
+            <div class="btns">
+              <a class="btn" href="https://github.com/alessiosalvatore1703-ops/RSS_sim2win">Code</a>
             </div>
           </div>
         </article>
 
-        <!-- component: project-card · agibot-x2-person-following -->
-        <article class="group border border-line rounded-lg overflow-hidden bg-white hover:border-ink/40 transition-colors">
+        <!-- component: project-row · agibot-x2-person-following -->
+        <article class="project">
           <!-- MEDIA SLOT — real demo footage -->
-          <figure class="relative">
-            <video class="w-full aspect-[8/5] object-cover block" loop muted playsinline preload="none"
-                   poster="assets/projects/agibot-x2-person-following/poster.jpg" data-autoplay
+          <figure class="thumb">
+            <video loop muted playsinline preload="none" data-autoplay
+                   poster="assets/projects/agibot-x2-person-following/poster.jpg"
                    aria-label="Agibot X2 humanoid following a person">
               <source src="assets/projects/agibot-x2-person-following/demo.mp4" type="video/mp4">
               <a href="assets/projects/agibot-x2-person-following/demo.mp4">Watch the demo video</a>
             </video>
           </figure>
-          <div class="p-5">
-            <p class="font-mono text-[11px] tracking-widest uppercase text-muted">May 2026 · RoboHack Hackathon</p>
-            <h3 class="mt-2 text-lg font-bold leading-snug">Person Following on the Agibot X2 Humanoid</h3>
-            <p class="mt-2 text-sm text-muted leading-relaxed">
+          <div>
+            <h3>Person Following on the Agibot X2 Humanoid</h3>
+            <p class="meta">RoboHack Hackathon · May 2026</p>
+            <p class="desc">
               Real-time person detection and follow-me behavior, built in a hackathon weekend and
               run fully onboard: YOLOv8 on stereo cameras with disparity depth, and a locomotion
               supervisor that walks to the person and holds a set distance.
             </p>
-            <div class="mt-4 font-mono text-xs flex gap-4">
-              <a href="https://github.com/alessiosalvatore1703-ops/robohack2026" class="inline-block py-1 -my-1 underline underline-offset-4 hover:opacity-60">Repo →</a>
+            <div class="btns">
+              <a class="btn" href="https://github.com/alessiosalvatore1703-ops/robohack2026">Code</a>
             </div>
           </div>
         </article>
 
-        <!-- component: project-card · pipe-inspection-odometry -->
-        <article class="group border border-line rounded-lg overflow-hidden bg-white hover:border-ink/40 transition-colors">
+        <!-- component: project-row · pipe-inspection-odometry -->
+        <article class="project">
           <!-- MEDIA SLOT — real inspection footage; results figure at
                assets/projects/pipe-inspection-odometry/results.jpeg -->
-          <figure class="relative">
-            <video class="w-full aspect-[4/3] sm:aspect-[8/5] object-contain block bg-panel" loop muted playsinline preload="none"
-                   poster="assets/projects/pipe-inspection-odometry/poster.jpg" data-autoplay
+          <figure class="thumb thumb-fit thumb-dark">
+            <video loop muted playsinline preload="none" data-autoplay
+                   poster="assets/projects/pipe-inspection-odometry/poster.jpg"
                    aria-label="Sewer-inspection probe footage inside the channel">
               <source src="assets/projects/pipe-inspection-odometry/demo.mp4" type="video/mp4">
               <a href="assets/projects/pipe-inspection-odometry/demo.mp4">Watch the inspection video</a>
             </video>
           </figure>
-          <div class="p-5">
-            <p class="font-mono text-[11px] tracking-widest uppercase text-muted">May 2026 · Physical AI Hackathon</p>
-            <h3 class="mt-2 text-lg font-bold leading-snug">Channel Position Estimation from Pipe-Inspection Video</h3>
-            <p class="mt-2 text-sm text-muted leading-relaxed">
+          <div>
+            <h3>Channel Position Estimation from Pipe-Inspection Video</h3>
+            <p class="meta">Physical AI Hackathon · May 2026</p>
+            <p class="desc">
               The position of a sewer-inspection probe is estimated from video alone, using sparse
               optical flow with scene gating and scale-free normalization — CPU-only, ~1000 frames
               in under 8&nbsp;s. A zero-shot YOLO-World pass adds a pipe-condition report.
             </p>
-            <div class="mt-4 font-mono text-xs flex gap-4">
-              <a href="https://github.com/MatteoR1103/PhysicalAI-Hackathon" class="inline-block py-1 -my-1 underline underline-offset-4 hover:opacity-60">Repo →</a>
-              <a href="assets/projects/pipe-inspection-odometry/slides.pdf" class="inline-block py-1 -my-1 underline underline-offset-4 hover:opacity-60">Slides ↓</a>
+            <div class="btns">
+              <a class="btn" href="https://github.com/MatteoR1103/PhysicalAI-Hackathon">Code</a>
+              <a class="btn" href="assets/projects/pipe-inspection-odometry/slides.pdf">Slides</a>
             </div>
           </div>
         </article>
 
-        <!-- component: project-card · mitral-valve-segmentation -->
-        <article class="group border border-line rounded-lg overflow-hidden bg-white hover:border-ink/40 transition-colors">
+        <!-- component: project-row · mitral-valve-segmentation -->
+        <article class="project">
           <!-- MEDIA SLOT — real segmentation output on echo video -->
-          <figure class="relative">
-            <video class="w-full aspect-[4/3] sm:aspect-[8/5] object-contain block bg-panel" loop muted playsinline preload="none"
-                   poster="assets/projects/mitral-valve-segmentation/poster.jpg" data-autoplay
+          <figure class="thumb thumb-fit">
+            <video loop muted playsinline preload="none" data-autoplay
+                   poster="assets/projects/mitral-valve-segmentation/poster.jpg"
                    aria-label="Predicted mitral valve segmentation mask tracking the leaflets in an echocardiography clip">
               <source src="assets/projects/mitral-valve-segmentation/demo.mp4" type="video/mp4">
               <a href="assets/projects/mitral-valve-segmentation/demo.mp4">Watch the segmentation demo</a>
             </video>
           </figure>
-          <div class="p-5">
-            <p class="font-mono text-[11px] tracking-widest uppercase text-muted">12/2025</p>
-            <h3 class="mt-2 text-lg font-bold leading-snug">DINOv3 for Mitral Valve Segmentation</h3>
-            <p class="mt-2 text-sm text-muted leading-relaxed">
+          <div>
+            <h3>DINOv3 for Mitral Valve Segmentation</h3>
+            <p class="meta">Advanced Machine Learning, ETH Zürich · Dec 2025</p>
+            <p class="desc">
               DINO-based feature propagation generates pseudo-labels from sparse annotations in
               heterogeneous medical video; a U-Net is trained on the filtered labels.
             </p>
-            <div class="mt-4 font-mono text-xs flex gap-4">
-              <a href="https://github.com/alessiosalvatore1703-ops/DINO-v3-for-Mitral-Valve-Segmentation" target="_blank" rel="noopener" class="inline-block py-1 -my-1 underline underline-offset-4 hover:opacity-60">Repo →</a>
+            <div class="btns">
+              <a class="btn" href="https://github.com/alessiosalvatore1703-ops/DINO-v3-for-Mitral-Valve-Segmentation" target="_blank" rel="noopener">Code</a>
             </div>
           </div>
         </article>
 
-        <!-- component: project-card · multi-agent-planner -->
-        <article class="group border border-line rounded-lg overflow-hidden bg-white hover:border-ink/40 transition-colors">
+        <!-- component: project-row · multi-agent-planner -->
+        <article class="project">
           <!-- MEDIA SLOT — real planner rollout from the course simulator -->
-          <figure class="relative">
-            <video class="w-full aspect-square sm:aspect-[8/5] object-contain block bg-panel" loop muted playsinline preload="none"
-                   poster="assets/projects/multi-agent-planner/poster.jpg" data-autoplay
+          <figure class="thumb thumb-fit">
+            <video loop muted playsinline preload="none" data-autoplay
+                   poster="assets/projects/multi-agent-planner/poster.jpg"
                    aria-label="Multiple robots collecting goals among obstacles in simulation">
               <source src="assets/projects/multi-agent-planner/demo.mp4" type="video/mp4">
               <a href="assets/projects/multi-agent-planner/demo.mp4">Watch the planner demo</a>
             </video>
           </figure>
-          <div class="p-5">
-            <p class="font-mono text-[11px] tracking-widest uppercase text-muted">12/2025 · PDM4AR</p>
-            <h3 class="mt-2 text-lg font-bold leading-snug">Multi-Agent Multi-Goal Collection Planner</h3>
-            <p class="mt-2 text-sm text-muted leading-relaxed">
+          <div>
+            <h3>Multi-Agent Multi-Goal Collection Planner</h3>
+            <p class="meta">Planning &amp; Decision Making for Autonomous Robots, ETH Zürich · Dec 2025</p>
+            <p class="desc">
               Multi-robot planning framework combining Large Neighborhood Search for task allocation
               with real-time path planning and decentralized collision avoidance under partial
               observability.
@@ -401,43 +315,38 @@
           </div>
         </article>
 
-        <!-- component: project-card · satellite-docking -->
-        <article class="group border border-line rounded-lg overflow-hidden bg-white hover:border-ink/40 transition-colors">
+        <!-- component: project-row · satellite-docking -->
+        <article class="project">
           <!-- MEDIA SLOT — real planner rollout from the course simulator -->
-          <figure class="relative">
-            <video class="w-full aspect-square sm:aspect-[8/5] object-contain block bg-panel" loop muted playsinline preload="none"
-                   poster="assets/projects/satellite-docking/poster.jpg" data-autoplay
+          <figure class="thumb thumb-fit">
+            <video loop muted playsinline preload="none" data-autoplay
+                   poster="assets/projects/satellite-docking/poster.jpg"
                    aria-label="Spacecraft steering between circular obstacles toward its docking target in simulation">
               <source src="assets/projects/satellite-docking/demo.mp4" type="video/mp4">
               <a href="assets/projects/satellite-docking/demo.mp4">Watch the docking demo</a>
             </video>
           </figure>
-          <div class="p-5">
-            <p class="font-mono text-[11px] tracking-widest uppercase text-muted">11–12/2025 · PDM4AR</p>
-            <h3 class="mt-2 text-lg font-bold leading-snug">Autonomous Satellite Docking Planner</h3>
-            <p class="mt-2 text-sm text-muted leading-relaxed">
+          <div>
+            <h3>Autonomous Satellite Docking Planner</h3>
+            <p class="meta">Planning &amp; Decision Making for Autonomous Robots, ETH Zürich · Nov – Dec 2025</p>
+            <p class="desc">
               Trajectory optimization pipeline for autonomous docking, solving non-convex guidance
               problems via Sequential Convexification in cluttered environments.
             </p>
           </div>
         </article>
+      </section>
 
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ EDUCATION ============ -->
-  <section id="education" class="border-t border-line">
-    <div class="max-w-6xl mx-auto px-5 sm:px-8 py-16 sm:py-24">
-      <h2 class="section-label">Education</h2>
-      <div class="mt-10 divide-y divide-line">
+      <!-- ============ EDUCATION ============ -->
+      <section id="education">
+        <h2>Education</h2>
 
         <!-- component: timeline-entry -->
-        <article class="py-7 grid sm:grid-cols-[200px_1fr] gap-2 sm:gap-8">
-          <p class="font-mono text-xs tracking-widest uppercase text-muted pt-1">Sep 2025 — Present</p>
+        <article class="entry">
+          <p class="entry-date">Sep 2025 – Present</p>
           <div>
-            <h3 class="text-lg font-bold">ETH Zürich — M.Sc. Robotics</h3>
-            <p class="mt-2 text-muted text-sm leading-relaxed">
+            <p><b>ETH Zürich</b> — M.Sc. Robotics</p>
+            <p class="desc">
               Probabilistic AI, Advanced ML, Image Analysis and Computer Vision, Planning and
               Decision Making for Autonomous Robots, 3D Vision, Perception and Learning for
               Robotics, Deep Generative Models, Robot Learning.
@@ -445,63 +354,28 @@
           </div>
         </article>
 
-        <article class="py-7 grid sm:grid-cols-[200px_1fr] gap-2 sm:gap-8">
-          <p class="font-mono text-xs tracking-widest uppercase text-muted pt-1">Sep 2022 — Jul 2025</p>
+        <article class="entry">
+          <p class="entry-date">Sep 2022 – Jul 2025</p>
           <div>
-            <h3 class="text-lg font-bold">Politecnico di Milano — B.Sc. Automation Engineering</h3>
-            <p class="mt-2 text-muted text-sm leading-relaxed">
-              Final grade 110/110 <em>cum laude</em> (≈ 4.0/4.0 GPA).
-            </p>
+            <p><b>Politecnico di Milano</b> — B.Sc. Automation Engineering</p>
+            <p class="desc">Final grade 110/110 <em>cum laude</em> (≈ 4.0/4.0 GPA).</p>
           </div>
         </article>
 
-        <article class="py-7 grid sm:grid-cols-[200px_1fr] gap-2 sm:gap-8">
-          <p class="font-mono text-xs tracking-widest uppercase text-muted pt-1">Aug — Dec 2024</p>
+        <article class="entry">
+          <p class="entry-date">Aug – Dec 2024</p>
           <div>
-            <h3 class="text-lg font-bold">Illinois Institute of Technology — Exchange</h3>
-            <p class="mt-2 text-muted text-sm leading-relaxed">
-              Global E3 Program, Chicago, IL.
-            </p>
+            <p><b>Illinois Institute of Technology</b> — Exchange</p>
+            <p class="desc">Global E3 Program, Chicago, IL.</p>
           </div>
         </article>
+      </section>
 
-      </div>
-    </div>
-  </section>
+      <!-- ============ FOOTER ============ -->
+      <footer>© <span id="year"></span> Alessio Salvatore · Zürich, Switzerland</footer>
+    </main>
+  </div>
 
-  <!-- ============ FOOTER ============ -->
-  <footer class="border-t border-line">
-    <div class="max-w-6xl mx-auto px-5 sm:px-8 py-12 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-      <div>
-        <p class="display-expanded font-black uppercase text-xl">Alessio Salvatore</p>
-        <p class="font-mono text-xs text-muted mt-2">© <span id="year"></span> · Zürich, Switzerland</p>
-        <p class="font-mono text-[10px] text-muted mt-1">Hero robots: Agibot X2 &amp; SO-101 meshes (Apache-2.0) · Unitree A2 (BSD-3) · ETH ASL RotorS Firefly (Apache-2.0)</p>
-      </div>
-      <div class="flex gap-6 font-mono text-sm">
-        <a href="mailto:alessiosalvatore1703@gmail.com" class="inline-block py-2 -my-2 hover:underline underline-offset-4">Email</a>
-        <a href="https://github.com/alessiosalvatore1703-ops" class="inline-block py-2 -my-2 hover:underline underline-offset-4">GitHub</a>
-        <a href="https://www.linkedin.com/in/alessiosalvatore/" target="_blank" rel="noopener" class="inline-block py-2 -my-2 hover:underline underline-offset-4">LinkedIn</a>
-        <a href="assets/cv.pdf" class="inline-block py-1 -my-1 underline underline-offset-4 hover:opacity-60">CV ↓</a>
-      </div>
-    </div>
-  </footer>
-
-  <!-- hero point cloud: desktop/tablet only — phones skip three.js + shape data
-       (~900 KB) entirely; the hero copy stands on plain paper there -->
-  <script>
-    if (window.matchMedia('(min-width: 768px)').matches) {
-      [
-        'https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.min.js',
-        'assets/js/hero-shapes.js',
-        'assets/js/hero.js',
-      ].forEach(function (src) {
-        var s = document.createElement('script');
-        s.src = src;
-        s.async = false; // preserve order: hero.js needs THREE + HERO_SHAPES
-        document.body.appendChild(s);
-      });
-    }
-  </script>
   <script src="assets/js/main.js"></script>
 </body>
 </html>

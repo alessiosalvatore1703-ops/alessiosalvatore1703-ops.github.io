@@ -1,107 +1,135 @@
-/* Things Tailwind can't express cleanly — keep this file minimal. */
+/* Site styles — academic sidebar layout. Keep this file minimal. */
 
-/* Archivo variable width axis: expanded display type */
-.display-expanded {
-  font-stretch: 125%;
-  letter-spacing: -0.01em;
+:root {
+  --ink: #222;
+  --muted: #666;
+  --line: #e5e5e5;
+  --link: #1f4e8c;
+  --bg: #fff;
 }
 
-/* Hero headline: below the sm breakpoint, scale with the viewport so
-   "SALVATORE" never overflows narrow phones (sm:text-7xl takes over above). */
-@media (max-width: 639px) {
-  .hero-title { font-size: clamp(2rem, 9.5vw, 3rem); }
+* { box-sizing: border-box; min-width: 0; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 16px/1.6 Lato, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Section heading: mono eyebrow with a leading tick */
-.section-label {
-  font-family: "IBM Plex Mono", ui-monospace, monospace;
-  font-size: 0.8rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: #6E6E6E;
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+a:focus-visible { outline: 2px solid var(--link); outline-offset: 3px; border-radius: 2px; }
+
+p { margin: 0 0 12px; }
+
+/* Two columns: sticky profile + content */
+.layout {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 56px 24px;
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 56px;
+}
+
+/* Profile sidebar */
+.profile {
+  position: sticky;
+  top: 56px;
+  align-self: start;
+  text-align: center;
+}
+.profile-photo { width: 180px; height: 180px; object-fit: cover; border-radius: 50%; }
+.profile h1 { font-size: 26px; font-weight: 900; margin: 18px 0 4px; }
+.profile-role { color: var(--muted); font-size: 15px; margin: 0; }
+.profile-aff { margin: 10px 0 0; font-size: 15px; }
+.profile-mail { font: 13px ui-monospace, monospace; color: var(--muted); margin: 12px 0 0; }
+.profile-links {
+  margin-top: 18px;
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px 14px;
+  font-size: 15px;
+}
+.profile-cv {
+  display: inline-block;
+  margin-top: 18px;
+  border: 1px solid var(--link);
+  border-radius: 4px;
+  padding: 5px 16px;
+  font-size: 14px;
+}
+.profile-cv:hover { background: #f0f4f9; text-decoration: none; }
+
+/* Section heading */
+h2 {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 44px 0 14px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--line);
+}
+main > section:first-child h2 { margin-top: 0; }
+
+/* Shared entry text */
+.desc { font-size: 15px; color: #333; margin: 0; }
+.btns { margin-top: 8px; }
+.btn {
+  display: inline-block;
+  margin: 0 6px 4px 0;
+  font-size: 13px;
+  border: 1px solid #c9d3e0;
+  border-radius: 3px;
+  padding: 1px 10px;
+}
+.btn:hover { background: #f0f4f9; text-decoration: none; }
+
+/* Experience / education entry: date column + body */
+.entry {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  gap: 20px;
+  padding: 10px 0;
+}
+.entry p { margin: 0; }
+.entry .desc { margin-top: 2px; }
+.entry-date { color: var(--muted); font-size: 14px; padding-top: 2px; }
+
+/* Project row: thumbnail + body, vertically centered */
+.project {
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr);
+  gap: 22px;
+  padding: 16px 0;
   align-items: center;
-  gap: 0.75rem;
 }
-.section-label::before {
-  content: "";
-  width: 2rem;
-  height: 2px;
-  background: #121212;
-  flex: none;
+.project h3 { font-size: 16.5px; font-weight: 700; margin: 0; }
+.project .meta { color: var(--muted); font-size: 14px; margin: 2px 0 6px; }
+
+.thumb {
+  margin: 0;
+  aspect-ratio: 8 / 5;
+  background: #f2f2f2;
+  border-radius: 4px;
+  overflow: hidden;
 }
+.thumb img,
+.thumb video { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* plots / diagrams: show the whole frame instead of cropping */
+.thumb-fit { background: #fff; }
+.thumb-fit img,
+.thumb-fit video { object-fit: contain; }
+.thumb-dark { background: #111; }
 
-/* Tag pill */
-.tag-pill {
-  font-family: "IBM Plex Mono", ui-monospace, monospace;
-  font-size: 0.7rem;
-  letter-spacing: 0.05em;
-  border: 1px solid #E4E4E1;
-  border-radius: 9999px;
-  padding: 0.3rem 0.7rem;
-  color: #6E6E6E;
+footer { color: #999; font-size: 13px; margin-top: 48px; }
+
+/* Phones / small tablets: profile stacks on top */
+@media (max-width: 820px) {
+  .layout { grid-template-columns: minmax(0, 1fr); gap: 32px; padding: 32px 16px; }
+  .profile { position: static; }
+  .project { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .entry { grid-template-columns: minmax(0, 1fr); gap: 0; }
 }
-
-/* Viewfinder frame: fiducial-style corner brackets around media */
-.viewfinder {
-  position: relative;
-  padding: 10px;
-}
-.viewfinder::before,
-.viewfinder::after {
-  content: "";
-  position: absolute;
-  width: 22px;
-  height: 22px;
-  border: 2px solid #121212;
-}
-.viewfinder::before { top: 0; left: 0; border-right: none; border-bottom: none; }
-.viewfinder::after  { bottom: 0; right: 0; border-left: none; border-top: none; }
-
-/* Visible keyboard focus everywhere */
-a:focus-visible,
-button:focus-visible {
-  outline: 2px solid #121212;
-  outline-offset: 3px;
-  border-radius: 2px;
-}
-
-/* Hero shape caption: shown by hero.js while a robot holds its form */
-#hero-shape-label {
-  opacity: 0;
-  transition: opacity 0.6s ease;
-}
-#hero-shape-label.is-visible {
-  opacity: 1;
-}
-
-/* ============ Site motion layer ============ */
-
-@media (prefers-reduced-motion: no-preference) {
-  /* scroll reveals (attribute added by main.js so no-JS users see everything) */
-  [data-reveal] {
-    opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-  [data-reveal].is-revealed {
-    opacity: 1;
-    transform: none;
-  }
-
-  /* magnetic buttons (transform driven by main.js) */
-  .magnetic {
-    transition: transform 0.18s ease-out;
-    will-change: transform;
-  }
-
-  /* hero copy: staggered load-in */
-  .load-fade {
-    animation: load-fade 0.7s ease both;
-  }
-  @keyframes load-fade {
-    from { opacity: 0; transform: translateY(12px); }
-    to   { opacity: 1; transform: none; }
-  }
-}
-
