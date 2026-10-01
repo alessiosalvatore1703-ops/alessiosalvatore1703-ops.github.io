@@ -133,7 +133,7 @@ Current CV snapshot (summary):
     via Sequential Convexification in cluttered environments.
 - **Experience**: Research Intern, JOIINT Lab — Italian Institute of Technology, Bergamo
   (Feb–Jun 2025, has repo): linear actuator CAD, Arduino real-time control, MATLAB simulation.
-  Partnerships Team Lead, ETH Robotics Club (Nov 2025–).
+  Partnerships Team Lead, ETH Robotics Club (Nov 2025–Aug 2026).
 
 The CV marks repo links for *DINOv3 Mitral Valve* and *JOIINT Lab* — get the actual URLs
 from the user before publishing; use `#` placeholders in the meantime and flag them.
